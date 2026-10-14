@@ -174,7 +174,7 @@ function SpendBars(props: { spend: Spend; view: string; onView: (v: string) => v
         <span><i className="ld-sw" style={{ background: "var(--accent)" }} />reported (UNICEF Annex 2, annual)</span>
         <span><i className="ld-sw ld-hatch" />contract award (term total, not annual spend)</span>
       </p>
-      <p className="ld-cap">Annual spend and contract-award totals are different measures and are not added together. <Link to="/suppliers">Open supplier intelligence</Link></p>
+      <p className="ld-cap">Annual spend and contract-award totals are different measures and are not added together.</p>
     </section>
   );
 }
