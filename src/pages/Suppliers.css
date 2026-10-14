@@ -6,9 +6,7 @@
 .ld-lede { font-size: 15px; color: var(--ink); max-width: 680px; }
 .ld-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--mute); font-weight: 600; margin: 0; }
 .ld-cap { font-size: 13px; color: var(--mute); max-width: 760px; margin: 4px 0 8px; }
-.ld-cap a, .ld-links a { color: var(--accent); }
-.ld-links { list-style: none; padding: 0; margin: 8px 0 0; display: flex; gap: 0 20px; flex-wrap: wrap; font-size: 14px; }
-.ld-links a { display: inline-block; padding: 10px 0; }
+.ld-cap a { color: var(--accent); }
 .ld-tiles { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 16px; }
 .ld-tile { padding: 0 20px; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
 .ld-tile:first-child { padding-left: 0; border-left: 0; }

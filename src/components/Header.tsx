@@ -1,26 +1,28 @@
-import { NavLink } from "react-router-dom";
-import type { Buyer } from "../lib/buyer";
+import { Link, NavLink } from "react-router-dom";
 
-const cls = ({ isActive }: { isActive: boolean }) => (isActive ? "active" : "");
+const groups: { label: string | null; links: [string, string][] }[] = [
+  { label: null, links: [["/", "Overview"]] },
+  { label: "UNICEF Supply Division", links: [["/portfolio", "Division portfolio"], ["/hypergraph", "Claims hypergraph"]] },
+  { label: "Suppliers", links: [["/suppliers", "Suppliers"], ["/map", "Supply chain map"], ["/climate", "Climate hypergraph"], ["/segments", "ESG claims"]] },
+];
 
-export default function Header(props: { buyer: Buyer }): JSX.Element {
-  const { buyer } = props;
+export default function Header(): JSX.Element {
   return (
-    <header className="ps-header">
-      {buyer.logo ? <img src={buyer.logo} alt="" height={28} /> : <span className="ps-wordmark">{buyer.short_name}</span>}
-      <h1>{buyer.name}</h1>
-      <nav>
-        <NavLink to="/portfolio" className={cls}>Division portfolio</NavLink>
-        <NavLink to="/suppliers" className={cls}>Suppliers</NavLink>
-        <NavLink to="/map" className={cls}>Supply chain map</NavLink>
-        <NavLink to="/climate" className={cls}>Climate hypergraph</NavLink>
-        <NavLink to="/segments" className={cls}>ESG claims</NavLink>
-      </nav>
-      <ul className="ps-disclaimers">
-        {buyer.disclaimers.map((d, i) => (
-          <li key={i}>{d}</li>
+    <header className="site-header">
+      <div className="site-id">
+        <Link to="/" className="site-brand"><img src="/gct-logo.png" alt="GCT" width="28" height="28" />GoCarbonTracker (GCT)</Link>
+        <span className="site-sub">Prototype for UNICEF Supply Division</span>
+      </div>
+      <nav aria-label="Site pages">
+        {groups.map((g) => (
+          <div className="site-group" key={g.label ?? "overview"} role={g.label ? "group" : undefined} aria-label={g.label ?? undefined}>
+            {g.label && <span className="site-group-label" aria-hidden="true">{g.label}</span>}
+            {g.links.map(([to, name]) => (
+              <NavLink key={to} to={to} end>{name}</NavLink>
+            ))}
+          </div>
         ))}
-      </ul>
+      </nav>
     </header>
   );
 }
