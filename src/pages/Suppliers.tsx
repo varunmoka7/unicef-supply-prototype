@@ -285,26 +285,12 @@ export default function Suppliers({ buyer, onOpen }: { buyer: Buyer; onOpen: (i:
   const ready = suppliers.data && spend.data && climate.data && org.data && map.data;
   return (
     <>
-      <header style={{ display: "flex", alignItems: "center", gap: "4px 12px", flexWrap: "wrap", padding: "14px 28px", background: "#fff", borderBottom: "1px solid #e6e9ee" }}>
-        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 12, color: "inherit", textDecoration: "none" }}>
-          <img src="/gct-logo.png" alt="GCT" style={{ width: 28, height: 28 }} />
-          <span style={{ fontSize: 16, fontWeight: 600 }}>GoCarbonTracker (GCT)</span>
-        </Link>
-        <span style={{ color: "#5f6b76", fontSize: 13 }}>Prototype for UNICEF Supply Division</span>
-      </header>
       <main className="ld">
         <p className="ld-eyebrow">UNICEF Supply Division</p>
         <h1>Who carries UNICEF vaccine spend, and what do they say about their climate performance?</h1>
         <p className="ld-cap ld-lede">
           Every figure links to the file, document and page it came from. Claims are extracted statements and not all have been checked. No count here is a finding, and no supplier is rated.
         </p>
-        <ul className="ld-links">
-          <li><Link to="/portfolio">Division portfolio</Link></li>
-          <li><Link to="/map">Supply chain map</Link></li>
-          <li><Link to="/climate">Climate hypergraph</Link></li>
-          <li><Link to="/segments">ESG claims</Link></li>
-          <li><Link to="/hypergraph">Claims hypergraph</Link></li>
-        </ul>
         {error && <p className="empty" role="alert">{error}</p>}
         {!error && !ready && <p className="empty">Loading buyer data.</p>}
         {ready && (

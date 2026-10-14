@@ -10,11 +10,6 @@ const eyebrow: React.CSSProperties = { fontSize: 12, textTransform: "uppercase",
 export default function Index({ buyer }: { buyer: Buyer }): JSX.Element {
   return (
     <>
-      <header style={{ display: "flex", alignItems: "center", gap: "4px 12px", flexWrap: "wrap", padding: "14px 28px", background: "#fff", borderBottom: "1px solid #e6e9ee" }}>
-        <img src="/gct-logo.png" alt="GCT" style={{ width: 28, height: 28 }} />
-        <span style={{ fontSize: 16, fontWeight: 600 }}>GoCarbonTracker (GCT)</span>
-        <span style={{ color: "#5f6b76", fontSize: 13 }}>Prototype for UNICEF Supply Division</span>
-      </header>
       <main style={{ padding: "36px clamp(16px, 4vw, 28px)", maxWidth: 1080 }}>
         <p style={eyebrow}>UNICEF Supply Division</p>
         <h1 style={{ fontSize: 28, lineHeight: 1.25, margin: "8px 0 10px", maxWidth: 760 }}>What suppliers and UNICEF Supply Division say in their own reports</h1>

@@ -21,6 +21,7 @@ export default function App() {
     <>
       {/* the source panel is fixed on the right; reserve its width so it never covers the page */}
       <div className={item ? "with-panel" : undefined}>
+        <Header />
         <Routes>
           <Route path="/" element={<Index buyer={buyer} />} />
           <Route path="/portfolio" element={<Portfolio />} />
@@ -30,7 +31,15 @@ export default function App() {
             path="*"
             element={
               <>
-                <Header buyer={buyer} />
+                <div className="ps-intro">
+                  {buyer.logo ? <img src={buyer.logo} alt="" height={28} /> : <span className="ps-wordmark">{buyer.short_name}</span>}
+                  <h1>{buyer.name}</h1>
+                  <ul className="ps-disclaimers">
+                    {buyer.disclaimers.map((d, i) => (
+                      <li key={i}>{d}</li>
+                    ))}
+                  </ul>
+                </div>
                 <Routes>
                   <Route path="/map" element={<SupplyChainMap buyer={buyer} onOpen={setItem} />} />
                   <Route path="/climate" element={<Climate buyer={buyer} onOpen={setItem} />} />

@@ -1,9 +1,4 @@
 .portfolio { background:#f6f8fa; min-height:100vh; }
-.pf-header { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding:16px clamp(16px,4vw,56px); border-bottom:1px solid var(--line); background:#fff; }
-.pf-brand { display:flex; align-items:center; gap:10px; font-weight:650; color:var(--ink); text-decoration:none; }
-.pf-header nav { display:flex; flex-wrap:wrap; gap:8px 24px; }
-.pf-header nav a { color:var(--mute); padding:4px 0; }
-.pf-header nav a[aria-current] { color:var(--accent); font-weight:600; }
 .pf-main { max-width:1360px; margin:auto; padding:32px 16px; }
 .pf-intro { display:grid; gap:28px; padding-bottom:36px; }
 .pf-kicker { margin:0 0 12px; color:var(--mute); font-size:13px; }
@@ -80,4 +75,4 @@
 .pf-footer p { max-width:700px; color:var(--mute); }
 .pf-footer a { color:var(--accent); display:block; padding:10px 0; }
 @media(min-width:760px) { .pf-main { padding:48px clamp(24px,4vw,56px); } .pf-intro { grid-template-columns:1.35fr 1fr; gap:64px; } .pf-emissions { grid-template-columns:1.35fr 1fr; gap:44px; } .pf-procurement-grid { grid-template-columns:1.7fr 1fr; gap:44px; } .pf-numbers { grid-template-columns:1fr 1fr; } .pf-reach { border-top:0; border-left:1px solid var(--line); padding:0 0 0 28px; } .pf-footer { grid-template-columns:1.7fr 1fr; gap:44px; } }
-@media(max-width:759px) { .pf-header nav { display:grid; grid-template-columns:1fr 1fr; width:100%; gap:2px 12px; } .pf-header nav a { min-height:44px; display:flex; align-items:center; } .pf-source { padding:10px 0; min-height:44px; } .pf-table-wrap th,.pf-table-wrap td { padding:9px 5px; font-size:11px; overflow-wrap:anywhere; } .pf-table-wrap table { table-layout:fixed; } .pf-table-wrap th:first-child { width:44px; } .pf-commodity-table th:first-child { width:46%; } }
+@media(max-width:759px) { .pf-source { padding:10px 0; min-height:44px; } .pf-table-wrap th,.pf-table-wrap td { padding:9px 5px; font-size:11px; overflow-wrap:anywhere; } .pf-table-wrap table { table-layout:fixed; } .pf-table-wrap th:first-child { width:44px; } .pf-commodity-table th:first-child { width:46%; } }

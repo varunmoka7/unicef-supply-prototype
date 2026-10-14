@@ -53,10 +53,6 @@ export default function Portfolio() {
   const supplierId = year === 2025 ? "eb4fde886f1a7f1d" : year === 2024 ? "4c631ee318c1453c" : "3d30f20ed5e0dbbf";
   return (
     <div className="portfolio">
-      <header className="pf-header">
-        <Link to="/" className="pf-brand"><img src="/gct-logo.png" alt="GCT" width="28" height="28" />GoCarbonTracker</Link>
-        <nav aria-label="UNICEF Supply"><Link to="/portfolio" aria-current="page">Division portfolio</Link><Link to="/hypergraph">Claims hypergraph</Link><Link to="/suppliers">Supplier intelligence</Link></nav>
-      </header>
       <main className="pf-main">
         <div className="pf-intro">
           <div><p className="pf-kicker">UNICEF Supply Division / portfolio</p><h1>Supplies for children.<br />The footprint behind them.</h1>
