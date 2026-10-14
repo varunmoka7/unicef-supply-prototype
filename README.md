@@ -22,7 +22,7 @@ This is what the Supply Division's own reports say, as saved in the prototype. E
 
 The Supply Division's climate picture is spread across a baseline study, yearly annual reports, procurement annexes and the sustainability reports of each supplier. This prototype puts them side by side:
 
-- Spend and climate statements sit on one row per supplier. That shows which large vaccine suppliers already report emissions and SBTi targets, which is the group the baseline says to engage, and which say nothing in their saved reports.
+- Spend and climate statements sit on one page, a claims grid and spend bars per supplier. That shows which large vaccine suppliers already report emissions and SBTi targets, which is the group the baseline says to engage, and which say nothing in their saved reports.
 - Every figure opens the passage and page it came from, so a reader can check a claim instead of trusting the summary.
 - Gaps are shown as gaps. A missing year or scope reads "not in the source", never zero.
 - Claims are grouped in a hypergraph that keeps each statement together with its company, topic, year and source. [QUESTIONS.md](QUESTIONS.md) explains why that matters here.
@@ -50,7 +50,7 @@ UNICEF Supply Division reports no Scope 1 or Scope 2 figure of its own. Its base
 | Route | What it shows |
 |---|---|
 | `/` | Landing page with links to the two parts below |
-| `/suppliers` | Vaccine suppliers: UNICEF spend for 2019, 2024 and 2025 next to what their reports say on SBTi, operations, value chain and energy |
+| `/suppliers` | Vaccine suppliers: coverage, claims by supplier and concept, UNICEF spend by supplier and tier, and the supply-chain network |
 | `/map` | Supply chain map of suppliers, products and countries |
 | `/climate` | Climate hypergraph: which of 22 climate concepts each supplier discusses |
 | `/segments` | Supplier ESG claims grouped by segment |
@@ -80,7 +80,7 @@ npm install
 npm run dev
 ```
 
-The dev server prints its URL, normally `http://localhost:3100`. If port 3100 is taken, Vite picks the next free port. Open `/suppliers` to check it works: you should see the supplier table above.
+The dev server prints its URL, normally `http://localhost:3100`. If port 3100 is taken, Vite picks the next free port. Open `/suppliers` to check it works: you should see the supplier page above, starting with the Coverage block.
 
 ## Test and build
 
