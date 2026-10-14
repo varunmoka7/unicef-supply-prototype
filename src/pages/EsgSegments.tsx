@@ -178,7 +178,7 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
   };
 
   return (
-    <main className="seg" ref={root}>
+    <main className="seg-page" ref={root}>
       <div className="seg-stats">
         <span><b>{new Set(cells.map((c) => c.supplier)).size}</b> suppliers</span>
         <span><b>{new Set(cells.map((c) => c.concept)).size}</b> concepts</span>

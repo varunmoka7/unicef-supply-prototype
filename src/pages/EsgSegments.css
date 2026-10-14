@@ -1,16 +1,16 @@
-.seg { position: relative; background: #0f1218; color: #e8ecf2; padding: 14px 20px 20px; min-height: calc(100vh - 140px); }
+.seg-page { position: relative; background: #0f1218; color: #e8ecf2; padding: 14px 20px 20px; min-height: calc(100vh - 140px); }
 .seg-stats { display: flex; gap: 22px; font-size: 14px; color: #9aa4b2; margin-bottom: 10px; }
 .seg-stats b { color: #fff; font-size: 18px; margin-right: 4px; }
 .seg-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 13px; }
 .seg-bar button, .seg-bar input, .seg-bar select { background: #1a1f29; color: #e8ecf2; border: 1px solid #2c3442; border-radius: 6px; padding: 5px 10px; font: inherit; }
 .seg-group { display: inline-flex; gap: 4px; align-items: center; color: #9aa4b2; }
 .seg-group button[aria-pressed="true"] { background: #2d4a7a; border-color: #6ea8fe; color: #fff; }
-.seg svg { width: 100%; height: auto; max-height: 72vh; display: block; }
-.seg circle[role="button"] { cursor: pointer; }
-.seg circle[role="button"]:focus-visible, .seg circle[role="button"]:hover { stroke: #fff; stroke-width: 2; outline: none; }
+.seg-page svg { width: 100%; height: auto; max-height: 72vh; display: block; }
+.seg-page circle[role="button"] { cursor: pointer; }
+.seg-page circle[role="button"]:focus-visible, .seg-page circle[role="button"]:hover { stroke: #fff; stroke-width: 2; outline: none; }
 .seg-hub-label { font-size: 11px; font-weight: 700; paint-order: stroke; stroke: #0f1218; stroke-width: 3px; }
 .seg-tip { position: absolute; pointer-events: none; background: #1a1f29; border: 1px solid #2c3442; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-.seg .empty { color: #9aa4b2; }
-.seg svg { cursor: grab; }
+.seg-page .empty { color: #9aa4b2; }
+.seg-page svg { cursor: grab; }
 .seg-hub { cursor: grab; }
 .seg-note { font-size: 12px; align-self: center; }
