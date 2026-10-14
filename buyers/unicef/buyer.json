@@ -1,0 +1,39 @@
+{
+ "id": "unicef",
+ "name": "UNICEF Supply Division: supplier intelligence",
+ "short_name": "UNICEF",
+ "colours": {"ink": "#17202a", "mute": "#5f6b76", "line": "#dde2e7", "bg": "#f6f8fa", "accent": "#0b5cad", "own": "#1b7f4b", "warn": "#a8321f"},
+ "logo": null,
+ "suppliers": [
+  {"id": "glaxosmithkline_biologicals_sa", "name": "GSK", "alias": "^(GSK|GlaxoSmithKline)\\b", "boundary_hold": false},
+  {"id": "pfizer_inc", "name": "Pfizer", "alias": "^Pfizer", "boundary_hold": false},
+  {"id": "sanofi_winthrop_industrie", "name": "Sanofi", "alias": "^Sanofi[ -]?(Pasteur|Winthrop)", "boundary_hold": false},
+  {"id": "merck_co_inc", "name": "Merck & Co", "alias": "^(Merck & Co|Merck Sharp|MSD\\b)", "boundary_hold": false},
+  {"id": "green_cross_corporation_gc_pharma", "name": "GC Pharma (Green Cross)", "alias": "^Green Cross", "boundary_hold": true},
+  {"id": "zuellig_pharma_ltd", "name": "Zuellig Pharma", "alias": "^Zuellig", "boundary_hold": false},
+  {"id": "lg_chem_ltd", "name": "LG Chem", "alias": "^LG Chem", "boundary_hold": false},
+  {"id": "be_vaccines_pte_ltd", "name": "Biological E", "alias": "^Biological E\\b", "boundary_hold": true},
+  {"id": "bavarian_nordic_a_s", "name": "Bavarian Nordic", "alias": "^Bavarian Nordic", "boundary_hold": false},
+  {"id": "panacea_biotec_ltd", "name": "Panacea Biotec", "alias": "^Panacea Biotec", "boundary_hold": false},
+  {"id": "sinovac_biotech_co_ltd", "name": "Sinovac", "alias": "^Sinovac", "boundary_hold": false},
+  {"id": "pt_bio_farma_persero", "name": "Bio Farma", "alias": "^(P\\.?T\\.? )?Bio Farma", "boundary_hold": false},
+  {"id": "aj_vaccine_a_s", "name": "AJ Vaccines", "alias": "^AJ Vaccine", "boundary_hold": false},
+  {"id": "bilthoven_biologicals_bv", "name": "Bilthoven Biologicals", "alias": "^Bilthoven", "spend_level": "entity", "boundary_hold": false},
+  {"id": "xiamen_innovax_biotech_co_ltd", "name": "Xiamen Innovax", "alias": "^Xiamen Innovax", "boundary_hold": false}
+ ],
+ "climate_concepts": ["framework_sbti", "metric_emissions_intensity", "metric_energy", "metric_renewable_share", "scope_1", "scope_2", "scope_3", "scope3_cat_business_travel", "scope3_cat_capital_goods", "scope3_cat_downstream_leased", "scope3_cat_downstream_transport", "scope3_cat_employee_commuting", "scope3_cat_eol_treatment", "scope3_cat_franchises", "scope3_cat_fuel_energy", "scope3_cat_investments", "scope3_cat_processing", "scope3_cat_purchased_goods", "scope3_cat_upstream_leased", "scope3_cat_upstream_transport", "scope3_cat_use_of_sold", "scope3_cat_waste"],
+ "disclaimers": [
+  "Claims are model-extracted and not source-checked. Each one carries its document and page.",
+  "A gap means the figure is not in the source. It is never zero.",
+  "Nothing here is summed or compared across suppliers: boundaries and years differ."
+ ],
+ "tiers": {
+  "reported": "UNICEF Annex 2 annual spend per supplier",
+  "contract_award": "UNICEF Contract Awards value over the contract term, never annual spend",
+  "bcg_reported": "Stated in the BCG Scope 3 baseline compendium (2019)",
+  "inferred": "Candidate for a BCG anonymised supplier, inferred from Contract Awards",
+  "category_average": "BCG category average, not supplier-specific",
+  "gap": "No figure: see flag or note",
+  "claim_extracted": "Model-extracted from a UNICEF or supplier document, not source-checked"
+ }
+}

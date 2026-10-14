@@ -1,0 +1,5186 @@
+{
+ "nodes": [
+  {
+   "id": "unicef",
+   "kind": "buyer",
+   "label": "UNICEF"
+  },
+  {
+   "id": "glaxosmithkline_biologicals_sa",
+   "kind": "supplier",
+   "label": "GSK"
+  },
+  {
+   "id": "pfizer_inc",
+   "kind": "supplier",
+   "label": "Pfizer"
+  },
+  {
+   "id": "sanofi_winthrop_industrie",
+   "kind": "supplier",
+   "label": "Sanofi"
+  },
+  {
+   "id": "merck_co_inc",
+   "kind": "supplier",
+   "label": "Merck & Co"
+  },
+  {
+   "id": "green_cross_corporation_gc_pharma",
+   "kind": "supplier",
+   "label": "GC Pharma (Green Cross)"
+  },
+  {
+   "id": "zuellig_pharma_ltd",
+   "kind": "supplier",
+   "label": "Zuellig Pharma"
+  },
+  {
+   "id": "lg_chem_ltd",
+   "kind": "supplier",
+   "label": "LG Chem"
+  },
+  {
+   "id": "be_vaccines_pte_ltd",
+   "kind": "supplier",
+   "label": "Biological E"
+  },
+  {
+   "id": "bavarian_nordic_a_s",
+   "kind": "supplier",
+   "label": "Bavarian Nordic"
+  },
+  {
+   "id": "panacea_biotec_ltd",
+   "kind": "supplier",
+   "label": "Panacea Biotec"
+  },
+  {
+   "id": "sinovac_biotech_co_ltd",
+   "kind": "supplier",
+   "label": "Sinovac"
+  },
+  {
+   "id": "pt_bio_farma_persero",
+   "kind": "supplier",
+   "label": "Bio Farma"
+  },
+  {
+   "id": "aj_vaccine_a_s",
+   "kind": "supplier",
+   "label": "AJ Vaccines"
+  },
+  {
+   "id": "bilthoven_biologicals_bv",
+   "kind": "supplier",
+   "label": "Bilthoven Biologicals"
+  },
+  {
+   "id": "xiamen_innovax_biotech_co_ltd",
+   "kind": "supplier",
+   "label": "Xiamen Innovax"
+  },
+  {
+   "id": "product:rts,s/as01 vaccine",
+   "kind": "product",
+   "label": "RTS,S/AS01 vaccine"
+  },
+  {
+   "id": "product:vaccines/biologicals",
+   "kind": "product",
+   "label": "Vaccines/biologicals"
+  },
+  {
+   "id": "product:pharmaceuticals",
+   "kind": "product",
+   "label": "Pharmaceuticals"
+  },
+  {
+   "id": "product:additional mopv2 bulk and finished product",
+   "kind": "product",
+   "label": "Additional mOPV2 bulk and finished product"
+  },
+  {
+   "id": "product:antiretroviral medicine for moh kazakhstan",
+   "kind": "product",
+   "label": "Antiretroviral medicine for MoH Kazakhstan"
+  },
+  {
+   "id": "product:rotavirus vaccine, mono, tube of 1 dose for supply to namibia",
+   "kind": "product",
+   "label": "Rotavirus vaccine, mono, tube of 1 dose for supply to Namibia"
+  },
+  {
+   "id": "product:human papillomavirus (hpv) vaccine",
+   "kind": "product",
+   "label": "Human Papillomavirus (HPV) vaccine"
+  },
+  {
+   "id": "product:human papillomavirus vaccine, bivalent, 2-dose vial",
+   "kind": "product",
+   "label": "Human Papillomavirus Vaccine, bivalent, 2-dose vial"
+  },
+  {
+   "id": "product:rotavirus vaccine, mono, tube of 1 dose for supply to mics",
+   "kind": "product",
+   "label": "Rotavirus vaccine, mono, tube of 1 dose for supply to MICs"
+  },
+  {
+   "id": "product:pharmaceutical products",
+   "kind": "product",
+   "label": "Pharmaceutical products"
+  },
+  {
+   "id": "product:measles containing vaccines 2021-2023",
+   "kind": "product",
+   "label": "Measles containing vaccines 2021-2023"
+  },
+  {
+   "id": "product:rv monovalent (rv1) single-dose tube presentation",
+   "kind": "product",
+   "label": "RV monovalent (RV1) single-dose tube presentation"
+  },
+  {
+   "id": "product:rv1",
+   "kind": "product",
+   "label": "RV1"
+  },
+  {
+   "id": "product:arv (alz) for kazakhstan",
+   "kind": "product",
+   "label": "ARV (ALZ) for Kazakhstan"
+  },
+  {
+   "id": "product:rotavirus vaccine, mono, tube of 1 dose",
+   "kind": "product",
+   "label": "Rotavirus vaccine, mono, tube of 1 dose"
+  },
+  {
+   "id": "product:pneumococcal conj.vacc,10-val.,2 ds vial",
+   "kind": "product",
+   "label": "Pneumococcal conj.vacc,10-val.,2 ds vial"
+  },
+  {
+   "id": "product:pneumococcal conj.vacc,10-val.,2 ds vial for supply to the state of palestine",
+   "kind": "product",
+   "label": "Pneumococcal conj.vacc,10-val.,2 ds vial for supply to the State of Palestine"
+  },
+  {
+   "id": "product:pneumococcal conj.vacc,10-val.,2 ds vial for albania",
+   "kind": "product",
+   "label": "Pneumococcal conj.vacc,10-val.,2 ds vial for Albania"
+  },
+  {
+   "id": "product:rotavirus vac.,mono,tube of 1 dose for state of palestine",
+   "kind": "product",
+   "label": "Rotavirus vac.,mono,tube of 1 dose for State of Palestine"
+  },
+  {
+   "id": "product:rotavirus vaccine",
+   "kind": "product",
+   "label": "rotavirus vaccine"
+  },
+  {
+   "id": "product:rts,s/as01 malaria vaccine",
+   "kind": "product",
+   "label": "RTS,S/AS01 malaria vaccine"
+  },
+  {
+   "id": "product:as01 adjuvant",
+   "kind": "product",
+   "label": "AS01 adjuvant"
+  },
+  {
+   "id": "product:rts,s antigen",
+   "kind": "product",
+   "label": "RTS,S antigen"
+  },
+  {
+   "id": "product:human papillomavirus vaccines",
+   "kind": "product",
+   "label": "Human Papillomavirus vaccines"
+  },
+  {
+   "id": "product:in-country logistics and warehousing services, vaccines/biologicals",
+   "kind": "product",
+   "label": "In-country logistics and warehousing services, Vaccines/biologicals"
+  },
+  {
+   "id": "product:bivalent oral polio vaccine type 1+3",
+   "kind": "product",
+   "label": "bivalent oral polio vaccine type 1+3"
+  },
+  {
+   "id": "product:additional mopv2 finished product",
+   "kind": "product",
+   "label": "Additional mOPV2 finished product"
+  },
+  {
+   "id": "product:rotavirus vaccine (rv1 3-dose schedule)",
+   "kind": "product",
+   "label": "Rotavirus vaccine (RV1 3-dose schedule)"
+  },
+  {
+   "id": "product:rv11 bfs",
+   "kind": "product",
+   "label": "RV11 BFS"
+  },
+  {
+   "id": "product:rv1-1 tube",
+   "kind": "product",
+   "label": "RV1-1 tube"
+  },
+  {
+   "id": "product:rv11",
+   "kind": "product",
+   "label": "RV11"
+  },
+  {
+   "id": "product:rv1 bfs presentation",
+   "kind": "product",
+   "label": "RV1 BFS presentation"
+  },
+  {
+   "id": "product:green ppas",
+   "kind": "product",
+   "label": "green PPAs"
+  },
+  {
+   "id": "product:rotavirus vaccine (blow-fill-seal presentation)",
+   "kind": "product",
+   "label": "Rotavirus vaccine (blow-fill-seal presentation)"
+  },
+  {
+   "id": "product:rotavirus vaccine (rv1-1 tube to bfs presentation)",
+   "kind": "product",
+   "label": "Rotavirus vaccine (RV1-1 tube to BFS presentation)"
+  },
+  {
+   "id": "product:rv",
+   "kind": "product",
+   "label": "RV"
+  },
+  {
+   "id": "country:belgium",
+   "kind": "country",
+   "label": "Belgium"
+  },
+  {
+   "id": "country:kazakhstan",
+   "kind": "country",
+   "label": "Kazakhstan"
+  },
+  {
+   "id": "country:india",
+   "kind": "country",
+   "label": "India"
+  },
+  {
+   "id": "product:covid-19 vaccine",
+   "kind": "product",
+   "label": "Covid-19 vaccine"
+  },
+  {
+   "id": "product:pharmaceuticals, vaccines/ biologicals",
+   "kind": "product",
+   "label": "Pharmaceuticals, Vaccines/ biologicals"
+  },
+  {
+   "id": "product:pneumococcal conj.vacc,13-val.,4 ds vial for supply to multiple middle income countries (mic)",
+   "kind": "product",
+   "label": "Pneumococcal conj.vacc,13-val.,4 ds vial for supply to multiple Middle Income Countries (MIC)"
+  },
+  {
+   "id": "product:extension of pneumococcal conjugate vaccines, 13-val., 4 dose vial lta",
+   "kind": "product",
+   "label": "Extension of Pneumococcal Conjugate Vaccines, 13-val., 4 dose vial LTA"
+  },
+  {
+   "id": "product:pneumococcal conj.vacc,13-val.,1 ds vial for lebanon",
+   "kind": "product",
+   "label": "Pneumococcal conj.vacc,13-val.,1 ds vial for Lebanon"
+  },
+  {
+   "id": "product:pneumococcal conjugate vaccine, 13-valent",
+   "kind": "product",
+   "label": "Pneumococcal conjugate vaccine, 13-valent"
+  },
+  {
+   "id": "product:pharmaceuticals, vaccines/biologicals",
+   "kind": "product",
+   "label": "Pharmaceuticals, Vaccines/biologicals"
+  },
+  {
+   "id": "product:pneumococcal conj.vacc,13-val.,4 ds vial",
+   "kind": "product",
+   "label": "Pneumococcal conj.vacc,13-val.,4 ds vial"
+  },
+  {
+   "id": "product:supplementary paediatric and adolescent cancer medicines",
+   "kind": "product",
+   "label": "Supplementary Paediatric and Adolescent Cancer Medicines"
+  },
+  {
+   "id": "product:various supplementary paediatric and adolescent cancer medicines",
+   "kind": "product",
+   "label": "Various Supplementary Paediatric and Adolescent Cancer Medicines"
+  },
+  {
+   "id": "product:ipv",
+   "kind": "product",
+   "label": "IPV"
+  },
+  {
+   "id": "product:meningococcal acyw conj. vaccine",
+   "kind": "product",
+   "label": "Meningococcal ACYW conj. Vaccine"
+  },
+  {
+   "id": "product:ipv additional awards 2026",
+   "kind": "product",
+   "label": "IPV additional awards 2026"
+  },
+  {
+   "id": "country:armenia",
+   "kind": "country",
+   "label": "Armenia"
+  },
+  {
+   "id": "country:france",
+   "kind": "country",
+   "label": "France"
+  },
+  {
+   "id": "product:hpv vaccines, quadrivalent",
+   "kind": "product",
+   "label": "HPV vaccines, quadrivalent"
+  },
+  {
+   "id": "product:ebola vaccine",
+   "kind": "product",
+   "label": "Ebola Vaccine"
+  },
+  {
+   "id": "product:arvs for iran",
+   "kind": "product",
+   "label": "ARVs for Iran"
+  },
+  {
+   "id": "product:hpv vaccines",
+   "kind": "product",
+   "label": "HPV vaccines"
+  },
+  {
+   "id": "product:rv product development",
+   "kind": "product",
+   "label": "RV product development"
+  },
+  {
+   "id": "country:netherlands",
+   "kind": "country",
+   "label": "Netherlands"
+  },
+  {
+   "id": "product:seasonal influenza vaccine for the 2020/2021 northern hemisphere (nh) season",
+   "kind": "product",
+   "label": "Seasonal Influenza Vaccine for the 2020/2021 Northern Hemisphere (NH) season"
+  },
+  {
+   "id": "product:northern hemisphere seasonal influenza vaccine (2020/21 season)",
+   "kind": "product",
+   "label": "Northern Hemisphere Seasonal Influenza Vaccine (2020/21 season)"
+  },
+  {
+   "id": "product:2020/21 northern hemisphere influenza vaccines",
+   "kind": "product",
+   "label": "2020/21 Northern Hemisphere influenza vaccines"
+  },
+  {
+   "id": "product:2021 southern hemisphere influenza vaccine",
+   "kind": "product",
+   "label": "2021 Southern Hemisphere Influenza Vaccine"
+  },
+  {
+   "id": "product:southern hemisphere seasonal influenza vaccine 2021",
+   "kind": "product",
+   "label": "Southern Hemisphere Seasonal Influenza vaccine 2021"
+  },
+  {
+   "id": "product:seasonal influenza vaccine, northern hemisphere",
+   "kind": "product",
+   "label": "Seasonal Influenza vaccine, Northern Hemisphere"
+  },
+  {
+   "id": "country:republic of korea",
+   "kind": "country",
+   "label": "Republic of Korea"
+  },
+  {
+   "id": "country:myanmar",
+   "kind": "country",
+   "label": "Myanmar"
+  },
+  {
+   "id": "country:cook islands",
+   "kind": "country",
+   "label": "Cook Islands"
+  },
+  {
+   "id": "country:thailand",
+   "kind": "country",
+   "label": "Thailand"
+  },
+  {
+   "id": "product:dtp-hepb-hib, pentavalent vaccines for supply in 2021 - 2022",
+   "kind": "product",
+   "label": "DTP-HepB-HiB, Pentavalent Vaccines for supply in 2021 - 2022"
+  },
+  {
+   "id": "product:td",
+   "kind": "product",
+   "label": "Td"
+  },
+  {
+   "id": "country:denmark",
+   "kind": "country",
+   "label": "Denmark"
+  },
+  {
+   "id": "product:mopv2 bulk",
+   "kind": "product",
+   "label": "mOPV2 Bulk"
+  },
+  {
+   "id": "product:s359133 - dt vaccine,adsorbed,vial of 10 doses",
+   "kind": "product",
+   "label": "S359133 - DT vaccine,adsorbed,vial of 10 doses"
+  },
+  {
+   "id": "product:topv for global stockpile",
+   "kind": "product",
+   "label": "tOPV for global stockpile"
+  },
+  {
+   "id": "product:rv vaccine candidate",
+   "kind": "product",
+   "label": "RV vaccine candidate"
+  },
+  {
+   "id": "product:rv candidate",
+   "kind": "product",
+   "label": "RV candidate"
+  },
+  {
+   "id": "product:dt-10 for 2018-2019",
+   "kind": "product",
+   "label": "DT-10 for 2018-2019"
+  },
+  {
+   "id": "product:monovalent oral polio vaccine, type 1",
+   "kind": "product",
+   "label": "Monovalent Oral Polio Vaccine, type 1"
+  },
+  {
+   "id": "product:dt vaccines",
+   "kind": "product",
+   "label": "DT vaccines"
+  },
+  {
+   "id": "product:nopv2 stockpile",
+   "kind": "product",
+   "label": "nOPV2 stockpile"
+  },
+  {
+   "id": "product:rv vaccine candidates",
+   "kind": "product",
+   "label": "RV vaccine candidates"
+  },
+  {
+   "id": "product:rv candidates",
+   "kind": "product",
+   "label": "RV candidates"
+  },
+  {
+   "id": "country:indonesia",
+   "kind": "country",
+   "label": "Indonesia"
+  }
+ ],
+ "edges": [
+  {
+   "from": "unicef",
+   "to": "glaxosmithkline_biologicals_sa",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 322074016,
+    "source": "research/annex2/suppliers-by-year.csv line 12715 (parent 'GSK' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "glaxosmithkline_biologicals_sa",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 293261056,
+    "source": "research/annex2/suppliers-by-year.csv line 12715 (parent 'GSK' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "glaxosmithkline_biologicals_sa",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": 232110,
+    "source": "research/annex2/suppliers-by-year.csv line 12715 (parent 'GSK' total, column 2021)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "flag": "incomplete year: the 2021-2023 Annex 2 lists no vaccine makers' main entities",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "glaxosmithkline_biologicals_sa",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "glaxosmithkline_biologicals_sa",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "glaxosmithkline_biologicals_sa",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 336615655,
+    "source": "research/annex2/suppliers-by-year.csv line 12715 (parent 'GSK' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "glaxosmithkline_biologicals_sa",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 304412617,
+    "source": "research/annex2/suppliers-by-year.csv line 12715 (parent 'GSK' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rts,s/as01 vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 5,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Two malaria vaccines are currently recommended by WHO for use to prevent P. falciparum malaria in young children: the RTS,S/AS01 vaccine manufactured by GlaxoSmithKline (GSK) and the R21/Matrix-M vaccine manufactured by Serum Institute of India Pvt (SII).",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 2,
+     "year": "2023"
+    },
+    {
+     "text": "GSK has committed to a price not exceeding the cost of manufacturing, plus a financial return of no more than 5 per cent, which would be reinvested into further product development.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 4,
+     "year": null
+    },
+    {
+     "text": "GSK has agreed to revisit the cost of manufacturing and adjust the price downwards should the cost of manufacturing decrease, and to reflect this reduction into their following calendar year's vaccine price.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 4,
+     "year": null
+    },
+    {
+     "text": "To facilitate implementing countries' and donors' budget planning, the price of EUR 9.30 per dose will be maintained as a ceiling price during the period of the current supply agreement between GSK and UNICEF, which means until the end of 2025.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 4,
+     "year": "2025"
+    },
+    {
+     "text": "As an outcome of UNICEF's current tender, the price reflects the anticipated cost of manufacturing and GSK's agreement to supply the vaccine in 2023 at this price without a financial return.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 4,
+     "year": "2023"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline Biologicals SA received $336.615.655 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 12,
+     "year": null
+    },
+    {
+     "text": "GlaxoSmithKline Biologicals SA received $348,142,192 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 34,
+     "year": null
+    },
+    {
+     "text": "GlaxoSmithKline Biologicals SA received $319,667,689 in international procurement for Vaccines/Biologicals in Belgium in 2019.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 35,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:pharmaceuticals",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline Kazakhstan Llp received $1,426,810 in international procurement for Pharmaceuticals in 2018.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 43,
+     "year": "2018"
+    },
+    {
+     "text": "GlaxoSmithKline Kazakhstan Llp received 2,406,327 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 46,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:additional mopv2 bulk and finished product",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2015-501953 for Additional mOPV2 bulk and finished product was awarded to GlaxoSmithKline Biologicals S.A. with a value of 6,000,000 USD.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 1,
+     "year": "2015"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:antiretroviral medicine for moh kazakhstan",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender ITB-DAN-2019-19663 for Antiretroviral medicine for MoH Kazakhstan was awarded to GSK Kazakhstan LLP with a value of 940,831.46 USD.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 1,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rotavirus vaccine, mono, tube of 1 dose for supply to namibia",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline Biologicals S.A. was awarded a tender for Rotavirus vaccine, mono, tube of 1 dose for supply to Namibia with a value of 1,350,000.00 USD on 28/02/2019.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 2,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:human papillomavirus (hpv) vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline Biologicals S.A. was awarded a Target Value contract for Human Papillomavirus (HPV) vaccine for 5 years, with opening date 31/01/2020 under tender RFP-DAN-2019-503097.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 9,
+     "year": "2020"
+    },
+    {
+     "text": "Tender RFP-DAN-2019-503097 for Human Papillomavirus (HPV) vaccine was opened on 31/01/2020 and awarded to GlaxoSmithKline Biologicals S.A. with a value of 89,614,000 USD for 5 years.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 13,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:human papillomavirus vaccine, bivalent, 2-dose vial",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline Biologicals S.A. was awarded a Target Value contract for Human Papillomavirus Vaccine, bivalent, 2-dose vial under tender RFP-DAN-2020-503185 opened on 22-06-2020 for 4 years.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 10,
+     "year": "2020"
+    },
+    {
+     "text": "Tender RFP-DAN-2012-501525 for Human Papillomavirus Vaccine, bivalent, 2-dose vial was opened on 13-11-2012 and awarded to GlaxoSmithKline Biologicals S.A. for a value of 336,400.00 for the period 2013 - 2022.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 17,
+     "year": "2012"
+    },
+    {
+     "text": "UNICEF extended the LTA for Human Papillomavirus Vaccine, bivalent, 2-dose vial to GlaxoSmithKline Biologicals S.A. on 22/06/2020 under RFP -DAN -2020 -503185 with a value of $4,961,192.00 and validity extended to 31/12/2027.",
+     "pdf": "Contract-Awards-Aug2025.pdf",
+     "page": 4,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rotavirus vaccine, mono, tube of 1 dose for supply to mics",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender ITB-DAN-2019-19578 for Rotavirus vaccine, mono, tube of 1 dose for supply to MICs was awarded to GlaxoSmithKline Biologicals S.A. with a value of 4,681,733 USD on 28/02/2019 for the period 2019 - 2021.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 12,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:pharmaceutical products",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2019-503070 for Pharmaceutical products was opened on 15/10/2019 and awarded to GlaxoSmithKline Export Ltd as a Time Bound LTA for 48 months + 12 months.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 14,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:measles containing vaccines 2021-2023",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2020-503220 for Measles containing vaccines 2021-2023 was opened on 13/10/2020 and awarded to GlaxoSmithKline Biologicals S.A. with a value of 8,180,100.00 USD for a purpose of 36 months.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rv monovalent (rv1) single-dose tube presentation",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "As of December 2023, 71 per cent of rotavirus vaccine demand through UNICEF has been for GSK's RV monovalent (RV1) single-dose tube presentation.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 4,
+     "year": "2023"
+    },
+    {
+     "text": "As of December 2021, 74 per cent of rotavirus vaccine demand through UNICEF has been for GSK's RV monovalent (RV1) single-dose tube presentation.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 3,
+     "year": "2021"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rv1",
+   "kind": "product",
+   "figure": {
+    "value": 5,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "The weighted average price for GSK's RV1 through UNICEF for Gavi-supported countries initially declined sharply in 2012 by 67 per cent.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 11,
+     "year": "2012"
+    },
+    {
+     "text": "In 2022, GSK will reduce its manufacturing plans for RV and reduce the supply it makes available through UNICEF by nine million doses of RV1.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": "2022"
+    },
+    {
+     "text": "The weighted average price for GSK's RV1 through UNICEF for Gavi-supported countries has remained stable since 2012.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 11,
+     "year": "2024"
+    },
+    {
+     "text": "The weighted average price for GSK's RV1 through UNICEF for Gavi-supported countries initially declined sharply in 2012 by 67 per cent.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 9,
+     "year": "2012"
+    },
+    {
+     "text": "The WAP for GSK's RV1 through UNICEF for Gavi-supported countries initially declined sharply in 2012 by 67 per cent.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 9,
+     "year": "2012"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:arv (alz) for kazakhstan",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GSK Kazakhstan LLP was awarded an ITB for ARV (ALZ) for Kazakhstan valued at USD 1,283,760 for Proc Services on 02/12/2016.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 1,
+     "year": "2016"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rotavirus vaccine, mono, tube of 1 dose",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender ITB-DAN-2017-19304 for Rotavirus vaccine, mono, tube of 1 dose was opened on 13 February 2017 with a value of USD 925,000 and awarded to GlaxoSmithKline Biologicals S.A., Belgium for Proc Services purpose.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 3,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:pneumococcal conj.vacc,10-val.,2 ds vial",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502447 for Pneumococcal conj.vacc,10-val.,2 ds vial with a value of USD 723,000.00 was awarded to GlaxoSmithKline Biologicals S.A., Belgium for Proc Services on 22/03/2017.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 6,
+     "year": "2017"
+    },
+    {
+     "text": "Tender RFP-DAN-2017-502436 for Pneumococcal conj.vacc,10-val.,2 ds vial was opened on 01/03/2017 and awarded to GlaxoSmithKline Biologicals S.A., Belgium with a Time Bound LTA expiring 30 October 2020.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 12,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:pneumococcal conj.vacc,10-val.,2 ds vial for supply to the state of palestine",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender ITB-DAN-2016-19195 for Pneumococcal conj.vacc,10-val.,2 ds vial for supply to the State of Palestine was opened on 30/08/2016 with a value of 2,940,000.00 USD and awarded to GlaxoSmithKline Biologicals S.A., Belgium for Proc Services.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 8,
+     "year": "2016"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:pneumococcal conj.vacc,10-val.,2 ds vial for albania",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502447 for Pneumococcal conj.vacc,10-val.,2 ds vial for Albania was opened on 22/03/2017 with a value of USD 1,326,000.00 and awarded to GlaxoSmithKline Biologicals S.A., Belgium for Proc Services.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 11,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rotavirus vac.,mono,tube of 1 dose for state of palestine",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender ITB-DAN-2017-19308 for Rotavirus vac.,mono,tube of 1 dose for State of Palestine with a value of 204,000.00 USD was awarded to GlaxoSmithKline Biologicals S.A., Belgium on 27/02/2017 for Proc Services purpose.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 13,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rotavirus vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 17,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline (Belgium) manufactures a rotavirus vaccine with 2 doses per course, WHO prequalification in 2009, 1-dose tube presentation, liquid formulation, 24 months shelf life, VVM 10 type 7, cold chain volume 34.2 cm³ per course, and storage at 2-8°C.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 3,
+     "year": "2022"
+    },
+    {
+     "text": "GlaxoSmithKline (Belgium) manufactures a rotavirus vaccine with 2 doses per course, WHO prequalification in 2009, 1-dose applicator presentation, liquid formulation, 24 months shelf life, VVM 10 not applicable, cold chain volume 170.6 cm³ per course, and storage at 2-8°C.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 3,
+     "year": "2022"
+    },
+    {
+     "text": "GlaxoSmithKline (Belgium) manufactures a rotavirus vaccine with 2 doses per course, WHO prequalification in 2019, 5 x 1-dose tubes presentation, liquid formulation, 24 months shelf life, VVM 10 type 7, cold chain volume 23.6 cm³ per course, and storage at 2-8°C.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 3,
+     "year": "2022"
+    },
+    {
+     "text": "GSK had faced manufacturing issues with its vaccine vial monitor (VVM) compliance and manufacturing issues when producing the vaccine.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": null
+    },
+    {
+     "text": "GSK vaccine constraints resulted in seven countries requiring a switch to an alternative rotavirus vaccine.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 2,
+     "year": "2022-2023"
+    },
+    {
+     "text": "The reduction in UNICEF demand for rotavirus vaccine in 2023 was due to reduced supply availability from GSK which resulted in low stock levels in several countries.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 8,
+     "year": "2023"
+    },
+    {
+     "text": "The reduction in UNICEF demand for rotavirus vaccine in 2023 was due to reduced supply availability from GSK which resulted in low stock levels in several countries.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 8,
+     "year": "2023"
+    },
+    {
+     "text": "Countries could save 18-60 per cent of vaccine co-financing cost by switching from GSK's product to alternative rotavirus vaccine options.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 9,
+     "year": null
+    },
+    {
+     "text": "GSK's bulk production issues for rotavirus vaccine were resolved during the second half of 2019.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 2,
+     "year": "2019"
+    },
+    {
+     "text": "In 2022, GSK will revise its manufacturing plans for rotavirus vaccine and reduce its supply through UNICEF by approximately five million courses.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 2,
+     "year": "2022"
+    },
+    {
+     "text": "As a result, nine countries had to postpone their planned RV introductions in 2018 and 2019 and some switched from GSK's vaccine to vaccines from Bharat and SII.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": "2018-2019"
+    },
+    {
+     "text": "This is due to GSK discontinuing their blow-fill-seal (BFS) production presentations until its reintroduction in 2024.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": "2022-2024"
+    },
+    {
+     "text": "Thirty-four countries supported by Gavi, in addition to three transitioned countries, procure GSK's RV through UNICEF.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": "2022"
+    },
+    {
+     "text": "GSK will be reducing their supply availability through UNICEF to approximately 46 million doses.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": "2022"
+    },
+    {
+     "text": "The supply situation is anticipated to improve from 2024 to 2025 with the reintroduction of GSK's blow-fill-seal (BFS) presentation in the later part of 2024, Bharat Rota 5-dose liquid presentation and SII's Rota 1-dose liquid presentation in early 2025.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 2,
+     "year": "2024-2025"
+    },
+    {
+     "text": "GlaxoSmithKline suffered technical difficulties with their bulk production of rotavirus vaccine.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 2,
+     "year": null
+    },
+    {
+     "text": "The average annual volume in terms of demand for this product is estimated to reach 55 million doses.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": "2022"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rts,s/as01 malaria vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 17,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Over the 2023-2025 period, GSK expects to produce approximately 18 million doses of RTS,S/AS01 malaria vaccine in total.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 2,
+     "year": "2023-2025"
+    },
+    {
+     "text": "GSK expects 4 million doses of RTS,S/AS01 malaria vaccine to be available for supply from late 2023.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 2,
+     "year": "2023"
+    },
+    {
+     "text": "Expected availability of RTS,S/AS01 malaria vaccine for 2024 is 6 million doses.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 2,
+     "year": "2024"
+    },
+    {
+     "text": "Expected availability of RTS,S/AS01 malaria vaccine for 2025 is 8 million doses.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 2,
+     "year": "2025"
+    },
+    {
+     "text": "GSK has committed to a price not exceeding the cost of manufacturing, plus a financial return of no more than five per cent, which would be reinvested into further product development.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 3,
+     "year": "2023"
+    },
+    {
+     "text": "GSK has agreed to revisit the cost of manufacturing and adjust the price downwards should the cost of manufacturing decrease, and to reflect this reduction in a retroactively adjusted vaccine price, with a refund mechanism agreed with UNICEF to the benefit of countries and donors.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 3,
+     "year": "2023"
+    },
+    {
+     "text": "To facilitate implementing country and donor budget planning, the price of EUR 9.30 per dose will be maintained as a ceiling price during the period of the current supply agreement between GSK and UNICEF, which means until the end of 2025.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 3,
+     "year": "2023"
+    },
+    {
+     "text": "Over the 2023-2025 period, GSK expects to produce approximately 18 million doses of RTS,S/AS01 malaria vaccine in total.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "2023-2025"
+    },
+    {
+     "text": "GSK plans to have 4 million doses of RTS,S/AS01 malaria vaccine available for supply from late 2023.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "2023"
+    },
+    {
+     "text": "GSK plans to increase supply availability to 6 million doses of RTS,S/AS01 malaria vaccine in 2024.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "2024"
+    },
+    {
+     "text": "GSK plans to increase supply availability to 8 million doses of RTS,S/AS01 malaria vaccine in 2025.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "2025"
+    },
+    {
+     "text": "GSK's manufacturing facility was restarted in 2019 after having been shut down in 2015 following WHO's recommendation to initially introduce the vaccine through pilot implementations.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "2019"
+    },
+    {
+     "text": "GSK is now increasing production volumes with a plan to supply 15 million doses of RTS,S/AS01 malaria vaccine annually from 2026 through 2028.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "2026-2028"
+    },
+    {
+     "text": "GSK, Bharat Biotech (BBIL), and PATH announced in January 2021 the signing of a product transfer agreement for RTS,S/AS01 malaria vaccine.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "January 2021"
+    },
+    {
+     "text": "UNICEF has secured access to RTS,S/AS01 malaria vaccine volumes through a supply agreement established with GSK.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 2,
+     "year": "2023"
+    },
+    {
+     "text": "As an outcome of UNICEF's current tender, GSK agreed to supply the vaccine in 2023 at a price reflecting the anticipated cost of manufacturing without a financial return.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 3,
+     "year": "2023"
+    },
+    {
+     "text": "UNICEF and GSK are securing RTS,S/AS01 malaria vaccine volumes through a contract established between both parties.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:as01 adjuvant",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GSK confirmed it will double the production of its AS01 adjuvant for use in the RTS,S/AS01 malaria vaccine to enable increased production capacity at BBIL.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 3,
+     "year": null
+    },
+    {
+     "text": "GSK's commitment to supply the AS01 adjuvant currently extends until the end of 2042.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 3,
+     "year": null
+    },
+    {
+     "text": "GSK will retain the production of the adjuvant part of the vaccine (AS01) and will supply it to BBIL.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rts,s antigen",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "2022 is the first year of continuous manufacturing of the RTS,S antigen at GSK's existing manufacturing facility.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "2022"
+    },
+    {
+     "text": "An innovative financing agreement to guarantee continued production of the RTS,S antigen for the RTS,S/AS01 malaria vaccine in advance of key decisions regarding its roll out was put in place in 2021 between Gavi, GSK and MedAccess.",
+     "pdf": "Malaria_Vaccine_QA_2022-08.pdf",
+     "page": 2,
+     "year": "2021"
+    },
+    {
+     "text": "Gavi's agreement with MedAccess and GSK sought to accelerate access to first available supply and ensure the RTS,S antigen's continued production prior to WHO's recommendation and Gavi's approval for the malaria programme.",
+     "pdf": "Malaria_Vaccine_QA_2023-10.pdf",
+     "page": 4,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:human papillomavirus vaccines",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "UNICEF awarded an LTA for Human Papillomavirus vaccines for supply in 2026 and 2027 to GlaxoSmithKline Biologicals S.A. on 31/01/2020 under RFP -DAN -2019 -503097 with a value of $135,716,000.00 and validity to 31/12/2027.",
+     "pdf": "Contract-Awards-Aug2025.pdf",
+     "page": 4,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:in-country logistics and warehousing services, vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline Biologicals SA received $304.412.617 in international procurement for In-country logistics and warehousing services, Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 10,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:bivalent oral polio vaccine type 1+3",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2016-502330 for bivalent oral polio vaccine type 1+3 for supply in 2021 was awarded to GlaxoSmithKline Biologicals S.A. with a value of 7,200,000 USD until 31.12.2022.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 11,
+     "year": "2021"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:additional mopv2 finished product",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2015-501953 for Additional mOPV2 finished product was awarded to GlaxoSmithKline Biologicals S.A. with a value of 6,000,000 USD extended to 31.12.2025.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 11,
+     "year": "2015"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rotavirus vaccine (rv1 3-dose schedule)",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Countries could save up to 70 per cent of their cold chain volume requirements for RV1 3-dose schedule by switching from GSK's product to alternative rotavirus vaccine options.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 9,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rv11 bfs",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GSK's RV11 BFS will only be available from 2024.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": "2024"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rv1-1 tube",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GSK's RV1-1 tube will be discontinued from 2026.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": "2026"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rv11",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "All subsequent RV11 supply from GSK will only be in BFS presentations.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 7,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rv1 bfs presentation",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "There is a lack of clarity regarding GSK's decision to scale-up its RV1 BFS presentation, reduce supply capacity of plastic tubes, and increase its price.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 11,
+     "year": "2022"
+    },
+    {
+     "text": "GSK's decision to scale-up its RV1 BFS presentation, reduce supply capacity of plastic tubes, and increase its price would result in a weakened position in the Gavi market and could potentially lead to its exit in the medium to long term.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 11,
+     "year": "2022"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:green ppas",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GSK is leading a multi-party framework agreement for green PPAs in India.",
+     "pdf": "UNICEF_Supply_Scope3_Baseline_Compendium.pdf",
+     "page": 42,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rotavirus vaccine (blow-fill-seal presentation)",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GSK will be reintroducing the blow-fill-seal (BFS) presentation of rotavirus vaccine in the later part of 2024.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 9,
+     "year": "2024"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rotavirus vaccine (rv1-1 tube to bfs presentation)",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Countries using GSK's RV1-1 tube presentations are anticipated to transition to the BFS presentation by January 2026.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 9,
+     "year": "2026"
+    },
+    {
+     "text": "Six countries are planned to transition from GSK's RV1-1 tube presentations to the BFS presentation in the later part of 2024.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 9,
+     "year": "2024"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "product:rv",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GSK anticipated a reduction of supply for the period 2022-2028.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 11,
+     "year": "2022-2028"
+    },
+    {
+     "text": "Five countries switched out of GSK's product in favour of Indian manufacturers due to GSK's anticipated supply reduction.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 11,
+     "year": "2022"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "country:belgium",
+   "kind": "country",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline Biologicals SA received $336.615.655 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 12,
+     "year": null
+    },
+    {
+     "text": "GlaxoSmithKline Biologicals SA received $348,142,192 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 34,
+     "year": null
+    },
+    {
+     "text": "GlaxoSmithKline Biologicals SA received $319,667,689 in international procurement for Vaccines/Biologicals in Belgium in 2019.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 35,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "country:kazakhstan",
+   "kind": "country",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GlaxoSmithKline Kazakhstan Llp received $1,426,810 in international procurement for Pharmaceuticals in 2018.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 43,
+     "year": "2018"
+    },
+    {
+     "text": "GSK Kazakhstan LLP was awarded an ITB for ARV (ALZ) for Kazakhstan valued at USD 1,283,760 for Proc Services on 02/12/2016.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 1,
+     "year": "2016"
+    },
+    {
+     "text": "GlaxoSmithKline Kazakhstan Llp received 2,406,327 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 46,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "glaxosmithkline_biologicals_sa",
+   "to": "country:india",
+   "kind": "country",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "GSK is leading an effort to procure green power at a discount versus market price in India.",
+     "pdf": "UNICEF_Supply_Scope3_Baseline_Compendium.pdf",
+     "page": 47,
+     "year": null
+    },
+    {
+     "text": "GSK is leading a multi-party framework agreement for green PPAs in India.",
+     "pdf": "UNICEF_Supply_Scope3_Baseline_Compendium.pdf",
+     "page": 42,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "pfizer_inc",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 362556727,
+    "source": "research/annex2/suppliers-by-year.csv line 15684 (parent 'Pfizer' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pfizer_inc",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 254811024,
+    "source": "research/annex2/suppliers-by-year.csv line 15684 (parent 'Pfizer' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pfizer_inc",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pfizer_inc",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pfizer_inc",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pfizer_inc",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 482910680,
+    "source": "research/annex2/suppliers-by-year.csv line 15684 (parent 'Pfizer' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pfizer_inc",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 388322747,
+    "source": "research/annex2/suppliers-by-year.csv line 15684 (parent 'Pfizer' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:covid-19 vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "UNICEF awarded a contract for Covid-19 vaccine valued at $242,723,628 to Pfizer Overseas LLC for the period 1st October 2023 - 31.12.2026 under tender RFP-DAN-2023-503569 opened on 19/06/2023.",
+     "pdf": "Contract-Awards-Sep2025.pdf",
+     "page": 1,
+     "year": "2023"
+    },
+    {
+     "text": "Pfizer Overseas LLC was awarded $242,723,628 for the procurement of Covid-19 vaccine under tender RFP-DAN-2023-503569, with a contract period from 1st October 2023 to 31.12.2026.",
+     "pdf": "Contract-Awards-Sep2025.pdf",
+     "page": 1,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Pfizer Inc received $343.671.313 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 148,
+     "year": null
+    },
+    {
+     "text": "Pfizer Inc received $313.757.897 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 112,
+     "year": "2025"
+    },
+    {
+     "text": "Pfizer Inc received $362,556,727 in international procurement for Vaccines/Biologicals in 2019.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 60,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:pharmaceuticals, vaccines/ biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Pfizer Overseas LLC received $139.239.367 in international procurement for pharmaceuticals, vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 148,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:pneumococcal conj.vacc,13-val.,4 ds vial for supply to multiple middle income countries (mic)",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2019-502988 for Pneumococcal conj.vacc,13-val.,4 ds vial for supply to multiple Middle Income Countries (MIC) was opened on 30-04-2019 and awarded to Pfizer Inc for a value of 61,639,381.00 for the period 2019 to 2023.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 17,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:extension of pneumococcal conjugate vaccines, 13-val., 4 dose vial lta",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502437 for Extension of Pneumococcal Conjugate Vaccines, 13-val., 4 dose vial LTA was opened on 01/03/2017 and awarded to Pfizer Inc for a value of 1,818,340.00 USD for a period from 2018 to 2021.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 18,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:pneumococcal conj.vacc,13-val.,1 ds vial for lebanon",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502447 for Pneumococcal conj.vacc,13-val.,1 ds vial for Lebanon was opened on 22/03/2017 with a value of USD 3,445,312.50 and awarded to Pfizer Inc., USA for Proc Services.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 11,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:pneumococcal conjugate vaccine, 13-valent",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502488 for Pneumococcal conjugate vaccine, 13-valent was opened on 05/07/2017 and awarded to Pfizer Inc., USA with a value of 722,000,000.00 USD for LTA 2018 - 2027.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 12,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:pharmaceuticals, vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Pfizer Overseas LLC received $74.564.850 in international procurement for pharmaceuticals, vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 112,
+     "year": "2025"
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:pneumococcal conj.vacc,13-val.,4 ds vial",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502437 for Pneumococcal conj.vacc,13-val.,4 ds vial was opened on 01/03/2017 with a Time Bound LTA value and awarded to Pfizer Inc., USA for LTA until 31.12.2018.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 8,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:supplementary paediatric and adolescent cancer medicines",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "UNICEF awarded a Time Bound LTA for Supplementary Paediatric and Adolescent Cancer Medicines to Pfizer Overseas LLC with a duration of 12 +12 months under RFP-DAN-2024-503720.",
+     "pdf": "Contract-Awards-Aug2025.pdf",
+     "page": 2,
+     "year": "2024"
+    }
+   ]
+  },
+  {
+   "from": "pfizer_inc",
+   "to": "product:various supplementary paediatric and adolescent cancer medicines",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "UNICEF opened RFP-DAN-2024-503720 for Various Supplementary Paediatric and Adolescent Cancer Medicines to establish time-bound LTAs with Pfizer Overseas LLC for 12 + 12 months.",
+     "pdf": "Contract-Awards-Aug2025.pdf",
+     "page": 2,
+     "year": "2024"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "sanofi_winthrop_industrie",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 286662861,
+    "source": "research/annex2/suppliers-by-year.csv line 16546 (parent 'Sanofi' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sanofi_winthrop_industrie",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 241449989,
+    "source": "research/annex2/suppliers-by-year.csv line 16546 (parent 'Sanofi' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sanofi_winthrop_industrie",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": 927442,
+    "source": "research/annex2/suppliers-by-year.csv line 16546 (parent 'Sanofi' total, column 2021)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "flag": "incomplete year: the 2021-2023 Annex 2 lists no vaccine makers' main entities",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sanofi_winthrop_industrie",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": 307615,
+    "source": "research/annex2/suppliers-by-year.csv line 16546 (parent 'Sanofi' total, column 2022)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "flag": "incomplete year: the 2021-2023 Annex 2 lists no vaccine makers' main entities",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sanofi_winthrop_industrie",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": 159980,
+    "source": "research/annex2/suppliers-by-year.csv line 16546 (parent 'Sanofi' total, column 2023)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "flag": "incomplete year: the 2021-2023 Annex 2 lists no vaccine makers' main entities",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sanofi_winthrop_industrie",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 137925529,
+    "source": "research/annex2/suppliers-by-year.csv line 16546 (parent 'Sanofi' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sanofi_winthrop_industrie",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 106481844,
+    "source": "research/annex2/suppliers-by-year.csv line 16546 (parent 'Sanofi' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Sanofi Pasteur received $117.946.762 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 50,
+     "year": null
+    },
+    {
+     "text": "Sanofi Pasteur received $124,041,210 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 40,
+     "year": null
+    },
+    {
+     "text": "Sanofi Pasteur received $190,801,452 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 42,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "product:pharmaceuticals, vaccines/ biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Sanofi Winthrop Industrie received $19.978.767 in international procurement for Pharmaceuticals, Vaccines/ biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 50,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "product:pharmaceuticals",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "SanofiWinthrop Industrie received $1,241,574 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 40,
+     "year": null
+    },
+    {
+     "text": "Sanofi Winthrop Industrie received $307,615 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2022_Annexes.pdf",
+     "page": 24,
+     "year": "2022"
+    },
+    {
+     "text": "Sanofi Winthrop Industrie received $3,514,227 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 42,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "product:additional mopv2 finished product",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2015-501932 for Additional mOPV2 finished product was opened on 02/04/2015 and awarded to Sanofi Pasteur with a value of 18,630,000.00 USD.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2015"
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "product:ipv",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502492 for IPV was opened on 19-09-2017 and awarded to Sanofi Pasteur with a Time Bound LTA value for a purpose of 31st December 2022.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2017"
+    },
+    {
+     "text": "Sanofi Pasteur (France) has a WHO prequalified IPV product in 10-dose vial presentation with 36 months shelf life and VVM 7, prequalified in 2005.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2005"
+    },
+    {
+     "text": "Sanofi Winthrop Industrie received additional awards for IPV in 2026 on 10.12.2021 for $8,920,000.00 with a deadline of 31-Dec-26.",
+     "pdf": "Contract-Awards-April-2026.pdf",
+     "page": 2,
+     "year": "2026"
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "product:meningococcal acyw conj. vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502522 for Meningococcal ACYW conj. Vaccine for Armenia with a value of USD 633,000.00 was awarded to Sanofi Pasteur AS, France for Proc Services on 14/06/2017.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 9,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "product:ipv additional awards 2026",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Sanofi Winthrop Industrie received additional awards for IPV 2026 on 10.12.2021 for $8,920,000.00 with delivery by 31-Dec-26.",
+     "pdf": "Contract-Awards-April-2026.pdf",
+     "page": 2,
+     "year": "2021"
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "product:pharmaceuticals, vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Sanofi Winthrop Industrie received $106.481.844 in international procurement for Pharmaceuticals, Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 35,
+     "year": "2025"
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "country:armenia",
+   "kind": "country",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502522 for Meningococcal ACYW conj. Vaccine for Armenia with a value of USD 633,000.00 was awarded to Sanofi Pasteur AS, France for Proc Services on 14/06/2017.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 9,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "sanofi_winthrop_industrie",
+   "to": "country:france",
+   "kind": "country",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Sanofi Winthrop Industrie received $307,615 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2022_Annexes.pdf",
+     "page": 24,
+     "year": "2022"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "merck_co_inc",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 70082807,
+    "source": "research/annex2/suppliers-by-year.csv line 14776 (parent 'Merck/MSD' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "merck_co_inc",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 65788703,
+    "source": "research/annex2/suppliers-by-year.csv line 14776 (parent 'Merck/MSD' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "merck_co_inc",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": 183618,
+    "source": "research/annex2/suppliers-by-year.csv line 14776 (parent 'Merck/MSD' total, column 2021)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "flag": "incomplete year: the 2021-2023 Annex 2 lists no vaccine makers' main entities",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "merck_co_inc",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": 2784704,
+    "source": "research/annex2/suppliers-by-year.csv line 14776 (parent 'Merck/MSD' total, column 2022)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "flag": "incomplete year: the 2021-2023 Annex 2 lists no vaccine makers' main entities",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "merck_co_inc",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": 145188,
+    "source": "research/annex2/suppliers-by-year.csv line 14776 (parent 'Merck/MSD' total, column 2023)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "flag": "incomplete year: the 2021-2023 Annex 2 lists no vaccine makers' main entities",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "merck_co_inc",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 139991888,
+    "source": "research/annex2/suppliers-by-year.csv line 14776 (parent 'Merck/MSD' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "merck_co_inc",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 186876702,
+    "source": "research/annex2/suppliers-by-year.csv line 14776 (parent 'Merck/MSD' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Merck & Co Inc received $139.991.888 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 147,
+     "year": null
+    },
+    {
+     "text": "Merck & Co Inc received $39,499,029 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 55,
+     "year": "2018"
+    },
+    {
+     "text": "Merck & Co Inc received $186.876.702 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 111,
+     "year": "2025"
+    },
+    {
+     "text": "Merck & Co Inc received $69,329,045 in international procurement for Vaccines/Biologicals in 2019.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 59,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:pharmaceuticals",
+   "kind": "product",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Merck Sharp & Dohme BV received 589,054 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 47,
+     "year": null
+    },
+    {
+     "text": "Merck Sharp & Dohme International Services BV received $214,304 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2022_Annexes.pdf",
+     "page": 43,
+     "year": "2022"
+    },
+    {
+     "text": "Merck & Co Inc received $2,570,400 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2022_Annexes.pdf",
+     "page": 70,
+     "year": "2022"
+    },
+    {
+     "text": "Merck Sharp & Dohme BV received $753,762 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 50,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:hpv vaccines, quadrivalent",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Merck Sharp &amp; Dohme Corp. was awarded a tender for HPV vaccines, quadrivalent with a value of 896,350.00 USD on 27/04/2017.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 2,
+     "year": "2017"
+    },
+    {
+     "text": "Merck Sharp & Dohme Corp. was awarded a contract valued at 896,350.00 USD for HPV vaccines, quadrivalent under tender RFP-DAN-2017-502479 opened on 27/04/2017.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 4,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:human papillomavirus (hpv) vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Merck Sharp & Dohme Corp. was awarded a Target Value contract for Human Papillomavirus (HPV) vaccine for 5 years, with opening date 31/01/2020 under tender RFP-DAN-2019-503097.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 9,
+     "year": "2020"
+    },
+    {
+     "text": "Tender RFP-DAN-2019-503097 for Human Papillomavirus (HPV) vaccine was opened on 31/01/2020 and awarded to Merck Sharp & Dohme Corp. with a value of 411,750,000 USD for 5 years.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 13,
+     "year": "2020"
+    },
+    {
+     "text": "Tender RFP-DAN-2019-503097 for Human Papillomavirus (HPV) vaccine was opened on 31/01/2020 and awarded to Merck Sharp & Dohme Corp. with a value of 27,232,890 USD for 5 years.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 13,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:ebola vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2019-503112 for LTA for stockpiling and supply of Ebola Vaccine was opened on 15-01-2020 and awarded to Merck Sharp & Dohme (MSD) Corp. with a value of 93,670,000 USD for a purpose of 31-Mar-25.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:arvs for iran",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender ITB-DAN-2017-19311 for ARVs for Iran opened on 06/03/2017 and was awarded to Merck Sharp &Dohme B.V., Netherlands for a value of USD 106,892.90 for Proc Services.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 4,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:hpv vaccines",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502479 for HPV vaccines with a value of USD 14,472,000 was awarded to Merck Sharp &Dohme Corp. , USA for LTA 2017-2020 on 27/04/2017.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 6,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:rv product development",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Hilleman Laboratories together with MSD discontinued their RV product development in 2018.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 4,
+     "year": "2018"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "product:rotavirus vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "The rotavirus vaccine market witnessed major supply disruptions in 2018 and 2019 due to Merck Sharp & Dohme Corp's decision to reduce their allocation to countries supported by Gavi.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 2,
+     "year": "2018-2019"
+    }
+   ]
+  },
+  {
+   "from": "merck_co_inc",
+   "to": "country:netherlands",
+   "kind": "country",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Merck Sharp & Dohme BV received 589,054 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 47,
+     "year": null
+    },
+    {
+     "text": "Merck Sharp & Dohme International Services BV received $214,304 in international procurement for Pharmaceuticals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2022_Annexes.pdf",
+     "page": 43,
+     "year": "2022"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "green_cross_corporation_gc_pharma",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 2228273,
+    "source": "research/annex2/suppliers-by-year.csv line 12964 (parent 'Green Cross Corporation (GC Pharma)' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "green_cross_corporation_gc_pharma",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 8820650,
+    "source": "research/annex2/suppliers-by-year.csv line 12964 (parent 'Green Cross Corporation (GC Pharma)' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "green_cross_corporation_gc_pharma",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "green_cross_corporation_gc_pharma",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "green_cross_corporation_gc_pharma",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "green_cross_corporation_gc_pharma",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 6750670,
+    "source": "research/annex2/suppliers-by-year.csv line 12964 (parent 'Green Cross Corporation (GC Pharma)' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "green_cross_corporation_gc_pharma",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 4223450,
+    "source": "research/annex2/suppliers-by-year.csv line 12964 (parent 'Green Cross Corporation (GC Pharma)' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Green Cross Corporation (GC Pharma) received $6.750.670 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 102,
+     "year": null
+    },
+    {
+     "text": "Green Cross Corp received $607,500 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 49,
+     "year": "2018"
+    },
+    {
+     "text": "Green Cross Corporation (GC Pharma) received $4.223.450 in international procurement for Vaccines/biologicals in Republic of Korea (the).",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 76,
+     "year": "2025"
+    },
+    {
+     "text": "Green Cross Corporation (GC Pharma) received $2,228,273 in international procurement for Vaccines/Biologicals in Republic of Korea (The).",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 52,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "product:seasonal influenza vaccine for the 2020/2021 northern hemisphere (nh) season",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Green Cross Corporation was awarded a value of 8,048,700.00 USD for Seasonal Influenza Vaccine for the 2020/2021 Northern Hemisphere (NH) season, with opening date 22/05/2020 under tender RFP-DAN-2020-503177.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 9,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "product:northern hemisphere seasonal influenza vaccine (2020/21 season)",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Green Cross Corporation was awarded a contract for Northern Hemisphere Seasonal Influenza Vaccine (2020/21 season) under tender RFP-DAN-2020-503177 opened on 22-05-2020.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 10,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "product:2020/21 northern hemisphere influenza vaccines",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2020-503177 for 2020/21 Northern Hemisphere influenza vaccines was awarded to Green Cross Corporation with a value of 7,073,220 USD on 22-05-2020.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 12,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "product:2021 southern hemisphere influenza vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2020-503239 for 2021 Southern Hemisphere Influenza Vaccine was opened on 09/11/2020 and awarded to Green Cross Corporation with a value of 549,500.00 USD.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "product:southern hemisphere seasonal influenza vaccine 2021",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2020-503239 for Southern Hemisphere Seasonal Influenza vaccine 2021 - Myanmar was opened on 09/11/2020 and awarded to Green Cross Corporation with a value of 522,000.00 USD for a Non-LTA Purchase Order purpose.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    },
+    {
+     "text": "Tender RFP-DAN-2020-503239 for Southern Hemisphere Seasonal Influenza vaccine 2021 - Cook Islands was opened on 10/11/2020 and awarded to Green Cross Corporation with a value of 27,500.00 USD for a Non-LTA Purchase Order purpose.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "product:seasonal influenza vaccine, northern hemisphere",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502532 for Seasonal Influenza vaccine, Northern Hemisphere opened on 18/07/2017 and was awarded to Green Cross Corporation, Republic of Korea for a value of USD 108,000.00 for Proc Services.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 10,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "country:republic of korea",
+   "kind": "country",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Green Cross Corporation (GC Pharma) received $6.750.670 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 102,
+     "year": null
+    },
+    {
+     "text": "Green Cross Corp received $607,500 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 49,
+     "year": "2018"
+    },
+    {
+     "text": "Green Cross Corporation (GC Pharma) received $4.223.450 in international procurement for Vaccines/biologicals in Republic of Korea (the).",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 76,
+     "year": "2025"
+    },
+    {
+     "text": "Green Cross Corporation (GC Pharma) received $2,228,273 in international procurement for Vaccines/Biologicals in Republic of Korea (The).",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 52,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "country:myanmar",
+   "kind": "country",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2020-503239 for Southern Hemisphere Seasonal Influenza vaccine 2021 - Myanmar was opened on 09/11/2020 and awarded to Green Cross Corporation with a value of 522,000.00 USD for a Non-LTA Purchase Order purpose.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "green_cross_corporation_gc_pharma",
+   "to": "country:cook islands",
+   "kind": "country",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2020-503239 for Southern Hemisphere Seasonal Influenza vaccine 2021 - Cook Islands was opened on 10/11/2020 and awarded to Green Cross Corporation with a value of 27,500.00 USD for a Non-LTA Purchase Order purpose.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "zuellig_pharma_ltd",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2019",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "zuellig_pharma_ltd",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2020",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "zuellig_pharma_ltd",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "zuellig_pharma_ltd",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "zuellig_pharma_ltd",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "zuellig_pharma_ltd",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2024",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "zuellig_pharma_ltd",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 147902,
+    "source": "research/annex2/suppliers-by-year.csv line 18402 (parent 'Zuellig Pharma Ltd' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "zuellig_pharma_ltd",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Zuellig Pharma Ltd received $147.902 in local procurement for Vaccines/biologicals in Thailand.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 95,
+     "year": "2025"
+    }
+   ]
+  },
+  {
+   "from": "zuellig_pharma_ltd",
+   "to": "country:thailand",
+   "kind": "country",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Zuellig Pharma Ltd received $147.902 in local procurement for Vaccines/biologicals in Thailand.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 95,
+     "year": "2025"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "lg_chem_ltd",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 33486617,
+    "source": "research/annex2/suppliers-by-year.csv line 14104 (parent 'LG Chem Ltd' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "lg_chem_ltd",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 33178682,
+    "source": "research/annex2/suppliers-by-year.csv line 14104 (parent 'LG Chem Ltd' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "lg_chem_ltd",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "lg_chem_ltd",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "lg_chem_ltd",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "lg_chem_ltd",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 76938477,
+    "source": "research/annex2/suppliers-by-year.csv line 14104 (parent 'LG Chem Ltd' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "lg_chem_ltd",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 80478151,
+    "source": "research/annex2/suppliers-by-year.csv line 14104 (parent 'LG Chem Ltd' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "lg_chem_ltd",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "LG Chem Ltd received $76.938.477 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 102,
+     "year": null
+    },
+    {
+     "text": "LG Chem Ltd received $28,507,764 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 49,
+     "year": "2018"
+    },
+    {
+     "text": "LG Chem Ltd received $80.478.151 in international procurement for Vaccines/biologicals in Republic of Korea (the).",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 76,
+     "year": "2025"
+    },
+    {
+     "text": "LG Chem Ltd received $33,486,617 in international procurement for Vaccines/Biologicals in Republic of Korea (The).",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 52,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "lg_chem_ltd",
+   "to": "product:ipv",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502492 for IPV was opened on 19/09/2017 and awarded to LG Chem with a value of 80,000,000.00 USD for a purpose of 2021 & 2022.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2017"
+    },
+    {
+     "text": "LG Chem (Korea) has a WHO prequalified IPV product in 1-dose vial presentation with 36 months shelf life and VVM 7, prequalified in 2021.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2021"
+    },
+    {
+     "text": "LG Chem (Korea) has a WHO prequalified IPV product in 5-dose vial presentation with 36 months shelf life and VVM 7, prequalified in 2020.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "lg_chem_ltd",
+   "to": "product:dtp-hepb-hib, pentavalent vaccines for supply in 2021 - 2022",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2016-502178 for DTP-HepB-HiB, Pentavalent Vaccines for supply in 2021 - 2022 was opened on 01/03/2016 and awarded to LG Chem Ltd with a value of 49,140,000 USD for a period of 24 months.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 16,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "lg_chem_ltd",
+   "to": "country:republic of korea",
+   "kind": "country",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "LG Chem Ltd received $76.938.477 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 102,
+     "year": null
+    },
+    {
+     "text": "LG Chem Ltd received $28,507,764 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 49,
+     "year": "2018"
+    },
+    {
+     "text": "LG Chem Ltd received $80.478.151 in international procurement for Vaccines/biologicals in Republic of Korea (the).",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 76,
+     "year": "2025"
+    },
+    {
+     "text": "LG Chem Ltd received $33,486,617 in international procurement for Vaccines/Biologicals in Republic of Korea (The).",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 52,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "be_vaccines_pte_ltd",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 42740348,
+    "source": "research/annex2/suppliers-by-year.csv line 10536 (parent 'Biological E' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "be_vaccines_pte_ltd",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 67313827,
+    "source": "research/annex2/suppliers-by-year.csv line 10536 (parent 'Biological E' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "be_vaccines_pte_ltd",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "be_vaccines_pte_ltd",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "be_vaccines_pte_ltd",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "be_vaccines_pte_ltd",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 296775008,
+    "source": "research/annex2/suppliers-by-year.csv line 10536 (parent 'Biological E' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "be_vaccines_pte_ltd",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 232517540,
+    "source": "research/annex2/suppliers-by-year.csv line 10536 (parent 'Biological E' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "be_vaccines_pte_ltd",
+   "to": "product:td",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Biological E (India) has a Td vaccine with WHO prequalification in 2014, 1-dose vial presentation, liquid formulation, 36 months shelf life, and VVM Type 30.",
+     "pdf": "Td_Vaccines_Market_Note_2023-12.pdf",
+     "page": 5,
+     "year": "2014"
+    },
+    {
+     "text": "Biological E (India) has a Td vaccine with WHO prequalification in 2014, 10-dose vial presentation, liquid formulation, 36 months shelf life, and VVM Type 30.",
+     "pdf": "Td_Vaccines_Market_Note_2023-12.pdf",
+     "page": 5,
+     "year": "2014"
+    },
+    {
+     "text": "Biological E (India) has a Td vaccine with WHO prequalification in 2020, 20-dose vial presentation, liquid formulation, 36 months shelf life, and VVM Type 30.",
+     "pdf": "Td_Vaccines_Market_Note_2023-12.pdf",
+     "page": 5,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "bavarian_nordic_a_s",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2019",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bavarian_nordic_a_s",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2020",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bavarian_nordic_a_s",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bavarian_nordic_a_s",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bavarian_nordic_a_s",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bavarian_nordic_a_s",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 871015,
+    "source": "research/annex2/suppliers-by-year.csv line 10388 (parent 'Bavarian Nordic A/S' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bavarian_nordic_a_s",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 43142450,
+    "source": "research/annex2/suppliers-by-year.csv line 10388 (parent 'Bavarian Nordic A/S' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "bavarian_nordic_a_s",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Bavarian Nordic A/S received $871.015 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 40,
+     "year": null
+    },
+    {
+     "text": "Bavarian Nordic A/S received $43.142.450 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 29,
+     "year": "2025"
+    }
+   ]
+  },
+  {
+   "from": "bavarian_nordic_a_s",
+   "to": "country:denmark",
+   "kind": "country",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Bavarian Nordic A/S received $43.142.450 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 29,
+     "year": "2025"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "panacea_biotec_ltd",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 1800000,
+    "source": "research/annex2/suppliers-by-year.csv line 15598 (parent 'Panacea Biotec Ltd' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "panacea_biotec_ltd",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 2400983,
+    "source": "research/annex2/suppliers-by-year.csv line 15598 (parent 'Panacea Biotec Ltd' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "panacea_biotec_ltd",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "panacea_biotec_ltd",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "panacea_biotec_ltd",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "panacea_biotec_ltd",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 18115944,
+    "source": "research/annex2/suppliers-by-year.csv line 15598 (parent 'Panacea Biotec Ltd' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "panacea_biotec_ltd",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 30275777,
+    "source": "research/annex2/suppliers-by-year.csv line 15598 (parent 'Panacea Biotec Ltd' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "panacea_biotec_ltd",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Panacea Biotec Ltd received $18.115.944 in local procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 58,
+     "year": null
+    },
+    {
+     "text": "Panacea Biotec Ltd received $30.275.777 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 42,
+     "year": "2025"
+    },
+    {
+     "text": "Panacea Biotec Ltd received 1,800,000 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 44,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "panacea_biotec_ltd",
+   "to": "product:dtp-hepb-hib, pentavalent vaccines for supply in 2021 - 2022",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2016-502178 for DTP-HepB-HiB, Pentavalent Vaccines for supply in 2021 - 2022 was opened on 01/03/2016 and awarded to Panacea Biotec Limited with a value of 21,000,000 USD for a period of 24 months.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 16,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "sinovac_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 7737350,
+    "source": "research/annex2/suppliers-by-year.csv line 16817 (parent 'Sinovac Biotech Co Ltd' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sinovac_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 11301765,
+    "source": "research/annex2/suppliers-by-year.csv line 16817 (parent 'Sinovac Biotech Co Ltd' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sinovac_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sinovac_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sinovac_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sinovac_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 10493388,
+    "source": "research/annex2/suppliers-by-year.csv line 16817 (parent 'Sinovac Biotech Co Ltd' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "sinovac_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 5053413,
+    "source": "research/annex2/suppliers-by-year.csv line 16817 (parent 'Sinovac Biotech Co Ltd' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "sinovac_biotech_co_ltd",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Sinovac Biotech Co Ltd received $10.493.388 in local procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 29,
+     "year": null
+    },
+    {
+     "text": "Sinovac Biotech Co Ltd received $5.053.413 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 22,
+     "year": null
+    },
+    {
+     "text": "Sinovac Biotech Co Ltd received $7,737,350 in international procurement for Vaccines/Biologicals in 2019.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 38,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "sinovac_biotech_co_ltd",
+   "to": "product:ipv",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Sinovac Biotech (China) has a WHO prequalified IPV product in 1-dose vial presentation with 24 months shelf life and VVM 7, prequalified in 2022.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2022"
+    },
+    {
+     "text": "Sinovac Biotech (China) has a WHO prequalified IPV product in 5-dose vial presentation with 24 months shelf life and VVM 7, prequalified in 2024.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2024"
+    },
+    {
+     "text": "Sinovac Biotech Co., Ltd. received additional awards for IPV in 2026 on 10.12.2021 for $8,910,000.00 with a deadline of 31-Dec-26.",
+     "pdf": "Contract-Awards-April-2026.pdf",
+     "page": 2,
+     "year": "2026"
+    }
+   ]
+  },
+  {
+   "from": "sinovac_biotech_co_ltd",
+   "to": "product:ipv additional awards 2026",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Sinovac Biotech Co., Ltd. received additional awards for IPV 2026 on 10.12.2021 for $8,910,000.00 with delivery by 31-Dec-26.",
+     "pdf": "Contract-Awards-April-2026.pdf",
+     "page": 2,
+     "year": "2021"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "pt_bio_farma_persero",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 18146372,
+    "source": "research/annex2/suppliers-by-year.csv line 15926 (parent 'Pt Bio Farma (Persero)' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pt_bio_farma_persero",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 7203040,
+    "source": "research/annex2/suppliers-by-year.csv line 15926 (parent 'Pt Bio Farma (Persero)' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pt_bio_farma_persero",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pt_bio_farma_persero",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pt_bio_farma_persero",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pt_bio_farma_persero",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 118675252,
+    "source": "research/annex2/suppliers-by-year.csv line 15926 (parent 'Pt Bio Farma (Persero)' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "pt_bio_farma_persero",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 62428268,
+    "source": "research/annex2/suppliers-by-year.csv line 15926 (parent 'Pt Bio Farma (Persero)' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "PT Bio Farma (Persero) received $118.675.252 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 59,
+     "year": null
+    },
+    {
+     "text": "PT Bio Farma (Persero) received $24,626,838 in international procurement for Vaccines/Biologicals in Indonesia in 2018.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 42,
+     "year": "2018"
+    },
+    {
+     "text": "PT Bio Farma (Persero) received $62.428.268 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 43,
+     "year": "2025"
+    },
+    {
+     "text": "PT Bio Farma (Persero) received $18,146,372 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 44,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:mopv2 bulk",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "P.T. Bio Farma (Persero) was awarded a contract valued at 9,839,200.00 USD for mOPV2 Bulk with a contract duration of 24 months (+24 months) under tender RFP-DAN-2019-502997 opened on 14/06/2019.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 4,
+     "year": "2019"
+    },
+    {
+     "text": "Tender RFP-DAN-2019-502997 for mOPV2 Bulk with a value of $9,839,200.00 was awarded to P.T. Bio Farma (Persero) on 14/06/2019.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 7,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:s359133 - dt vaccine,adsorbed,vial of 10 doses",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender ITB-DAN-2020-19697 for S359133 - DT vaccine,adsorbed,vial of 10 doses was opened on 21/07/2020 and awarded to P.T. Bio Farma (Persero) with a value of 461,043.00 USD for 24 months.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 14,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:measles containing vaccines 2021-2023",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2020-503220 for Measles containing vaccines 2021-2023 was opened on 13/10/2020 and awarded to P.T. Bio Farma (Persero) with a value of 5,062,500.00 USD for a purpose of 12 months.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:topv for global stockpile",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2020-503139 for tOPV for global stockpile was opened on 12-02-2020 and awarded to P.T. Bio Farma (Persero) with a value of 20,300,000.00 USD.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 19,
+     "year": "2020"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:rv vaccine candidate",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Bio Farma (Indonesia), Lanzhou Biologicals (China), and Wuhan Institute of Biological Products (China) have products in different stages of clinical development.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 5,
+     "year": "2024"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:rv candidate",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Bio Farma (Indonesia), Lanzhou Biologicals (China), and Wuhan Institute of Biological Products (China) have products in different stages of clinical development as illustrated in Table 2.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 5,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:dt-10 for 2018-2019",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender ITB-DAN-2017-19393 for DT-10 for 2018-2019 was opened on 21/07/2017 and awarded to P.T. Bio Farma , Indonesia for an LTA from Jan 2018 to Dec 2019.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 11,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:monovalent oral polio vaccine, type 1",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502607 for Monovalent Oral Polio Vaccine, type 1 was opened on 02/10/2017 and awarded to P.T. Bio Farma, Indonesia with a Time Bound LTA for 2018 Only.",
+     "pdf": "contract-awards-2017.pdf",
+     "page": 12,
+     "year": "2017"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:td",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Bio Farma (Indonesia) has a Td vaccine with WHO prequalification in 2011, 10-dose vial presentation, liquid formulation, 24 months shelf life, and VVM Type 30.",
+     "pdf": "Td_Vaccines_Market_Note_2023-12.pdf",
+     "page": 5,
+     "year": "2011"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:dt vaccines",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "UNICEF awarded additional awards for supply in 2026/2027 for DT vaccines to P.T. Bio Farma (Persero) on 28/10/2022 under RFP -DAN -2022 -503483 with a value of $382,869.00.",
+     "pdf": "Contract-Awards-Aug2025.pdf",
+     "page": 4,
+     "year": "2022"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:nopv2 stockpile",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "P.T. Bio Farma (Persero) received an award for nOPV2 stockpile on 23.06.2023 for $10,175,001.00.",
+     "pdf": "Contract-Awards-April-2026.pdf",
+     "page": 2,
+     "year": "2023"
+    },
+    {
+     "text": "P.T. Bio Farma (Persero) was awarded a contract for nOPV2 stockpile on 23.06.2023 for $10,175,001.00.",
+     "pdf": "Contract-Awards-April-2026.pdf",
+     "page": 2,
+     "year": "2023"
+    },
+    {
+     "text": "P.T. Bio Farma (Persero) was awarded $6,500,000 for nOPV2 stockpile.",
+     "pdf": "Contract-Awards-Jun-2025.pdf",
+     "page": 1,
+     "year": "2023"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:rv vaccine candidates",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "UNICEF also knows of several manufacturers, including Bio Farma (Indonesia), the Institute Butantan (Brazil), and Wuhan Institute of Biological Products (China), that have products in different stages of clinical development, of which some are in advanced clinical trials.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 4,
+     "year": "2022"
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "product:rv candidates",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "UNICEF knows of several manufacturers, including Bio Farma (Indonesia), the Institute Butantan (Brazil), and Wuhan Institute of Biological Products (China), that have products in different stages of clinical development, of which some are in advanced clinical trials.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 4,
+     "year": null
+    }
+   ]
+  },
+  {
+   "from": "pt_bio_farma_persero",
+   "to": "country:indonesia",
+   "kind": "country",
+   "figure": {
+    "value": 7,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "PT Bio Farma (Persero) received $118.675.252 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 59,
+     "year": null
+    },
+    {
+     "text": "PT Bio Farma (Persero) received $24,626,838 in international procurement for Vaccines/Biologicals in Indonesia in 2018.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 42,
+     "year": "2018"
+    },
+    {
+     "text": "Bio Farma (Indonesia), Lanzhou Biologicals (China), and Wuhan Institute of Biological Products (China) have products in different stages of clinical development.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 5,
+     "year": "2024"
+    },
+    {
+     "text": "Bio Farma (Indonesia), Lanzhou Biologicals (China), and Wuhan Institute of Biological Products (China) have products in different stages of clinical development as illustrated in Table 2.",
+     "pdf": "Rotavirus_Supply_Update_2024-10.pdf",
+     "page": 5,
+     "year": null
+    },
+    {
+     "text": "PT Bio Farma (Persero) received $62.428.268 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 43,
+     "year": "2025"
+    },
+    {
+     "text": "PT Bio Farma (Persero) received $18,146,372 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 44,
+     "year": "2019"
+    },
+    {
+     "text": "UNICEF also knows of several manufacturers, including Bio Farma (Indonesia), the Institute Butantan (Brazil), and Wuhan Institute of Biological Products (China), that have products in different stages of clinical development, of which some are in advanced clinical trials.",
+     "pdf": "Rotavirus_Supply_Update_2022-01.pdf",
+     "page": 4,
+     "year": "2022"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "aj_vaccine_a_s",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 1012022,
+    "source": "research/annex2/suppliers-by-year.csv line 9336 (parent 'AJ Vaccine A/S' total, column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "aj_vaccine_a_s",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 11520767,
+    "source": "research/annex2/suppliers-by-year.csv line 9336 (parent 'AJ Vaccine A/S' total, column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "aj_vaccine_a_s",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "aj_vaccine_a_s",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "aj_vaccine_a_s",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "aj_vaccine_a_s",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 22280620,
+    "source": "research/annex2/suppliers-by-year.csv line 9336 (parent 'AJ Vaccine A/S' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "aj_vaccine_a_s",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 12398635,
+    "source": "research/annex2/suppliers-by-year.csv line 9336 (parent 'AJ Vaccine A/S' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "aj_vaccine_a_s",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "AJ Vaccine A/S received $22.280.620 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 40,
+     "year": null
+    },
+    {
+     "text": "AJ Vaccine A/S received $12.398.635 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 29,
+     "year": "2025"
+    },
+    {
+     "text": "AJ Vaccine A/S received $1,012,022 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 41,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "aj_vaccine_a_s",
+   "to": "product:ipv",
+   "kind": "product",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Tender RFP-DAN-2017-502492 for IPV with a value of $57,700,000 was awarded to AJ Vaccine A/S for the period June 2020 to Dec 2022.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 7,
+     "year": "2017"
+    },
+    {
+     "text": "AJ Vaccines (Denmark) has a WHO prequalified IPV product in 1-dose vial presentation with 36 months shelf life and VVM 7, prequalified in 2010.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2010"
+    },
+    {
+     "text": "AJ Vaccines (Denmark) has a WHO prequalified IPV product in 5-dose vial presentation with 24 months shelf life and VVM 7, prequalified in 2020.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2020"
+    },
+    {
+     "text": "AJ Vaccines A/S received additional awards for IPV in 2026 on 10.12.2021 for $1,976,000.00 with a deadline of 31-Dec-26.",
+     "pdf": "Contract-Awards-April-2026.pdf",
+     "page": 2,
+     "year": "2026"
+    }
+   ]
+  },
+  {
+   "from": "aj_vaccine_a_s",
+   "to": "product:ipv additional awards 2026",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "AJ Vaccines A/S received additional awards for IPV 2026 on 10.12.2021 for $1,976,000.00 with delivery by 31-Dec-26.",
+     "pdf": "Contract-Awards-April-2026.pdf",
+     "page": 2,
+     "year": "2021"
+    }
+   ]
+  },
+  {
+   "from": "aj_vaccine_a_s",
+   "to": "country:denmark",
+   "kind": "country",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "AJ Vaccine A/S received $12.398.635 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 29,
+     "year": "2025"
+    },
+    {
+     "text": "AJ Vaccine A/S received $1,012,022 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 41,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "bilthoven_biologicals_bv",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": 66825768,
+    "source": "research/annex2/suppliers-by-year.csv line 1283 (entity 'Bilthoven Biologicals BV', column 2019)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bilthoven_biologicals_bv",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": 41385432,
+    "source": "research/annex2/suppliers-by-year.csv line 1283 (entity 'Bilthoven Biologicals BV', column 2020)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bilthoven_biologicals_bv",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bilthoven_biologicals_bv",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bilthoven_biologicals_bv",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bilthoven_biologicals_bv",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 49832913,
+    "source": "research/annex2/suppliers-by-year.csv line 1283 (entity 'Bilthoven Biologicals BV', column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "bilthoven_biologicals_bv",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 53656096,
+    "source": "research/annex2/suppliers-by-year.csv line 1283 (entity 'Bilthoven Biologicals BV', column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "bilthoven_biologicals_bv",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Bilthoven Biologicals BV received $49.832.913 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 88,
+     "year": null
+    },
+    {
+     "text": "Bilthoven Biologicals BV received 33,151,938 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 47,
+     "year": null
+    },
+    {
+     "text": "Bilthoven Biologicals BV received $53.656.096 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 64,
+     "year": "2025"
+    },
+    {
+     "text": "Bilthoven Biologicals BV received $66,825,768 in international procurement for Vaccines/Biologicals in 2019.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 49,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "bilthoven_biologicals_bv",
+   "to": "product:ipv",
+   "kind": "product",
+   "figure": {
+    "value": 3,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Bilthoven Biologicals (Netherlands) has a WHO prequalified IPV product in 1-dose vial presentation with 36 months shelf life and VVM 7, prequalified in 2010.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2010"
+    },
+    {
+     "text": "Bilthoven Biologicals (Netherlands) has a WHO prequalified IPV product in 5-dose vial presentation with 36 months shelf life and VVM 7, prequalified in 2014.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2014"
+    },
+    {
+     "text": "Bilthoven Biologicals (Netherlands) has a WHO prequalified IPV product in 10-dose vial presentation with 36 months shelf life and VVM 7, prequalified in 2024.",
+     "pdf": "IPV_Market_Note_2025-02.pdf",
+     "page": 5,
+     "year": "2024"
+    }
+   ]
+  },
+  {
+   "from": "bilthoven_biologicals_bv",
+   "to": "country:netherlands",
+   "kind": "country",
+   "figure": {
+    "value": 4,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Bilthoven Biologicals BV received $49.832.913 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 88,
+     "year": null
+    },
+    {
+     "text": "Bilthoven Biologicals BV received 33,151,938 in international procurement for Vaccines/Biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2018.pdf",
+     "page": 47,
+     "year": null
+    },
+    {
+     "text": "Bilthoven Biologicals BV received $53.656.096 in international procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 64,
+     "year": "2025"
+    },
+    {
+     "text": "Bilthoven Biologicals BV received $66,825,768 in international procurement for Vaccines/Biologicals in 2019.",
+     "pdf": "UNICEF_Supply_Annual_Report_2019.pdf",
+     "page": 49,
+     "year": "2019"
+    }
+   ]
+  },
+  {
+   "from": "unicef",
+   "to": "xiamen_innovax_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2019",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2019",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "xiamen_innovax_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2020",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2020",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "xiamen_innovax_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2021",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2021",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "xiamen_innovax_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2022",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2022",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "xiamen_innovax_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2023",
+   "figure": {
+    "value": null,
+    "unit": "USD",
+    "tier": "gap",
+    "source": "Annex 2: no entry for 2023",
+    "added_by": "build_map.py",
+    "note": "not in the annex"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "xiamen_innovax_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2024",
+   "figure": {
+    "value": 42360445,
+    "source": "research/annex2/suppliers-by-year.csv line 18282 (parent 'Xiamen Innovax Biotech Co Ltd' total, column 2024)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "unicef",
+   "to": "xiamen_innovax_biotech_co_ltd",
+   "kind": "spend",
+   "year": "2025",
+   "figure": {
+    "value": 30677070,
+    "source": "research/annex2/suppliers-by-year.csv line 18282 (parent 'Xiamen Innovax Biotech Co Ltd' total, column 2025)",
+    "tier": "reported",
+    "added_by": "build_spend.py from suppliers-by-year.csv",
+    "unit": "USD"
+   }
+  },
+  {
+   "from": "xiamen_innovax_biotech_co_ltd",
+   "to": "product:vaccines/biologicals",
+   "kind": "product",
+   "figure": {
+    "value": 2,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Xiamen Innovax Biotech Co Ltd received $42.360.445 in local procurement for Vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2024_Annexes.pdf",
+     "page": 29,
+     "year": null
+    },
+    {
+     "text": "Xiamen Innovax Biotech Co Ltd received $30.677.070 in international procurement for vaccines/biologicals.",
+     "pdf": "UNICEF_Supply_Annual_Report_2025_Annexes.pdf",
+     "page": 23,
+     "year": "2025"
+    }
+   ]
+  },
+  {
+   "from": "xiamen_innovax_biotech_co_ltd",
+   "to": "product:human papillomavirus (hpv) vaccine",
+   "kind": "product",
+   "figure": {
+    "value": 1,
+    "unit": "claims",
+    "tier": "claim_extracted",
+    "added_by": "build_map.py",
+    "source": "UNICEF Supply KB claims.corrected.json (final-v1-build2), supplier-matched claims",
+    "note": "model-extracted, not source-checked"
+   },
+   "claims": [
+    {
+     "text": "Xiamen Innovax Biotech Co, Ltd. was awarded a Time Bound LTA for Human Papillomavirus (HPV) vaccine for 5 years, with opening date 31/01/2020 under tender RFP-DAN-2019-503097.",
+     "pdf": "contract-awards-2020.pdf",
+     "page": 9,
+     "year": "2020"
+    }
+   ]
+  }
+ ]
+}
