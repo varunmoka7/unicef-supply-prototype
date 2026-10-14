@@ -4,7 +4,7 @@ A static React and Vite app that shows what UNICEF Supply Division and its vacci
 
 Live: [unicef-supply-prototype.vercel.app](https://unicef-supply-prototype.vercel.app)
 
-![The /suppliers page: UNICEF vaccine spend by supplier next to what each supplier's reports say on SBTi, operations, value chain and energy](docs/suppliers.png)
+![The /hypergraph page: ESG claims from UNICEF Supply Division's own reports, grouped into hyperedges that join each topic with its frameworks and source documents](docs/hypergraph.png)
 
 It was exported from `apps/public-sector` in [GoCarbonTracker/go-carbon-insights](https://github.com/GoCarbonTracker/go-carbon-insights) at `50cc9caf6`.
 
