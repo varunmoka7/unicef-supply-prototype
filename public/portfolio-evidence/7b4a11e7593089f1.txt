@@ -1,0 +1,27 @@
+Saved extracted context. Original PDF was not re-opened for this prototype.
+Source: UNICEF_Supply_Scope3_Baseline_Compendium.pdf
+Physical PDF page: 24
+Context: 7b4a11e7593089f1
+
+Certain procurement categories rank higher in emissions versus spend
+amount
+… and remains highest in emissions, however
+Vaccine is the largest spend category … positioning of other categories emissions change
+2019 Supply Division reported spend by 2019 SD Scope 3 emissions
+commodity code ($M) (ktCO e)
+2
+1,656 Vaccines/biologicals 2,729
+214 Cash & voucher assistance 69
+181 Nutrition 428
+170 Local technical workforce 20
+153 Construction services 44
+127 Pharmaceuticals 24
+118 Research & evaluating services 13
+113 Medical supplies & equipment 28
+99 Water & sanitation supplies 17
+94 Bednets/insecticides 173
+90 International freight 90
+85 Cold chain equipment 24
+727 Other 211
+International Local
+Source: UNICEF 2019 Supply Division Annual Report, UNICEF business travel data, EPA, ClimateIQ, BCG analysis

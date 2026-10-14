@@ -1,0 +1,64 @@
+UNICEF Supply Scope 3 Greenhouse Gas Emissions Baseline
+
+
+of emission factors, without which the baseline may remain indicative for certain commodities and
+eventually undermine decarbonization efforts.
+
+Combined with a supplier analysis, it is evident that emissions are concentrated in a relatively
+small number of key suppliers – 30 highest-emitting suppliers (in 2019) account for 80-90 per cent
+of UNICEF SD’s scope 3 emissions. These high emitting suppliers are spread across vaccines,
+international freight, nutrition, LLINs and cold chain equipment. It will be critical to engage with such
+suppliers, set supplier targets, share education and joint supplier solutions, as well as consider
+supplier incentives. This is discussed further in section 5.
+
+
+Table 1: 5 key categories drive 90 per cent of total Scope 3 Supply Division GHGs
+
+
+
+                                Emissions by Scope 3 categories (ktCO2e)
+
+
+   UNICEF SD        Emissions       Emission in           Emissions in    Total          Percentage
+   Commodity        in scope 3.1    scope 3.4             scope 3.12      emissions      (%) of total
+   Group                                                                  across all     emissions
+                    Purchased       Transportation        End-of-life     scope 3
+                    goods and       and                   treatment of    categories
+                    services        Distribution          sold products
+
+
+  Vaccines              2,666              61                  1            2,729            71%
+
+
+
+  Nutrition              419                8                   1            428             11%
+
+
+
+  Long-Lasting
+  Insecticidal           110                7                  56            173             4%
+  Nets (LLINs)
+
+  International
+                          0                90                   0             90             2%
+  Freight
+
+  Cash and
+  voucher                 69                0                   0             69             2%
+  assistance
+
+
+  Others                 290               73                   5            379             10%
+
+
+  Total
+  emissions
+  by Scope              3,555              239                 64            3,869          100%
+  3 category
+  (ktCO2e)
+
+
+
+
+                                                     12
+

@@ -1,0 +1,65 @@
+UNICEF Supply Scope 3 Greenhouse Gas Emissions Baseline
+
+
+                                                                  International business travel is accounted for
+                                                                  through UNICEF’s Environmental Footprint and
+                                                                  Accessibility Assessment Tool (along with scopes 1
+                                                                  and 2 emissions), and is therefore not included in this
+                                                                  assessment, nor are scope 3 categories determined to
+                                                                  be non-material2. UNICEF has more to learn on scope
+                                                                  3 emissions, but this analysis addresses the major
+                                                                  drivers of UNICEF’s overall scope 3 emissions (the
+                                                                  procurement of international goods and services via
+                                                                  SD).
+
+                                                                  Four major product categories were found to drive
+                                                                  80-90 per cent of UNICEF’s international supply
+                                                                  scope 3 emissions — vaccines, nutrition, cold chain
+                                                                  equipment, and international freight. Emissions
+                                                                  reduction efforts for scope 3 should therefore focus
+                                                                  on these product categories where the emissions
+                                                                  footprint is most concentrated.
+
+                                                                  The Science-Based Targets Initiative, which is the
+                                                                  leading standard for effective mitigation target-
+                                                                  setting, recommends three major approaches to set
+                                                                  a 1.5°C aligned scope 3 target. The most practicable
+Sirajul walks through a flooded area with his                     approach for UNICEF is a supplier-engagement
+six-year-old daughter, Sumaiya, perched on his                    target in the near-term. To pursue this approach, a
+shoulders. They stand near the spot where their
+family home once stood. © UNICEF/UNI424978/
+                                                                  target year (within 5 years of UNICEF’s commitment)
+Sokhin                                                            will need to be specified by which time suppliers
+                                                                  accounting for over 67 per cent of UNICEF’s scope 3
+We know from this scope 3 baseline                                emissions will need to have set Science-based Targets
+that UNICEF’s Scope 1 emissions (from                             themselves. Longer-term scope 3 targets would need
+owned vehicles and facilities) and scope                          to be ‘CO2e intensity’ or ‘absolute reduction’ targets.
+2 (from purchased electricity /heating),                          This will require close monitoring of emissions
+where much progress has already been                              reductions in the supply chain and enforcement of
+achieved, and which will continue to be a                         abatement activities among suppliers.
+major focus, drive a much smaller share
+of UNICEF emissions.                                              Engaging suppliers on what can be done to reduce
+                                                                  emissions is critical to moving towards a science-
+Scope 3 emissions for UNICEF’s                                    based emissions trajectory. The analysis suggests
+international supply, which are calculated                        that there are nine major abatement levers most
+through Supply Division (SD), were                                suppliers could implement to reduce emissions.
+estimated to be 3.9 million tons of carbon                        Implementing energy efficiency measures, procuring
+dioxide equivalent (Mt of CO2e) in 2019 —                         clean power, using recycled materials, switching
+equivalent to approximately 870,000 cars                          ingredients or mode of transport from air-to-sea
+in one year. This represents more than                            may drive emissions reductions at relatively low
+98 per cent of UNICEF’s total emissions                           cost, although the ability to achieve these in certain
+in 2019 (scopes 1 and 2 totaled 0.03 Mt of                        geographies may be more complex than in others,
+CO2e). The scope 3 estimate incorporates                          and access to appropriate long-term capital relatively
+emissions within the operational control                          more expensive or potentially unavailable for some
+of UNICEF SD and excludes scopes 1                                suppliers. UNICEF’s significant role in emergency
+and 2, and scope 3 outside SD control.                            response, requiring rapid action and decision-making,
+
+
+2    GHG Protocol scope 3 emissions categories determined to be non-material, include: waste generated in operations, employee commuting,
+upstream leased assets, downstream transportation, and distribution (last-mile-only); processing of sold products; downstream leased assets;
+franchises; and investments.
+
+
+
+                                                                      4
+

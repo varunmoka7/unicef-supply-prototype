@@ -10,6 +10,7 @@ export default function Header(props: { buyer: Buyer }): JSX.Element {
       {buyer.logo ? <img src={buyer.logo} alt="" height={28} /> : <span className="ps-wordmark">{buyer.short_name}</span>}
       <h1>{buyer.name}</h1>
       <nav>
+        <NavLink to="/portfolio" className={cls}>Division portfolio</NavLink>
         <NavLink to="/suppliers" className={cls}>Suppliers</NavLink>
         <NavLink to="/map" className={cls}>Supply chain map</NavLink>
         <NavLink to="/climate" className={cls}>Climate hypergraph</NavLink>

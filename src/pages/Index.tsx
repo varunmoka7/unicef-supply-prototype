@@ -45,6 +45,7 @@ export default function Index({ buyer }: { buyer: Buyer }): JSX.Element {
               UNICEF Supply Division's own reports, no supplier reports. ESG claims and supply operations are shown apart, each grouped by topic,
               with the claims behind every group.
             </p>
+            <Link to="/portfolio" style={{ color: "var(--accent)", padding: "10px 0" }}>Division portfolio: emissions, procurement and supplier reach</Link>
             <Link to="/hypergraph" style={cta}>Open claims hypergraph</Link>
           </section>
         </div>

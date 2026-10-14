@@ -1,0 +1,32 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import { expect, it } from "vitest";
+import Portfolio from "./Portfolio";
+
+it("keeps division emissions separate from global procurement and retains missing years", () => {
+  render(<MemoryRouter><Portfolio /></MemoryRouter>);
+  expect(screen.getByRole("heading", { name: "Emissions by reporting year" })).toBeTruthy();
+  expect(screen.getByText("~3,900,000")).toBeTruthy();
+  expect(screen.getByRole("heading", { name: "Scope 3 categories in the model" })).toBeTruthy();
+  expect(screen.getByText(/six compendium components sum to 3,869/)).toBeTruthy();
+  expect(screen.getByText(/narrative table lists three components totaling 3,858/)).toBeTruthy();
+  expect(screen.getByText(/travel-agency data captured 80%/)).toBeTruthy();
+  expect(screen.getByRole("table", { name: /All 13 commodity rows/ }).querySelectorAll("tbody tr")).toHaveLength(13);
+  expect(screen.getByText("~1,200 sites")).toBeTruthy();
+  expect(screen.getByText(/Orders, not installations/)).toBeTruthy();
+  expect(screen.getByText(/Up to 70% potential carbon reduction/)).toBeTruthy();
+  expect(screen.getByText(/combined UNICEF-wide Scope 1 and 2 figure of 0.03/)).toBeTruthy();
+  expect(screen.getByText("US$3.8 billion")).toBeTruthy();
+  expect(screen.getByText(/excludes country-office local procurement/)).toBeTruthy();
+  expect(screen.getAllByText("Not available in saved evidence")).toHaveLength(20);
+  expect(screen.getByText("Over 12,000")).toBeTruthy();
+  expect(screen.getByText(/global UNICEF supply and logistics procurement/)).toBeTruthy();
+  expect(screen.getByRole("link", { name: /Annual report 2025, PDF p. 10/ }).getAttribute("href")).toContain("7a57db1cd24071cf");
+  fireEvent.change(screen.getByRole("combobox", { name: "Reporting year" }), { target: { value: "2024" } });
+  expect(screen.getByText("US$5.610bn")).toBeTruthy();
+  expect(screen.getByText("12,154")).toBeTruthy();
+  fireEvent.click(screen.getByRole("button", { name: "2020: US$4.468 billion" }));
+  expect(screen.getByText("US$4.468bn")).toBeTruthy();
+  expect(screen.getAllByText("Not available in saved evidence")).toHaveLength(21);
+  expect(screen.queryByText("12,154")).toBeNull();
+});

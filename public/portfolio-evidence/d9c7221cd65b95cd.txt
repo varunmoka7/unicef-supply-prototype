@@ -1,0 +1,16 @@
+Saved extracted context. Original PDF was not re-opened for this prototype.
+Source: UNICEF_Supply_Scope3_Baseline_Narrative_Report.pdf
+Physical PDF page: 11
+Context: d9c7221cd65b95cd
+
+3.2 Baseline Methodology
+
+The main steps in establishing a baseline include collection of data, establishment of a baseline year and quantification of emissions. Given data limitations, a hybrid of calculation methods was used to arrive at final emission estimates.  The year 2019 was set as the baseline year as it was the most representative recent historic year that also excluded the impact of the COVID-19 pandemic from the operational records (these impacts were determined to be a one-time impact and risked a major skew for a representative baseline for the future). Given scope of operational control, cash and voucher assistance spend, along with procurement services spend was included in the baseline. Procurement services is a strategic programmatic and development platform that enables governments and other partners to leverage UNICEF's procurement scale and expertise in order to meet essential supply needs, until national public or private supply systems can fully perform this role. In parallel, subject matter experts within SD were consulted to collect granular data (where possible), validate assumptions, and further determine emission drivers for priority commodities.  This allowed a transition from solely spend-based estimates to a more accurate hybrid of spend and activity-based calculations for select product groups.
+
+Emissions were calculated in line with the GHG Protocol. Most calculations were done using publicly available secondary emission factors as proxy estimates for Supply Division's various categories. See Figure 2.
+
+Based on UNICEF's knowledge of major materials groups used in some key commodities for children's health and wellbeing, the following commodities used more advanced spend, activity, or supplier-specific methodologies: vaccines, syringes, ready-to-usetherapeutic food (RUTF), international freight, long-lasting insecticidal nets (LLINs), cold chain equipment and gloves. Remaining commodities were calculated using a simple spend-based approach. For calculations that were done outside of the spend methodology, the approach and assumptions were aligned and validated with UNICEF SD subject matter experts.
+
+3.3 Key findings
+
+Against a total spend of $3.8 billion in 2019, UNICEF SD's estimated scope 3 emissions baseline is 3.9 million tons CO2e.  The baseline encompassed all spend over which UNICEF SD has direct operational control - including UNICEF programs, procurement services and cash and voucher assistance administered by SD.

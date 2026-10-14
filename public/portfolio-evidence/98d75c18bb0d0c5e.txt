@@ -1,0 +1,12 @@
+Saved extracted context. Original PDF was not re-opened for this prototype.
+Source: UNICEF_Supply_Scope3_Baseline_Narrative_Report.pdf
+Physical PDF page: 10
+Context: 98d75c18bb0d0c5e
+
+3. UNICEF SUPPLY DIVISION SCOPE 3 EMISSIONS BASELINE
+
+3.1 Scope of  Assessment
+
+To estimate UNICEF's scope 3 GHG baseline, the first step was to identify an organizational and time boundary in-line with the Greenhouse Gas Protocol 8 .  Through consultations with internal stakeholders and based on data availability, the baseline assessment covers emissions associated with upstream and downstream supply chains, as well as those within operational control. Given data limitations, the assessment only considers emissions from UNICEF's international supply, or those that go through Supply Division. The baseline estimates contained in this report are based on UNICEF Supply Division's international procurement spend.   They do not capture estimates from UNICEF country offices' local procurement, nor supplies purchased by UNICEF country and regional office local partners where these form part of the cooperation agreement.  The scope is therefore not exhaustive but is significant. In addition to the GHG emissions baseline, an extensive market landscape and analysis was also conducted.   This included development of targeted marginal abatement cost curves (MACCs), suppliers' decarbonization reporting and target-setting landscape, peer benchmarking, mapping of potential partnerships and a supplier engagement pathway.
+
+UNICEF SD contracted Boston Consulting Group (BCG) through Q3 2023 to help create this scope 3 GHG baseline, to recommend an approach to setting a scope 3 emissions target, and to create a high-level implementation plan to reach that target.

@@ -1,0 +1,23 @@
+Saved extracted context. Original PDF was not re-opened for this prototype.
+Source: UNICEF_Supply_Scope3_Baseline_Compendium.pdf
+Physical PDF page: 21
+Context: c6433ca5e24f045b
+
+90 per cent of total 3.9 million tons CO e is in GHG category 3.1 (purchased
+2
+goods and services)
+UNICEF scope 3 2019 baseline for international supply (ktCO e1)
+2
+239 kt 4 kt 1 kt 6 kt 64 kt 3.9 MT
+3,555 kt
+Purchased goods Transport & Business Other Use of sold End-of-life Other Total-
+& services distribution travel2 Upstream products sold products Downstream 2019
+GHG
+1 4 6 3 5 7 8 11 12 9 10 13 14 15
+Category
+Not material / Not material /
+included included
+Scope 3 upstream activities Scope 3 downstream activities
+1. Thousands of tons of CO2 equivalents. 2. Assumes only 80% of SD’s total business travel captured by travel agency data;
+Note: Intern'l freight emissions estimates provided by freight forwarders; A hybrid (supplier allocated + price adjusted) approach was used to calculate vaccine emissions;
+Source: UNICEF 2019 Supply Division Annual Report, UNICEF business travel data, EPA, ClimateIQ, BCG analysis

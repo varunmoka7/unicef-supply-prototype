@@ -8,6 +8,7 @@ import Climate from "./pages/Climate";
 import Hypergraph from "./pages/Hypergraph";
 import EsgSegments from "./pages/EsgSegments";
 import Index from "./pages/Index";
+import Portfolio from "./pages/Portfolio";
 import { useBuyerJson, type Buyer } from "./lib/buyer";
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
       <div className={item ? "with-panel" : undefined}>
         <Routes>
           <Route path="/" element={<Index buyer={buyer} />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/hypergraph" element={<Hypergraph buyer={buyer} onOpen={setItem} />} />
           <Route
             path="*"
