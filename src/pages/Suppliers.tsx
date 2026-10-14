@@ -1,265 +1,324 @@
-import { useMemo } from "react";
-import { scaleLinear } from "d3";
-import { useBuyerJson, type Evidence, type Figure, type Profile } from "../lib/buyer";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { forceCenter, forceCollide, forceLink, forceManyBody, forceSimulation, scaleLinear, type SimulationNodeDatum } from "d3";
+import { useBuyerJson, type Buyer, type Evidence, type Figure } from "../lib/buyer";
 import type { PanelItem } from "../components/SourcePanel";
+import "./Suppliers.css";
 
-const YEARS = ["2019", "2024", "2025"];
+// Landing dashboard: coverage, claims grid, spend by tier, supply-chain network, all read from the five buyer JSON files.
 
-const COLUMNS: { key: string; label: string; match: (concept: string) => boolean }[] = [
-  { key: "sbti", label: "SBTi", match: (c) => c === "framework_sbti" },
-  { key: "ops", label: "Operations", match: (c) => ["scope_1", "scope_2", "metric_emissions_intensity"].includes(c) },
-  { key: "chain", label: "Value chain", match: (c) => c === "scope_3" || c.startsWith("scope3_cat_") },
-  { key: "energy", label: "Energy", match: (c) => ["metric_energy", "metric_renewable_share"].includes(c) },
-];
+type Nature = "actual" | "commitment" | "target" | "projection";
+const NATURES: Nature[] = ["actual", "commitment", "target", "projection"];
+const NATURE_COLOUR: Record<Nature, string> = { actual: "#1b7f4b", commitment: "#8aa9c9", target: "#0b5cad", projection: "#c3cad1" };
+const NATURE_LABEL: Record<Nature, string> = { actual: "measured", commitment: "commitment", target: "target", projection: "projection" };
+const YEARS = ["2019", "2020", "2021", "2022", "2023", "2024", "2025"];
+const CA = "ca";
+const NO_PRICE = /\b(price|prices|pricing|fee|fees|tariff|per dose)\b/i;
 
-interface Cell {
-  supplier: string;
-  concept: string;
-  claims: number;
-  natures: Record<string, number>;
-  items: Evidence[];
+interface Spend { records: { name: string; parent: string; category: string; spend_usd: Record<string, Figure> | null; contract_awards_2017_2020?: Figure | null }[] }
+interface Cell { supplier: string; concept: string; contexts: number; claims: number; natures: Record<Nature, number>; items: (Evidence & { nature: string })[] }
+interface Climate { suppliers: { id: string; name: string; boundary_hold: boolean }[]; concepts: { id: string; label: string; group: string }[]; cells: Cell[] }
+interface Stats { claims: number; documents: number; contexts: number }
+interface OrgHypergraph { stats: { esg: Stats; operations: Stats } }
+interface MapData {
+  nodes: { id: string; kind: string; label: string }[];
+  edges: { from: string; to: string; kind: string; year?: string; figure: Figure; claims?: Evidence[] }[];
 }
+interface Suppliers { profiles: unknown[] }
 
-// Own-report mix, counted over every deduplicated claim (own_by_nature), never over the held sample.
-const MIX: { key: string; label: string }[] = [
-  { key: "actual", label: "measured" },
-  { key: "target", label: "targets" },
-  { key: "commitment", label: "commitments" },
-  { key: "projection", label: "projections" },
-];
+const fN = new Intl.NumberFormat("en").format;
+const fUsd = (v: number) => "$" + fN(Math.round(v));
+const priceFree = (e: Evidence) => !NO_PRICE.test(e.text);
 
-const FUTURE = ["target", "commitment", "projection"];
-
-const usd = (v: number) =>
-  v >= 1e9 ? `$${(v / 1e9).toFixed(2)}B`
-  : v >= 999_500 ? `$${(v / 1e6).toFixed(1)}M`
-  : v >= 1e3 ? `$${Math.round(v / 1e3)}K`
-  : `$${Math.round(v)}`;
-
-const spendOf = (p: Profile, y: string) => p.spend?.years[y]?.value ?? null;
-
-// A spend cell as a Figure; a missing cell is a gap, never zero.
-function spendFigure(p: Profile, y: string): Figure {
-  const s = p.spend?.years[y];
-  if (s) return { ...s, unit: "USD" };
-  return {
-    value: null,
-    unit: "USD",
-    tier: "gap",
-    source: "No Annex 2 row for this supplier and year",
-    added_by: "apps/public-sector /suppliers, from the absence of a row",
-  };
-}
-
-function order(profiles: Profile[]): Profile[] {
-  return profiles.slice().sort((a, b) => {
-    const [sa, sb] = [spendOf(a, "2025"), spendOf(b, "2025")];
-    if (sa !== null && sb !== null) return sb - sa;
-    if (sa !== null) return -1;
-    if (sb !== null) return 1;
-    return b.own_total - a.own_total;
-  });
-}
-
-export default function Suppliers({ onOpen }: { onOpen: (i: PanelItem) => void }) {
-  const sup = useBuyerJson<{ profiles: Profile[] }>("suppliers");
-  const cli = useBuyerJson<{ cells: Cell[] }>("climate");
-  const rows = useMemo(() => (sup.data ? order(sup.data.profiles) : []), [sup.data]);
-  const max = useMemo(
-    () => Math.max(0, ...rows.flatMap((p) => YEARS.map((y) => spendOf(p, y) ?? 0))),
-    [rows],
-  );
-  const h = scaleLinear().domain([0, max || 1]).range([2, 28]);
-
-  const error = sup.error ?? cli.error;
-  if (error) return <p className="empty" role="alert">{error}</p>;
-  if (!sup.data || !cli.data) return <p className="empty">Loading suppliers.</p>;
-
-  const cells = cli.data.cells;
-
-  function group(p: Profile, col: (typeof COLUMNS)[number]) {
-    const mine = cells.filter((c) => c.supplier === p.id && col.match(c.concept));
-    const sum = (ns: string[]) => mine.reduce((t, c) => t + ns.reduce((u, n) => u + (c.natures[n] ?? 0), 0), 0);
-    const seen = new Set<string>();
-    const items: Evidence[] = [];
-    for (const c of mine)
-      for (const it of c.items) {
-        const k = `${it.text}|${it.pdf}|${it.page}`;
-        if (!seen.has(k)) {
-          seen.add(k);
-          items.push(it);
-        }
-      }
-    const claims = mine.reduce((t, c) => t + c.claims, 0);
-    return { items, claims, future: sum(FUTURE), actual: sum(["actual"]) };
-  }
-
-  function openGroup(p: Profile, col: (typeof COLUMNS)[number], g: ReturnType<typeof group>) {
-    const note = !g.items.length
-      ? `the page holds none of these claims' text; ${g.claims} claims in the KB`
-      : g.claims > g.items.length
-        ? `model-extracted, not source-checked; the page holds ${g.items.length} of ${g.claims}`
-        : "model-extracted, not source-checked";
-    onOpen({
-      title: `${p.name}, ${col.label}`,
-      figure: {
-        value: null,
-        tier: "claim_extracted",
-        source: `${g.claims} claims in the supplier's own reports`,
-        added_by: "vaccine suppliers KB build 2, model-extracted",
-        note,
-      },
-      evidence: g.items,
-    });
-  }
-
-  function openMix(p: Profile) {
-    const n = (k: string) => p.own_by_nature[k] ?? 0;
-    onOpen({
-      title: `${p.name}, own-report claims`,
-      figure: {
-        value: p.own_total,
-        unit: "claims",
-        tier: "claim_extracted",
-        source: `${p.own_total} emissions claims in the supplier's own reports, deduplicated`,
-        added_by: "build_suppliers.py",
-        note: MIX.map((m) => `${n(m.key)} ${m.label}`).join(", "),
-      },
-      evidence: p.own_claims,
-      note: `examples, not the mix: the page holds ${p.own_claims.length} of ${p.own_total}`,
-    });
-  }
-
-  function openName(p: Profile) {
-    const seen = new Set<string>();
-    const evidence = p.unicef_claims.filter((c) => !seen.has(c.text) && seen.add(c.text));
-    onOpen({
-      title: `${p.name}, UNICEF spend 2025`,
-      figure: spendFigure(p, "2025"),
-      evidence,
-      summary: {
-        columns: COLUMNS.map((col) => {
-          const g = group(p, col);
-          const state =
-            g.actual > 0 && g.future > 0 ? "measured and stated for the future"
-            : g.actual > 0 ? "measured"
-            : g.future > 0 ? "stated for the future"
-            : "none in saved reports";
-          return { label: col.label, state };
-        }),
-        mix: MIX.map((m) => ({ ...m, n: p.own_by_nature[m.key] ?? 0 })),
-      },
-      note: p.boundary_hold
-        ? "Reporting boundary not resolved for this supplier. Check which entity a figure covers before using it."
-        : undefined,
-    });
-  }
-
+function Coverage(props: { suppliers: Suppliers; spend: Spend; org: OrgHypergraph }): JSX.Element {
+  const { suppliers, spend, org } = props;
+  const { esg, operations } = org.stats;
+  const tiles: [string, string, string][] = [
+    [fN(suppliers.profiles.length), "suppliers profiled", "suppliers.json"],
+    [fN(spend.records.length), "supplier-spend records", "spend.json, a tier on every figure"],
+    [fN(esg.claims), "ESG claims extracted", `${fN(esg.documents)} documents, ${fN(esg.contexts)} contexts`],
+    [fN(operations.claims), "operations claims extracted", `${fN(operations.documents)} documents, ${fN(operations.contexts)} contexts`],
+  ];
   return (
-    <main className="grid-page">
-      <h2>Who carries UNICEF vaccine spend, and what do they say about their climate performance?</h2>
-      <p className="sub">
-        Spend is the Annex 2 parent total. Climate marks come from each supplier's own reports and are model-extracted.
-        Select a bar or a mark to see where it is written.
-      </p>
-      <div className="sgrid" role="table" aria-label="UNICEF spend and supplier climate statements">
-        <div className="sg-head" role="row">
-          <span role="columnheader">Supplier</span>
-          {YEARS.map((y) => <span key={y} role="columnheader">{y}</span>)}
-          {COLUMNS.map((c) => <span key={c.key} role="columnheader">{c.label}</span>)}
-          <span role="columnheader">Own-report claims</span>
-        </div>
-        {rows.map((p) => (
-          <div className="sg-row" role="row" key={p.id}>
-            <span role="cell" className="sg-name">
-              <button type="button" onClick={() => openName(p)}>{p.name}</button>
-              {p.boundary_hold && <abbr className="hold-mark" title="Reporting boundary not resolved">!</abbr>}
-            </span>
-            {YEARS.map((y) => {
-              const v = spendOf(p, y);
-              return (
-                <span role="cell" key={y} className="sg-spend">
-                  <button
-                    type="button"
-                    aria-label={`${p.name}, UNICEF spend ${y}: ${v !== null ? usd(v) : "not in the annex"}`}
-                    onClick={() => onOpen({ title: `${p.name}, UNICEF spend ${y}`, figure: spendFigure(p, y) })}
-                  >
-                    <i className={`sb${v === null ? " none" : ""}`} style={{ height: v === null ? 28 : h(v) }} />
-                    <span>{v !== null ? usd(v) : "not in the annex"}</span>
-                  </button>
-                </span>
-              );
-            })}
-            {COLUMNS.map((col) => {
-              const g = group(p, col);
-              const both = g.actual > 0 && g.future > 0;
-              const [cls, what] = both
-                ? ["both", "measured and stated for the future"]
-                : g.actual > 0
-                  ? ["dot", "measured"]
-                  : g.future > 0
-                    ? ["ring", "stated for the future"]
-                    : ["none", "no claim in the saved reports"];
-              return (
-                <span role="cell" key={col.key} className="sg-cell">
-                  <button
-                    type="button"
-                    className={`mk ${cls}`}
-                    aria-label={`${p.name}, ${col.label}: ${what}`}
-                    onClick={() => openGroup(p, col, g)}
-                  />
-                </span>
-              );
-            })}
-            <span role="cell" className="sg-mix">
-              {p.own_total === 0 ? (
-                <span className="count">no claims in the saved reports</span>
-              ) : (
-                <button
-                  type="button"
-                  aria-label={`${p.name}, own-report claims: ${p.own_total} total, ${MIX.map((m) => `${p.own_by_nature[m.key] ?? 0} ${m.label}`).join(", ")}`}
-                  onClick={() => openMix(p)}
-                >
-                  <span className="mixbar">
-                    {MIX.filter((m) => (p.own_by_nature[m.key] ?? 0) > 0).map((m) => (
-                      <i
-                        key={m.key}
-                        className={`seg ${m.key}`}
-                        style={{ flexGrow: p.own_by_nature[m.key] }}
-                        title={`${p.own_by_nature[m.key]} ${m.label}`}
-                      />
-                    ))}
-                  </span>
-                  <span className="count">
-                    {MIX.filter((m) => (p.own_by_nature[m.key] ?? 0) > 0)
-                      .map((m) => {
-                        const n = p.own_by_nature[m.key];
-                        return `${n} ${n === 1 ? m.label.replace(/s$/, "") : m.label}`;
-                      })
-                      .join(" · ")}
-                  </span>
-                </button>
-              )}
-            </span>
+    <section aria-labelledby="ld-cov">
+      <h2 id="ld-cov">Coverage</h2>
+      <div className="ld-tiles">
+        {tiles.map(([n, label, sub]) => (
+          <div className="ld-tile" key={label}>
+            <span className="ld-big">{n}</span>
+            <span>{label}</span>
+            <span className="ld-sub">{sub}</span>
           </div>
         ))}
       </div>
-      <ul className="sg-legend">
-        <li><i className="seg actual" /> measured</li>
-        <li><i className="seg target" /> targets</li>
-        <li><i className="seg commitment" /> commitments</li>
-        <li><i className="seg projection" /> projections</li>
-        <li><i className="mk dot" /> measured</li>
-        <li><i className="mk ring" /> future only (target, commitment, projection)</li>
-        <li><i className="mk both" /> both</li>
-        <li><i className="mk none" /> none saved</li>
-        <li><i className="sb none" /> not in the annex, not zero</li>
-        <li><abbr className="hold-mark">!</abbr> reporting boundary not resolved</li>
-      </ul>
-      <p className="count">
-        Tiers: reported = Annex 2 figure as published; claim_extracted = model-extracted from a supplier report, not
-        source-checked; gap = no row.
+      <p className="ld-cap">The ESG and operations sets are separate document sets and are not added together.</p>
+    </section>
+  );
+}
+
+function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.Element {
+  const { climate, onOpen } = props;
+  const cells = useMemo(() => new Map(climate.cells.map((c) => [c.supplier + "|" + c.concept, c])), [climate]);
+  const total = useMemo(() => climate.cells.reduce((a, c) => a + c.claims, 0), [climate]);
+  const open = (supplier: string, label: string, cell: Cell) => {
+    const evidence = cell.items.filter(priceFree);
+    onOpen({
+      title: `${supplier}: ${label}`,
+      evidence,
+      note: `${fN(cell.claims)} extracted claims in ${fN(cell.contexts)} contexts (${NATURES.map((n) => `${NATURE_LABEL[n]} ${cell.natures[n]}`).join(", ")}). ${fN(evidence.length)} claim texts are listed in the file. Extracted, not source-checked.`,
+    });
+  };
+  return (
+    <section aria-labelledby="ld-grid">
+      <h2 id="ld-grid">Claims by supplier and concept</h2>
+      <p className="ld-cap">
+        Each cell is the number of extracted claims, coloured by the most frequent nature in the cell. Claims are extracted statements and not all have been checked against the source page.
       </p>
-    </main>
+      <p className="ld-legend">
+        {NATURES.map((n) => (
+          <span key={n}><i className="ld-sw" style={{ background: NATURE_COLOUR[n] }} />{NATURE_LABEL[n]}</span>
+        ))}
+        <span><i className="ld-sw ld-hatch" />no extracted claim</span>
+      </p>
+      <div className="ld-scroll">
+        <table className="ld-grid">
+          <thead>
+            <tr>
+              <th className="ld-corner" />
+              {climate.concepts.map((c) => <th key={c.id}><span>{c.label}</span></th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {climate.suppliers.map((s) => (
+              <tr key={s.id}>
+                <th scope="row">{s.name}{s.boundary_hold ? " †" : ""}</th>
+                {climate.concepts.map((c) => {
+                  const cell = cells.get(s.id + "|" + c.id);
+                  if (!cell) return <td key={c.id} className="ld-empty" aria-label="no extracted claim" />;
+                  const top = NATURES.reduce((a, n) => (cell.natures[n] > cell.natures[a] ? n : a), "actual" as Nature);
+                  const alpha = cell.claims === 0 ? 0 : 0.2 + 0.5 * Math.min(1, Math.sqrt(cell.claims / 120));
+                  return (
+                    <td key={c.id}>
+                      <button
+                        type="button"
+                        aria-label={`${s.name}, ${c.label}: ${cell.claims} extracted claims`}
+                        style={{ background: cell.claims ? NATURE_COLOUR[top] + Math.round(alpha * 255).toString(16).padStart(2, "0") : undefined }}
+                        onClick={() => open(s.name, c.label, cell)}
+                      >
+                        {fN(cell.claims)}
+                      </button>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="ld-cap">
+        Hatched cell: no extracted claim. This does not mean no action was taken. † supplier flagged boundary_hold in the file. The cell counts add up to {fN(total)} claims
+        across {fN(climate.cells.length)} supplier-concept cells; the ESG set in the coverage strip reports a different count. They have not been reconciled.{" "}
+        <Link to="/climate">Open the climate hypergraph</Link>
+      </p>
+    </section>
+  );
+}
+
+function SpendBars(props: { spend: Spend; view: string; onView: (v: string) => void; onOpen: (i: PanelItem) => void }): JSX.Element {
+  const { spend, view, onView, onOpen } = props;
+  const isCa = view === CA;
+  const rows = useMemo(() => {
+    const figureOf = (r: Spend["records"][number]): Figure | null => (isCa ? r.contract_awards_2017_2020 ?? null : r.spend_usd?.[view] ?? null);
+    return spend.records
+      .map((r) => ({ r, fig: figureOf(r) }))
+      .sort((a, b) => (b.fig?.value ?? -1) - (a.fig?.value ?? -1) || a.r.name.localeCompare(b.r.name));
+  }, [spend, view, isCa]);
+  const max = Math.max(1, ...rows.map((x) => x.fig?.value ?? 0));
+  const x = scaleLinear().domain([0, max]).range([0, 100]);
+  return (
+    <section aria-labelledby="ld-spend">
+      <h2 id="ld-spend">Spend by supplier and tier</h2>
+      <div className="ld-ctl">
+        <label htmlFor="ld-basis">Spend basis</label>
+        <select id="ld-basis" value={view} onChange={(e) => onView(e.target.value)}>
+          {YEARS.map((y) => <option key={y} value={y}>Annual spend {y}</option>)}
+          <option value={CA}>Contract awards 2017-2020 (term total)</option>
+        </select>
+      </div>
+      <p className="ld-cap">
+        {isCa
+          ? "Contract award value over the contract term, hatched because it is not annual spend. A supplier without one has no bar."
+          : `UNICEF Annex 2 annual spend for ${view}. Highest first. A supplier with no figure for the year reads "not in the annex", which is not zero.`}
+      </p>
+      <ul className="ld-bars">
+        {rows.map(({ r, fig }) => (
+          <li key={r.name}>
+            <span className="ld-bar-name">{r.name}</span>
+            {fig && fig.value != null ? (
+              <button
+                type="button"
+                className="ld-bar"
+                aria-label={`${r.name}, UNICEF ${isCa ? "contract awards 2017-2020" : "spend " + view}: ${fUsd(fig.value)}, tier ${fig.tier}`}
+                onClick={() => onOpen({ title: `${r.name}: ${isCa ? "contract awards 2017-2020" : "UNICEF spend " + view}`, figure: fig })}
+              >
+                <span className="ld-track"><i className={isCa ? "ld-hatch ld-fill" : "ld-fill"} style={{ width: `${Math.max(1, x(fig.value))}%` }} /></span>
+                <span className="ld-val"><b>{fUsd(fig.value)}</b> · {fig.tier}</span>
+              </button>
+            ) : (
+              <span className="ld-miss">{isCa ? "no contract award recorded" : "not in the annex"}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+      <p className="ld-legend">
+        <span><i className="ld-sw" style={{ background: "var(--accent)" }} />reported (UNICEF Annex 2, annual)</span>
+        <span><i className="ld-sw ld-hatch" />contract award (term total, not annual spend)</span>
+      </p>
+      <p className="ld-cap">Annual spend and contract-award totals are different measures and are not added together. <Link to="/suppliers">Open supplier intelligence</Link></p>
+    </section>
+  );
+}
+
+type Sim = SimulationNodeDatum & { id: string; kind: string; label: string };
+const NODE_COLOUR: Record<string, string> = { buyer: "#17202a", supplier: "#0b5cad", country: "#1b7f4b", product: "#a8321f" };
+
+function Network(props: { map: MapData; year: string; onOpen: (i: PanelItem) => void }): JSX.Element {
+  const { map, year, onOpen } = props;
+  const [show, setShow] = useState<"countries" | "products">("countries");
+  const W = 760;
+  const H = 560;
+  const g = useMemo(() => {
+    const keep = show === "products" ? "product" : "country";
+    let rest = map.edges.filter((e) => e.kind === keep);
+    if (show === "products") {
+      const tot = new Map<string, number>();
+      rest.forEach((e) => tot.set(e.to, (tot.get(e.to) ?? 0) + (e.figure.value ?? 0)));
+      const top = new Set([...tot].sort((a, b) => b[1] - a[1]).slice(0, 20).map(([id]) => id));
+      rest = rest.filter((e) => top.has(e.to));
+    }
+    const edges = map.edges.filter((e) => e.kind === "spend" && e.year === year).concat(rest);
+    const ids = new Set(edges.flatMap((e) => [e.from, e.to]));
+    const byId = new Map(map.nodes.map((n) => [n.id, n]));
+    const nodes: Sim[] = [...ids].map((id) => ({ id, kind: byId.get(id)?.kind ?? "unknown", label: byId.get(id)?.label ?? id }));
+    const links = edges.map((e) => ({ source: e.from, target: e.to, edge: e }));
+    forceSimulation(nodes)
+      .force("link", forceLink(links).id((n) => (n as Sim).id).distance(show === "products" ? 90 : 70))
+      .force("charge", forceManyBody().strength(-170))
+      .force("center", forceCenter(W / 2, H / 2))
+      .force("collide", forceCollide(16))
+      .stop()
+      .tick(220);
+    const clamp = (v: number | undefined, lo: number, hi: number) => Math.max(lo, Math.min(hi, v ?? lo));
+    nodes.forEach((n) => { n.x = clamp(n.x, 70, W - 70); n.y = clamp(n.y, 14, H - 14); });
+    return { nodes, links, byId: new Map(nodes.map((n) => [n.id, n])) };
+  }, [map, show, year]);
+  const label = (id: string) => g.byId.get(id)?.label ?? id;
+  const pos = (id: string) => g.byId.get(id) as Sim;
+  return (
+    <section aria-labelledby="ld-net">
+      <h2 id="ld-net">Supply-chain network</h2>
+      <div className="ld-ctl">
+        <label htmlFor="ld-show">Show</label>
+        <select id="ld-show" value={show} onChange={(e) => setShow(e.target.value as "countries" | "products")}>
+          <option value="countries">Suppliers and countries</option>
+          <option value="products">Suppliers and top products</option>
+        </select>
+      </div>
+      <p className="ld-cap">
+        Showing {g.nodes.length} of {map.nodes.length} nodes. Lines from UNICEF are spend for {year}. Other lines count extracted claims. Select a line for its figure and sources.
+        {show === "products" ? " Products are limited to the 20 with most extracted claims." : " Products are hidden."}
+      </p>
+      <p className="ld-legend">
+        <span><i className="ld-sw ld-dot" style={{ background: NODE_COLOUR.buyer }} />UNICEF</span>
+        <span><i className="ld-sw ld-dot" style={{ background: NODE_COLOUR.supplier }} />supplier</span>
+        <span><i className="ld-sw" style={{ background: NODE_COLOUR.country }} />country</span>
+        {show === "products" && <span><i className="ld-sw ld-diamond" style={{ background: NODE_COLOUR.product }} />product</span>}
+      </p>
+      <div className="ld-net-wrap">
+      <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label="Supply-chain network" className="ld-net">
+        {g.links.map((l, i) => {
+          const a = pos(l.edge.from);
+          const b = pos(l.edge.to);
+          const e = l.edge;
+          const item = () => onOpen({ title: `${label(e.from)} to ${label(e.to)}`, figure: e.figure, evidence: (e.claims ?? []).filter(priceFree) });
+          return (
+            <g
+              key={i}
+              role="button"
+              tabIndex={0}
+              aria-label={`${label(e.from)} to ${label(e.to)}: ${e.figure.value ?? "no figure"} ${e.figure.unit ?? ""}, tier ${e.figure.tier}`}
+              onClick={item}
+              onKeyDown={(k) => { if (k.key === "Enter" || k.key === " ") { k.preventDefault(); item(); } }}
+            >
+              <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} className="ld-edge" strokeDasharray={e.kind === "spend" && e.figure.value == null ? "3 3" : undefined} />
+              <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} className="ld-hit" />
+            </g>
+          );
+        })}
+        {g.nodes.map((n) => (
+          <g key={n.id}>
+            {n.kind === "country" ? (
+              <rect x={(n.x ?? 0) - 4} y={(n.y ?? 0) - 4} width={8} height={8} fill={NODE_COLOUR.country} />
+            ) : n.kind === "product" ? (
+              <rect x={(n.x ?? 0) - 4} y={(n.y ?? 0) - 4} width={8} height={8} fill={NODE_COLOUR.product} transform={`rotate(45 ${n.x} ${n.y})`} />
+            ) : (
+              <circle cx={n.x} cy={n.y} r={n.kind === "buyer" ? 8 : 6} fill={NODE_COLOUR[n.kind] ?? "#5b6671"} />
+            )}
+            <text className={`ld-n-${n.kind}`} x={(n.x ?? 0) + 10} y={(n.y ?? 0) + 4}>{n.label.length > 24 ? n.label.slice(0, 23) + "…" : n.label}</text>
+          </g>
+        ))}
+      </svg>
+      </div>
+      <p className="ld-cap"><Link to="/map">Supply chain map</Link></p>
+    </section>
+  );
+}
+
+export default function Suppliers({ buyer, onOpen }: { buyer: Buyer; onOpen: (i: PanelItem) => void }): JSX.Element {
+  const suppliers = useBuyerJson<Suppliers>("suppliers");
+  const spend = useBuyerJson<Spend>("spend");
+  const climate = useBuyerJson<Climate>("climate");
+  const org = useBuyerJson<OrgHypergraph>("org_hypergraph");
+  const map = useBuyerJson<MapData>("map");
+  const [view, setView] = useState("2024");
+  const error = suppliers.error ?? spend.error ?? climate.error ?? org.error ?? map.error;
+  const ready = suppliers.data && spend.data && climate.data && org.data && map.data;
+  return (
+    <>
+      <header style={{ display: "flex", alignItems: "center", gap: "4px 12px", flexWrap: "wrap", padding: "14px 28px", background: "#fff", borderBottom: "1px solid #e6e9ee" }}>
+        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 12, color: "inherit", textDecoration: "none" }}>
+          <img src="/gct-logo.png" alt="GCT" style={{ width: 28, height: 28 }} />
+          <span style={{ fontSize: 16, fontWeight: 600 }}>GoCarbonTracker (GCT)</span>
+        </Link>
+        <span style={{ color: "#5f6b76", fontSize: 13 }}>Prototype for UNICEF Supply Division</span>
+      </header>
+      <main className="ld">
+        <p className="ld-eyebrow">UNICEF Supply Division</p>
+        <h1>Who carries UNICEF vaccine spend, and what do they say about their climate performance?</h1>
+        <p className="ld-cap ld-lede">
+          Every figure links to the file, document and page it came from. Claims are extracted statements and not all have been checked. No count here is a finding, and no supplier is rated.
+        </p>
+        <ul className="ld-links">
+          <li><Link to="/portfolio">Division portfolio</Link></li>
+          <li><Link to="/map">Supply chain map</Link></li>
+          <li><Link to="/climate">Climate hypergraph</Link></li>
+          <li><Link to="/segments">ESG claims</Link></li>
+          <li><Link to="/hypergraph">Claims hypergraph</Link></li>
+        </ul>
+        {error && <p className="empty" role="alert">{error}</p>}
+        {!error && !ready && <p className="empty">Loading buyer data.</p>}
+        {ready && (
+          <>
+            <Coverage suppliers={suppliers.data!} spend={spend.data!} org={org.data!} />
+            <Grid climate={climate.data!} onOpen={onOpen} />
+            <SpendBars spend={spend.data!} view={view} onView={setView} onOpen={onOpen} />
+            <Network map={map.data!} year={view === CA ? "2024" : view} onOpen={onOpen} />
+          </>
+        )}
+        <ul className="ld-disc">
+          {buyer.disclaimers.map((d, i) => <li key={i}>{d}</li>)}
+        </ul>
+      </main>
+    </>
   );
 }

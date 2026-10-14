@@ -39,7 +39,7 @@ Two suppliers carry most of it. In 2025 Pfizer received US$388.3 million and GSK
 
 Four of the five largest suppliers mention SBTi and report both measured figures and forward statements on operations and value-chain emissions. Biological E, the third largest, reports on emissions and energy but has no SBTi mention in its saved reports, and its reporting boundary is not resolved: check which entity a figure covers before using it. Bio Farma and Bilthoven together received over US$116 million in 2025, and the saved reports say nothing on these four climate topics for either of them. LG Chem reports measured figures only, with no targets.
 
-Sources: spend is the Annex 2 parent total (`research/annex2/suppliers-by-year.csv` in the main repo). Climate marks are model-extracted from each supplier's own reports and link to the PDF and page.
+Sources: spend is the Annex 2 parent total (`research/annex2/suppliers-by-year.csv` in the main repo). Climate claims are model-extracted from each supplier's own reports and link to the PDF and page.
 
 **Hypergraph used:** `buyers/unicef/data/climate.json`, built by `scripts/build_climate.py` from the hypergraph-RAG knowledge base. A claim lands in cell (supplier, concept) when two hyperedges meet on the same report context: a `company_context` hyperedge places the context under the supplier, and a `context_concepts` hyperedge tags the context with the climate concept.
 

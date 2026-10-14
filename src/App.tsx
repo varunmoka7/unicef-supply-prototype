@@ -24,6 +24,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Index buyer={buyer} />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/suppliers" element={<Suppliers buyer={buyer} onOpen={setItem} />} />
           <Route path="/hypergraph" element={<Hypergraph buyer={buyer} onOpen={setItem} />} />
           <Route
             path="*"
@@ -31,7 +32,6 @@ export default function App() {
               <>
                 <Header buyer={buyer} />
                 <Routes>
-                  <Route path="/suppliers" element={<Suppliers onOpen={setItem} />} />
                   <Route path="/map" element={<SupplyChainMap buyer={buyer} onOpen={setItem} />} />
                   <Route path="/climate" element={<Climate buyer={buyer} onOpen={setItem} />} />
                   <Route path="/segments" element={<EsgSegments onOpen={setItem} />} />
