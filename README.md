@@ -2,7 +2,7 @@
 
 A static React and Vite app that shows what UNICEF Supply Division and its vaccine suppliers say in their own reports about climate and ESG. Every claim links to the PDF and page it came from. Figures are prototype data and have not been adjudicated.
 
-Live: [unicef-supply-prototype.vercel.app](https://unicef-supply-prototype.vercel.app)
+Live: [unicef-supply.vercel.app](https://unicef-supply.vercel.app)
 
 ![The /hypergraph page: ESG claims from UNICEF Supply Division's own reports, grouped into hyperedges that join each topic with its frameworks and source documents](docs/hypergraph.png)
 
