@@ -118,7 +118,12 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
       .force("y", d3.forceY(H / 2).strength(0.03))
       .stop()
       .tick(250);
-    return { dots, hubs, sim };
+    // Fit the viewBox to where the layout settled; the forces push hubs past W x H.
+    const pad = (n: Dot | Hub) => ((n as Hub).isHub ? (n as Hub).label.length * 3.25 + 10 : (n as Dot).r + 4);
+    const x0 = d3.min(nodes, (n) => n.x! - pad(n))!, x1 = d3.max(nodes, (n) => n.x! + pad(n))!;
+    const y0 = d3.min(nodes, (n) => n.y!)! - 80, y1 = d3.max(nodes, (n) => n.y!)! + 80;
+    const viewBox = `${x0} ${y0} ${x1 - x0} ${y1 - y0}`;
+    return { dots, hubs, sim, viewBox };
   }, [cells, mode, cLabel, sColour, sName]);
 
   // Zoom, pan and drag as in apps/hypergraph TierCountryMap: d3.zoom on the svg,
@@ -205,7 +210,7 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
         </select>
         <button type="button" onClick={() => root.current?.requestFullscreen?.()}>Full screen</button>
       </div>
-      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="ESG claims by segment" onMouseLeave={() => setTip(null)}>
+      <svg ref={svgRef} viewBox={layout.viewBox} role="img" aria-label="ESG claims by segment" onMouseLeave={() => setTip(null)}>
         <g ref={zoomRef}>
         <g>
           {layout.dots.map((d) => {

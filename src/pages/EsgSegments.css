@@ -14,3 +14,4 @@
 .seg-page svg { cursor: grab; }
 .seg-hub { cursor: grab; }
 .seg-note { font-size: 12px; align-self: center; }
+.seg-page:fullscreen svg { max-height: calc(100vh - 110px); }
