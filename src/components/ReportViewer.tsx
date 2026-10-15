@@ -10,6 +10,7 @@ export interface ReportEvidence {
   height: number;
   highlights: { x: number; y: number; width: number; height: number }[];
   verification?: string;
+  kind?: "table";
 }
 
 const REVIEWED = [/^Accepted after source check/, /^Accepted: (checked against page|verbatim)/, /^Exact report text matched/];
@@ -29,8 +30,12 @@ const STATUS: Record<Review, string> = {
   unverified: "No matching passage was verified. The cited page is shown without a highlight and does not by itself support the claim.",
 };
 
+const TABLE_STATUS = "Source-reviewed: a reviewer checked this table against the report page.";
+
 export const reviewStatus = (evidence: ReportEvidence) =>
-  STATUS[evidence.highlights.length === 0 ? "unverified" : reviewOf(evidence.verification)];
+  evidence.kind === "table" && evidence.highlights.length && reviewOf(evidence.verification) === "reviewed"
+    ? TABLE_STATUS
+    : STATUS[evidence.highlights.length === 0 ? "unverified" : reviewOf(evidence.verification)];
 
 export default function ReportViewer({ evidence, onClose }: { evidence: ReportEvidence; onClose: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -67,14 +72,14 @@ export default function ReportViewer({ evidence, onClose }: { evidence: ReportEv
         </select></label>
         <button ref={closeButton} type="button" onClick={onClose}>Close report</button>
       </div>
-      <p id="report-claim">Claim: {evidence.text}</p>
+      <p id="report-claim">{evidence.kind === "table" ? "Table" : "Claim"}: {evidence.text}</p>
       <p id="report-review">{reviewStatus(evidence)}</p>
       {!loaded && !failed && <p role="status">Loading report page.</p>}
       {failed && <p role="alert">The report image could not load. Close the report and try again.</p>}
       <div className="report-scroll" tabIndex={0} role="region" aria-label={pageOnly ? "Full cited report page, no highlighted passage" : "Full report page with highlighted supporting passage"}>
         <div className="report-page" style={{ width: `${zoom}%` }}>
           <img src={evidence.image} width={evidence.width} height={evidence.height}
-            alt={`${evidence.pdf}, full page ${evidence.page}. ${pageOnly ? "No passage is highlighted." : "The highlighted region is the passage matched to the claim above."}`}
+            alt={`${evidence.pdf}, full page ${evidence.page}. ${pageOnly ? "No passage is highlighted." : `The highlighted region is the ${evidence.kind === "table" ? "table" : "passage matched to the claim"} above.`}`}
             onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
           {loaded && evidence.highlights.map((rect, index) => <span key={index} className="report-highlight" aria-hidden="true"
             style={{ left: `${rect.x * 100}%`, top: `${rect.y * 100}%`, width: `${rect.width * 100}%`, height: `${rect.height * 100}%` }} />)}

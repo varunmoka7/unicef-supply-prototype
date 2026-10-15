@@ -2,13 +2,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { Evidence, Figure } from "../lib/buyer";
 import preparedEvidence from "../../buyers/unicef/data/report-evidence.json";
 import reportPages from "../../buyers/unicef/data/report-pages.json";
-import ReportViewer, { type ReportEvidence } from "./ReportViewer";
+import emissionsTables from "../../buyers/unicef/data/emissions-tables.json";
+import ReportViewer, { reviewOf, type ReportEvidence } from "./ReportViewer";
 
 export interface PanelItem {
   title: string;
   figure?: Figure;
   evidence?: Evidence[];
   note?: string;
+  // Exact climate supplier and Scope concept ids: set only on Scope concept clicks.
+  scope?: { supplier: string; concept: string };
   summary?: {
     columns: { label: string; state: string }[];
     mix: { key: string; label: string; n: number }[];
@@ -20,6 +23,15 @@ function reportFor(e: Evidence): ReportEvidence | undefined {
   if (prepared) return prepared;
   const p = reportPages.find((r) => r.pdf === e.pdf && r.page === e.page);
   return p && { text: e.text, pdf: p.pdf, page: p.page, image: p.image, width: p.width, height: p.height, highlights: [] };
+}
+
+export type TableEvidence = ReportEvidence & { supplier: string; concept: string };
+
+// Exact supplier and concept match, source-checked entries only. Never falls back to another supplier, concept or claim page.
+export function tablesFor(tables: TableEvidence[], supplier: string, concept: string): ReportEvidence[] {
+  return tables
+    .filter((t) => t.supplier === supplier && t.concept === concept && reviewOf(t.verification) === "reviewed")
+    .map((t) => ({ ...t, kind: "table" as const }));
 }
 
 export const plain = (s: string) => s.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
@@ -91,6 +103,7 @@ export default function SourcePanel(props: {
 
   if (!item) return null;
   const f = item.figure;
+  const tables = item.scope ? tablesFor(emissionsTables as TableEvidence[], item.scope.supplier, item.scope.concept) : [];
 
   return (
     <>
@@ -135,6 +148,23 @@ export default function SourcePanel(props: {
             ))}
           </span>
           <p className="count">{item.summary.mix.map((m) => `${m.n} ${m.label}`).join(" · ")}</p>
+        </div>
+      )}
+      {item.scope && (
+        <div className="sp-claims">
+          <div className="sp-label">Emissions tables</div>
+          {tables.length === 0 ? (
+            <p className="count">No source-checked emissions table is available for this supplier and concept. The claims below are extracted statements and may be targets.</p>
+          ) : (
+            <div>
+              {tables.map((t, i) => (
+                <button type="button" className="claim" aria-haspopup="dialog" key={i} onClick={() => setReport(t)}>
+                  <span className="claim-text">{plain(t.text)}</span>
+                  <span className="claim-foot">{t.pdf} · page {t.page} · View highlighted report table</span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
       {item.evidence && item.evidence.length > 0 && (

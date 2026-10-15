@@ -62,9 +62,11 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
   const total = useMemo(() => climate.cells.reduce((a, c) => a + c.claims, 0), [climate]);
   const open = (supplier: string, label: string, cell: Cell) => {
     const evidence = cell.items.filter(priceFree);
+    const isScope = climate.concepts.find((c) => c.id === cell.concept)?.group === "scope";
     onOpen({
       title: `${supplier}: ${label}`,
       evidence,
+      scope: isScope ? { supplier: cell.supplier, concept: cell.concept } : undefined,
       note: `${fN(cell.claims)} extracted claims in ${fN(cell.contexts)} contexts (${NATURES.map((n) => `${NATURE_LABEL[n]} ${cell.natures[n]}`).join(", ")}). ${fN(evidence.length)} claim texts are listed in the file. Extracted, not source-checked.`,
     });
   };

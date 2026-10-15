@@ -145,3 +145,21 @@ SourcePanel already matches a claim to prepared evidence and falls back to text 
 ### Exclusions
 No model calls from this role, no source data edits, no new packages, no commits or deployment.
 Highlights for newly matched claims arrive from Albedo and Xiao in accepted batches through integrate.py.
+
+## Correction: Scope table evidence
+
+Status: authorized bug correction, implemented; raw tests (58 passed) and build pass against the real mapping file
+Agent: Kaveh
+
+### Acceptance criteria
+1. A Scope concept click on Suppliers or Climate shows an "Emissions tables" section before the claim examples. Claim counts and claim citations are unchanged.
+2. Tables come from buyers/unicef/data/emissions-tables.json, matched by exact supplier id and concept id, source-checked entries only. A Scope 3 total never serves a category, and one supplier never serves another.
+3. A table card opens the same report viewer, labelled "Table", with the table highlights. A claim's own page is never replaced by a table, and a table is never replaced by a claim or target page.
+4. With no source-checked table the section says so explicitly and offers no page.
+5. Non-Scope concepts and other routes are unchanged. Escape, focus, zoom and image-load failure are unchanged.
+
+### Readiness assessment
+PASS. emissions-tables.json (Albedo) holds 122 entries across 13 of 15 suppliers; aj_vaccine_a_s and bilthoven_biologicals_bv have none and show the unavailable text. Tests use the real entries.
+
+### Exclusions
+No edits to emissions-tables.json or image assets, no model calls, no commits or deployment.
