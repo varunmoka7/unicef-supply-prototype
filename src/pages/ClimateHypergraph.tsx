@@ -38,6 +38,7 @@ export type Selection = {
   figure?: { value: number | string; unit: string; source: string; tier: string; added_by: string; flag?: string; note?: string };
   claims: Claim[];
   note?: string;
+  scope?: { supplier: string; concept: string };
 };
 
 type Props = { data: ClimateData; buyer: BuyerLike; onSelect: (s: Selection) => void };
@@ -115,7 +116,8 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
         : claims.length < total
           ? `Showing ${claims.length} of ${total} claims; the rest are not in the extract.`
           : undefined;
-    onSelect({ title: `${supplierName(c.supplier)}: ${conceptLabel(c.concept)}`, claims, note });
+    const isScope = data.concepts.find((x) => x.id === c.concept)?.group === "scope";
+    onSelect({ title: `${supplierName(c.supplier)}: ${conceptLabel(c.concept)}`, claims, note, scope: isScope ? { supplier: c.supplier, concept: c.concept } : undefined });
   };
 
   const dominant = (c: Cell): Nature =>

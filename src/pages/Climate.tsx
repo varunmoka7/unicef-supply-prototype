@@ -11,7 +11,7 @@ export default function Climate({ buyer, onOpen }: { buyer: Buyer; onOpen: (i: P
       <ClimateHypergraph
         data={data}
         buyer={buyer}
-        onSelect={(s) => onOpen({ title: s.title, note: s.note, evidence: s.claims })}
+        onSelect={(s) => onOpen({ title: s.title, note: s.note, evidence: s.claims, scope: s.scope })}
       />
     </main>
   );
