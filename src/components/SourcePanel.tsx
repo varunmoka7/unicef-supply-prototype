@@ -1,5 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { Evidence, Figure } from "../lib/buyer";
+import preparedEvidence from "../../buyers/unicef/data/report-evidence.json";
+import reportPages from "../../buyers/unicef/data/report-pages.json";
+import ReportViewer, { type ReportEvidence } from "./ReportViewer";
 
 export interface PanelItem {
   title: string;
@@ -10,6 +13,13 @@ export interface PanelItem {
     columns: { label: string; state: string }[];
     mix: { key: string; label: string; n: number }[];
   };
+}
+
+function reportFor(e: Evidence): ReportEvidence | undefined {
+  const prepared = preparedEvidence.find((r) => r.text === e.text && r.pdf === e.pdf && r.page === e.page);
+  if (prepared) return prepared;
+  const p = reportPages.find((r) => r.pdf === e.pdf && r.page === e.page);
+  return p && { text: e.text, pdf: p.pdf, page: p.page, image: p.image, width: p.width, height: p.height, highlights: [] };
 }
 
 export const plain = (s: string) => s.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
@@ -23,15 +33,17 @@ function Row(props: { label: string; children: React.ReactNode }) {
   );
 }
 
-function ClaimBox({ e }: { e: Evidence }) {
+function ClaimBox({ e, report, onReport }: { e: Evidence; report?: ReportEvidence; onReport: (report: ReportEvidence) => void }) {
   const [open, setOpen] = useState(false);
   return (
-    <button type="button" className={`claim${open ? " open" : ""}`} aria-expanded={open} onClick={() => setOpen(!open)}>
+    <button type="button" className={`claim${open ? " open" : ""}`} aria-expanded={report ? undefined : open}
+      aria-haspopup={report ? "dialog" : undefined} onClick={() => report ? onReport(report) : setOpen(!open)}>
       {e.nature && <span className={`claim-nature ${e.nature}`}>{e.nature === "actual" ? "measured" : e.nature}</span>}
       <span className="claim-text">{plain(e.text)}</span>
       <span className="claim-foot">
         {e.pdf} · page {e.page}
         {e.needs_review && <b className="claim-review"> · needs review</b>}
+        {report && <span> · {report.highlights.length ? "View highlighted report page" : "View cited report page"}</span>}
       </span>
     </button>
   );
@@ -52,28 +64,36 @@ export default function SourcePanel(props: {
   item: PanelItem | null;
   tiers: Record<string, string>;
   onClose: () => void;
+  supplierCounts?: boolean;
 }): JSX.Element | null {
   const { item, tiers, onClose } = props;
   const closeRef = useRef<HTMLButtonElement>(null);
+  const [report, setReport] = useState<ReportEvidence | null>(null);
+  const closeReport = useCallback(() => setReport(null), []);
+
+  useEffect(() => { setReport(null); }, [item]);
 
   useEffect(() => {
     if (!item) return;
     const opener = document.activeElement as HTMLElement | null;
     closeRef.current?.focus();
+    return () => { opener?.focus(); };
+  }, [item, onClose]);
+
+  useEffect(() => {
+    if (!item || report) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape" && !e.defaultPrevented) onClose();
     };
     document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      opener?.focus();
-    };
-  }, [item, onClose]);
+    return () => { document.removeEventListener("keydown", onKey); };
+  }, [item, onClose, report]);
 
   if (!item) return null;
   const f = item.figure;
 
   return (
+    <>
     <aside className="sp-panel" role="dialog" aria-label="Source">
       <button ref={closeRef} type="button" className="sp-close" aria-label="Close source panel" onClick={onClose}>
         ×
@@ -96,6 +116,9 @@ export default function SourcePanel(props: {
         </>
       )}
       {item.note && <Row label="Note">{item.note}</Row>}
+      {props.supplierCounts && item.evidence && !f && (
+        <Row label="Counting method">The grid reads the saved extracted-claim count for this supplier and concept. Nature counts classify those claims. These counts are not emission estimates.</Row>
+      )}
       {item.summary && (
         <div className="sp-summary">
           <div className="sum-grid">
@@ -120,11 +143,14 @@ export default function SourcePanel(props: {
           {byYear(item.evidence).map((g) => (
             <section className="claim-group" key={g.year}>
               <h3>{g.year}</h3>
-              <div>{g.items.map((e, i) => <ClaimBox e={e} key={i} />)}</div>
+              <div>{g.items.map((e, i) => <ClaimBox e={e} key={i} onReport={setReport}
+                report={reportFor(e)} />)}</div>
             </section>
           ))}
         </div>
       )}
     </aside>
+    {report && <ReportViewer evidence={report} onClose={closeReport} />}
+    </>
   );
 }

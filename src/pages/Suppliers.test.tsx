@@ -56,3 +56,20 @@ it.skipIf(!hasData)("a grid cell opens its claims; a network line opens its figu
   fireEvent.click(within(net).getAllByRole("button", { name: /tier / })[0]);
   expect(screen.getByRole("dialog", { name: "Source" }).textContent).toContain("Tier");
 }, 15000);
+
+it.skipIf(!hasData)("the verified supplier claim opens its full report page above the sidebar", async () => {
+  HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
+  HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
+  await open();
+  fireEvent.click(screen.getByRole("button", { name: "Bavarian Nordic, SBTi: 13 extracted claims" }));
+  const panel = screen.getByRole("dialog", { name: "Source" });
+  const claim = within(panel).getByRole("button", { name: /The current targets for Scope 1 and 2 emissions involve a 42%/ });
+  claim.focus();
+  fireEvent.click(claim);
+  const report = screen.getByRole("dialog", { name: /Bavarian_Nordic_Annual_Report_2025.pdf · page 63/ });
+  expect(within(report).getByRole("img").getAttribute("src")).toBe("/report-evidence/bavarian-nordic-2025-page-63.webp");
+  expect(panel.textContent).toContain("Counting method");
+  fireEvent.keyDown(report, { key: "Escape" });
+  expect(screen.getByRole("dialog", { name: "Source" })).toBe(panel);
+  expect(document.activeElement).toBe(claim);
+}, 15000);

@@ -64,3 +64,23 @@ it("the site bar holds all seven links and marks the current page", async () => 
   expect(links.map((a) => a.textContent)).toEqual(["Overview", "Division portfolio", "Claims hypergraph", "Suppliers", "Supply chain map", "Climate hypergraph", "ESG claims"]);
   expect(links.filter((a) => a.getAttribute("aria-current") === "page").map((a) => a.textContent)).toEqual(["Supply chain map"]);
 });
+
+it("a claim on /climate and on /hypergraph opens its full report page, without supplier counting text", async () => {
+  HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
+  HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
+  const { unmount } = render(<MemoryRouter initialEntries={["/climate"]}><App /></MemoryRouter>);
+  fireEvent.click(await screen.findByRole("button", { name: /AJ Vaccines, Energy consumption: 1 contexts, 7 claims/ }));
+  let panel = screen.getByRole("dialog", { name: "Source" });
+  fireEvent.click(within(panel).getAllByRole("button", { name: /View (highlighted|cited) report page/ })[0]);
+  let report = screen.getByRole("dialog", { name: /\.pdf · page \d+/ });
+  expect(within(report).getByRole("img").getAttribute("src")).toMatch(/^\/report-evidence\/.+\.webp$/);
+  expect(panel.textContent).not.toContain("Counting method");
+  unmount();
+
+  render(<MemoryRouter initialEntries={["/hypergraph"]}><App /></MemoryRouter>);
+  fireEvent.click(await screen.findByRole("button", { name: /^Environmental: Scope 3 emissions baseline, \d+ claims$/ }));
+  panel = screen.getByRole("dialog", { name: "Source" });
+  fireEvent.click(within(panel).getAllByRole("button", { name: /View (highlighted|cited) report page/ })[0]);
+  report = screen.getByRole("dialog", { name: /UNICEF_Supply_Scope3_Baseline_Compendium\.pdf · page \d+/ });
+  expect(report.textContent).toMatch(/No matching passage was verified|Automatic match|Source-reviewed/);
+}, 15000);
