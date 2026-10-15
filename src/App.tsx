@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import SourcePanel, { type PanelItem } from "./components/SourcePanel";
 import Suppliers from "./pages/Suppliers";
@@ -12,6 +12,7 @@ import Portfolio from "./pages/Portfolio";
 import { useBuyerJson, type Buyer } from "./lib/buyer";
 
 export default function App() {
+  const { pathname } = useLocation();
   const [item, setItem] = useState<PanelItem | null>(null);
   const { data: buyer, error } = useBuyerJson<Buyer>("buyer");
   const close = useCallback(() => setItem(null), []);
@@ -51,7 +52,7 @@ export default function App() {
           />
         </Routes>
       </div>
-      <SourcePanel item={item} tiers={buyer.tiers} onClose={close} />
+      <SourcePanel item={item} tiers={buyer.tiers} onClose={close} supplierCounts={pathname === "/suppliers"} />
     </>
   );
 }
