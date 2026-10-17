@@ -1,0 +1,22 @@
+.idx-table { width: 100%; margin-top: 20px; border-collapse: collapse; border: 1.5px solid var(--ink); background: var(--paper); }
+.idx-table th, .idx-table td { padding: 10px 12px; text-align: left; vertical-align: middle; border-top: 1px solid var(--line); }
+.idx-table thead th { font-size: 12px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--mute); border-top: 0; border-bottom: 1.5px solid var(--ink); }
+.idx-table tbody th[scope="rowgroup"] { width: 14em; font-weight: 700; border-right: 1px solid var(--line); }
+.idx-table tbody tr.idx-first th, .idx-table tbody tr.idx-first td { border-top: 1.5px solid var(--ink); }
+.idx-table tbody:first-of-type tr:first-child th, .idx-table tbody:first-of-type tr:first-child td { border-top: 0; }
+.idx-table td:first-child a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+.idx-table td:first-child { white-space: nowrap; }
+.idx-rules { margin-top: 28px; max-width: 70ch; }
+.idx-rules h2 { margin: 0 0 6px; font-size: 16px; }
+.idx-rules ol { margin: 0; padding-left: 22px; }
+.idx-rules li { margin-bottom: 4px; }
+@media (max-width: 760px) {
+  .idx-table, .idx-table tbody, .idx-table tr, .idx-table th, .idx-table td { display: block; }
+  .idx-table thead { position: absolute; left: -9999px; }
+  .idx-table tbody th[scope="rowgroup"] { width: auto; border-right: 0; background: var(--bg); border-top: 1.5px solid var(--ink); }
+  .idx-table tbody:first-of-type tr:first-child th { border-top: 0; }
+  .idx-table tr td + td, .idx-table tr.idx-first td + td { padding-top: 0; border-top: 0; }
+  .idx-table tr.idx-first th, .idx-table tr.idx-first td { border-top: 1px solid var(--line); }
+  .idx-table td { border-top: 1px solid var(--line); }
+  .idx-table td:first-child { white-space: normal; border-top: 0; padding-bottom: 0; }
+}
