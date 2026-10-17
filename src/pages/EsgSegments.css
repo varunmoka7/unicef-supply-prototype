@@ -1,17 +1,19 @@
-.seg-page { position: relative; background: #0f1218; color: #e8ecf2; padding: 14px 20px 20px; min-height: calc(100vh - 140px); }
-.seg-stats { display: flex; gap: 22px; font-size: 14px; color: #9aa4b2; margin-bottom: 10px; }
-.seg-stats b { color: #fff; font-size: 18px; margin-right: 4px; }
-.seg-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 13px; }
-.seg-bar button, .seg-bar input, .seg-bar select { background: #1a1f29; color: #e8ecf2; border: 1px solid #2c3442; border-radius: 6px; padding: 5px 10px; font: inherit; }
-.seg-group { display: inline-flex; gap: 4px; align-items: center; color: #9aa4b2; }
-.seg-group button[aria-pressed="true"] { background: #2d4a7a; border-color: #6ea8fe; color: #fff; }
+.seg-page { position: relative; background: var(--ink); color: #f1f1f1; padding: 20px var(--gutter) 28px; min-height: calc(100vh - 140px); margin-top: 24px; }
+.seg-stats { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 16px; color: #b5b5b5; margin-bottom: 14px; }
+.seg-stats b { color: #fff; font-size: 28px; letter-spacing: -.03em; margin-right: 6px; }
+.seg-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; font-size: 15px; }
+.seg-bar button, .seg-bar input, .seg-bar select { background: #262626; color: #f1f1f1; border: 0; min-height: 44px; padding: 6px 14px; font: inherit; transition: background .2s var(--ease); }
+.seg-bar button { cursor: pointer; }
+.seg-bar button:hover { background: #3a3a3a; }
+.seg-group { display: inline-flex; gap: 4px; align-items: center; color: #b5b5b5; }
+.seg-group button[aria-pressed="true"] { background: var(--accent); color: #fff; }
 .seg-page svg { width: 100%; height: auto; max-height: 72vh; display: block; }
 .seg-page circle[role="button"] { cursor: pointer; }
 .seg-page circle[role="button"]:focus-visible, .seg-page circle[role="button"]:hover { stroke: #fff; stroke-width: 2; outline: none; }
-.seg-hub-label { font-size: 11px; font-weight: 700; paint-order: stroke; stroke: #0f1218; stroke-width: 3px; }
-.seg-tip { position: absolute; pointer-events: none; background: #1a1f29; border: 1px solid #2c3442; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-.seg-page .empty { color: #9aa4b2; }
+.seg-hub-label { font-size: 13px; font-weight: 700; paint-order: stroke; stroke: var(--ink); stroke-width: 3px; }
+.seg-tip { position: absolute; pointer-events: none; background: #262626; padding: 6px 10px; font-size: 14px; }
+.seg-page .empty { color: #b5b5b5; }
 .seg-page svg { cursor: grab; }
 .seg-hub { cursor: grab; }
-.seg-note { font-size: 12px; align-self: center; }
+.seg-note { font-size: 14px; align-self: center; }
 .seg-page:fullscreen svg { max-height: calc(100vh - 110px); }
