@@ -1,0 +1,33 @@
+.hg { font-size: 14px; }
+.hg-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; margin: 14px 0; }
+.hg-top p { margin: 0; max-width: 64ch; color: var(--mute); }
+.hg .tabs button { min-height: 44px; }
+.hg-stats { margin-bottom: 16px; }
+.hg-stats .f-note { font-size: 12px; color: var(--mute); }
+.hg-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 16px; align-items: start; }
+.hg-side { max-height: none; overflow: visible; border: 1.5px solid var(--ink); padding: 0 12px 12px; }
+.hg-side h3 { margin: 0; padding: 12px 0 6px; font-size: 14px; font-weight: 700; border-bottom: 1.5px solid var(--ink); }
+.hg-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-height: 36px; padding: 4px 0; border: 0; border-bottom: 1px solid var(--line); background: none; text-align: left; cursor: pointer; }
+.hg-row:disabled { cursor: default; color: var(--mute); }
+.hg-row:not(:disabled):hover { background: var(--bg); }
+.hg-row.plain { cursor: default; }
+.hg-row b { font-weight: 600; }
+.hg-note { margin: 4px 0 0; font-size: 12px; color: var(--mute); }
+.hg-proto { margin: 12px 0 0; font-weight: 600; color: var(--warn); }
+.hg-main { min-width: 0; }
+.hg .chips { margin: 0 0 8px; }
+.hg .chip { min-height: 36px; display: inline-flex; align-items: center; gap: 8px; }
+.hg-mark { display: inline-block; width: 14px; height: 0; border-top: 3px solid currentColor; vertical-align: middle; margin-right: 8px; }
+.hg-mark.dashed { border-top-style: dashed; }
+.hg-mark.dotted { border-top-style: dotted; }
+.hg-caption { min-height: 22px; margin: 4px 0 8px; color: var(--mute); }
+.hg-caption.on { color: var(--ink); }
+.hg-scroll { overflow-x: auto; border: 1.5px solid var(--ink); background: var(--paper); }
+.hg-svg { display: block; width: 100%; min-width: 860px; }
+.hg-help { margin-top: 10px; }
+.hg-help summary { cursor: pointer; min-height: 24px; font-weight: 600; color: var(--accent); }
+.hg-help p { margin: 6px 0; max-width: 80ch; }
+.hg-help .quiet { color: var(--mute); }
+.hg-foot { margin-top: 14px; }
+@media (max-width: 860px) { .hg-layout { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) { .hg-row { min-height: 44px; } .hg .chip { min-height: 44px; } }

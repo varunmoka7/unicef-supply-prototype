@@ -23,17 +23,17 @@ export type OrgHypergraph = {
 export type OrgSelection = { title: string; claims: Evidence[]; note: string };
 
 const W = 980;
-const H = 680;
+const H = 760;
 const GROUPS: { id: Group; label: string }[] = [
   { id: "esg", label: "ESG claims" },
   { id: "operations", label: "Supply operations" },
 ];
 const NODE_COLOUR: Record<NodeType, string> = { company: "#1a1a2e", topic: "#1565C0", framework: "#E65100", evidence: "#78909C" };
 const CATEGORY_COLOUR: Record<string, string> = {
-  // ESG pillars, Tata view colours
-  environmental: "#4CAF50",
-  social: "#2196F3",
-  governance: "#FF9800",
+  // ESG pillars: kept off the --n-* nature hues; dash pattern and text name carry the pillar too
+  environmental: "#00796b",
+  social: "#ad1457",
+  governance: "#4a5560",
   // supply operations categories
   procurement_spend: "#5c6bc0",
   shipment: "#00838f",
@@ -41,9 +41,10 @@ const CATEGORY_COLOUR: Record<string, string> = {
   tender: "#6a4fb3",
   policy_requirement: "#ad1457",
   product_quality: "#c62828",
-  climate: "#558b2f",
+  climate: "#00695c",
   other: "#78909c",
 };
+const DASH: Record<string, string> = { social: "7 4", governance: "2 3" };
 const colourOf = (c: string | null) => (c && CATEGORY_COLOUR[c]) || "#607d8b";
 const nice = (c: string) => c.replace(/_/g, " ").replace(/^./, (x) => x.toUpperCase());
 const list = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
@@ -112,11 +113,11 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
     });
     const sim = d3
       .forceSimulation(simNodes)
-      .force("charge", d3.forceManyBody().strength(-260))
-      .force("collision", d3.forceCollide(40))
-      .force("x", d3.forceX(W / 2).strength(0.04))
-      .force("y", d3.forceY(H / 2).strength(0.04))
-      .force("link", d3.forceLink(links).distance(150).strength(0.25));
+      .force("charge", d3.forceManyBody().strength(-700))
+      .force("collision", d3.forceCollide(60))
+      .force("x", d3.forceX(W / 2).strength(0.03))
+      .force("y", d3.forceY(H / 2).strength(0.03))
+      .force("link", d3.forceLink(links).distance(190).strength(0.2));
 
     const hullPoints = (ids: string[], pad: number) => {
       const pts: [number, number][] = [];
@@ -140,9 +141,11 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
       .attr("fill", (d) => colourOf(d.category))
       .attr("fill-opacity", 0.12)
       .attr("stroke", (d) => colourOf(d.category))
-      .attr("stroke-width", 1.5)
-      .attr("stroke-opacity", 0.6)
+      .attr("stroke-width", 2)
+      .attr("stroke-dasharray", (d) => DASH[d.category] ?? null)
+      .attr("stroke-opacity", 0.8)
       .style("cursor", "pointer");
+    if (window.innerWidth <= 760) svg.style("touch-action", "pan-x pan-y pinch-zoom"); // let the scroll wrapper pan on touch
 
     const openNode = (d: SimNode) =>
       d.items && openRef.current(`${nice(d.type === "evidence" ? "source" : d.type)}: ${d.label}`, { claims: d.claims ?? d.items.length, items: d.items });
@@ -203,16 +206,20 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
       .text((d) => d.label)
       .attr("text-anchor", "middle")
       .attr("dy", (d) => (d.type === "company" ? -22 : 24))
-      .attr("font-size", (d) => (d.type === "company" ? 14 : d.type === "evidence" ? 9 : 10))
+      .attr("font-size", (d) => (d.type === "company" ? 15 : d.type === "evidence" ? 13 : 14))
       .attr("font-weight", (d) => (d.type === "company" ? 700 : 400))
-      .attr("fill", (d) => (d.type === "evidence" ? "#5f6b76" : "#333"))
+      .attr("fill", (d) => (d.type === "evidence" ? "#46525c" : "#101820"))
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 4)
+      .attr("paint-order", "stroke")
+      .attr("stroke-linejoin", "round")
       .attr("pointer-events", "none");
 
     const isolate = (d: Edge | null) => {
       setHovered(d);
       hulls
         .attr("fill-opacity", (h) => (!d ? 0.12 : h === d ? 0.35 : 0.04))
-        .attr("stroke-opacity", (h) => (!d ? 0.6 : h === d ? 1 : 0.15));
+        .attr("stroke-opacity", (h) => (!d ? 0.8 : h === d ? 1 : 0.15));
       nodeG.attr("opacity", (n) => (!d || d.members.includes(n.id) ? 1 : 0.2));
       labels.attr("opacity", (n) => (!d || d.members.includes(n.id) ? 1 : 0.15));
     };
@@ -225,12 +232,41 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
       });
 
     sim.on("tick", () => {
+      simNodes.forEach((n) => {
+        n.x = Math.max(70, Math.min(W - 70, n.x!));
+        n.y = Math.max(60, Math.min(H - 50, n.y!));
+      });
       hulls.attr("d", (d) => {
         const h = hullPoints(d.members, 28);
         return h ? `M${h.join("L")}Z` : null;
       });
       nodeG.attr("transform", (d) => `translate(${d.x},${d.y})`);
       labels.attr("x", (d) => d.x!).attr("y", (d) => d.y!);
+    });
+    // label collision: once the layout has settled, move each label above/below its node until it clears the ones already placed
+    sim.on("end", () => {
+      const placed: { x0: number; x1: number; y0: number; y1: number }[] = [];
+      const fs = (d: SimNode) => (d.type === "company" ? 15 : d.type === "evidence" ? 13 : 14);
+      const order = [...simNodes].sort((a, b) => (a.type === "company" ? -1 : b.type === "company" ? 1 : 0));
+      const dyOf = new Map<string, number>();
+      order.forEach((d) => {
+        const w = d.label.length * fs(d) * 0.56;
+        const base = d.type === "company" ? -22 : 24;
+        let pick = base;
+        for (const off of [0, -base * 1.9, 16, -16, 32, -32, 48, -48]) {
+          const dy = base + off;
+          const y = d.y! + dy;
+          const box = { x0: d.x! - w / 2, x1: d.x! + w / 2, y0: y - fs(d), y1: y + 4 };
+          if (!placed.some((p) => box.x0 < p.x1 && box.x1 > p.x0 && box.y0 < p.y1 && box.y1 > p.y0)) {
+            pick = dy;
+            break;
+          }
+        }
+        const y = d.y! + pick;
+        placed.push({ x0: d.x! - (d.label.length * fs(d) * 0.56) / 2, x1: d.x! + (d.label.length * fs(d) * 0.56) / 2, y0: y - fs(d), y1: y + 4 });
+        dyOf.set(d.id, pick);
+      });
+      labels.attr("dy", (d) => dyOf.get(d.id) ?? 24);
     });
     return () => {
       sim.stop();
@@ -239,32 +275,9 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
     };
   }, [data, shown]);
 
-  // category colour marks a dot only; text and borders stay dark or grey for contrast
-  const chip = (on: boolean): React.CSSProperties => ({
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: on ? "#17202a" : "#dde2e7",
-    background: on ? "#eef1f4" : "#fff",
-    color: "#17202a",
-    fontWeight: on ? 600 : 400,
-    borderRadius: 16,
-    padding: "4px 12px",
-    margin: "0 6px 6px 0",
-    cursor: "pointer",
-  });
-  const dot = (colour: string) => (
-    <i aria-hidden style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: colour, marginRight: 8 }} />
+  const mark = (c: string) => (
+    <i aria-hidden className={`hg-mark${DASH[c] === "7 4" ? " dashed" : DASH[c] ? " dotted" : ""}`} style={{ color: colourOf(c) }} />
   );
-  const card: React.CSSProperties = { background: "#fff", border: "1px solid #e6e9ee", borderRadius: 10, padding: 14 };
-  const label: React.CSSProperties = { fontSize: 12, textTransform: "uppercase", letterSpacing: "0.04em", color: "#5f6b76", fontWeight: 600, margin: "14px 0 6px" };
-  const kpi = (name: string, value: number, note?: string) => (
-    <div key={name} style={card}>
-      <div style={{ fontSize: 12, color: "#5f6b76" }}>{name}</div>
-      <div style={{ fontSize: 24, fontWeight: 600, marginTop: 2 }}>{value.toLocaleString()}</div>
-      {note && <div style={{ fontSize: 12, color: "#5f6b76" }}>{note}</div>}
-    </div>
-  );
-  const listRow: React.CSSProperties = { display: "flex", justifyContent: "space-between", width: "100%", borderStyle: "solid", borderWidth: "0 0 1px", borderColor: "#f0f2f5", background: "none", padding: "6px 0", color: "#17202a", font: "inherit", textAlign: "left" };
   const t = data.stats[group];
   const pickGroup = (g: Group) => {
     setGroup(g);
@@ -273,115 +286,110 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
   };
 
   return (
-    <div style={{ fontSize: 13 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-        <p style={{ margin: 0, color: "#5f6b76", maxWidth: 640 }}>
+    <div className="hg">
+      <div className="hg-top">
+        <p>
           {group === "esg"
             ? "ESG claims from UNICEF Supply Division's own reports, grouped by topic. Click any shape or row to read the claims and the page they come from."
             : "Every other claim in the same reports, grouped by claim category and topic. Click any shape or row to read the claims and the page they come from."}
         </p>
-        <div role="group" aria-label="Claim group" style={{ display: "inline-flex", background: "#eef1f4", borderRadius: 8, padding: 3 }}>
+        <div className="tabs" role="group" aria-label="Claim group">
           {GROUPS.map((g) => (
-            <button
-              key={g.id}
-              type="button"
-              aria-pressed={group === g.id}
-              onClick={() => pickGroup(g.id)}
-              style={{ border: 0, borderRadius: 6, padding: "6px 16px", cursor: "pointer", background: group === g.id ? "#fff" : "transparent", boxShadow: group === g.id ? "0 1px 2px rgba(0,0,0,0.12)" : "none", fontWeight: group === g.id ? 600 : 400, color: "#17202a" }}
-            >
+            <button key={g.id} type="button" aria-pressed={group === g.id} onClick={() => pickGroup(g.id)}>
               {g.label}
             </button>
           ))}
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12, margin: "16px 0" }}>
-        {kpi("Claims", t.claims, `of ${data.stats.kb_claims.toLocaleString()} in the KB`)}
-        {kpi("Hyperedges", data.edges.filter((e) => e.group === group).length)}
-        {kpi("Documents", t.documents)}
-        {kpi("Contexts", t.contexts)}
+      <div className="field-row hg-stats">
+        <div className="field"><span className="f-name">Claims</span><span className="f-value">{t.claims.toLocaleString()}</span><span className="f-note">of {data.stats.kb_claims.toLocaleString()} in the KB</span></div>
+        <div className="field"><span className="f-name">Claim groups</span><span className="f-value">{data.edges.filter((e) => e.group === group).length.toLocaleString()}</span></div>
+        <div className="field"><span className="f-name">Documents</span><span className="f-value">{t.documents.toLocaleString()}</span></div>
+        <div className="field"><span className="f-name">Contexts</span><span className="f-value">{t.contexts.toLocaleString()}</span></div>
       </div>
 
-      <div style={{ display: "flex", gap: 12, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <aside style={{ ...card, width: 280 }}>
+      <div className="hg-layout">
+        <aside className="hg-side">
           {data.breakdowns
             .filter((b) => b.group === group)
-            .map((b, i) => (
+            .map((b) => (
               <section key={b.id}>
-                <h3 style={{ ...label, marginTop: i ? 14 : 0 }}>{b.title}</h3>
+                <h3>{b.title}</h3>
                 {b.rows.map((r) => (
                   <button
                     key={r.label}
                     type="button"
+                    className="hg-row"
                     aria-label={`${b.title}: ${r.label}, ${r.claims.toLocaleString()} claims`}
                     disabled={!r.claims}
                     onClick={() => open(`${b.title}: ${r.label}`, r)}
-                    style={{ ...listRow, cursor: r.claims ? "pointer" : "default" }}
                   >
                     <span>
-                      {r.key && dot(colourOf(r.key))}
+                      {r.key && mark(r.key)}
                       {r.label}
                     </span>
-                    <span style={{ color: "#5f6b76" }}>{r.claims.toLocaleString()}</span>
+                    <b>{r.claims.toLocaleString()}</b>
                   </button>
                 ))}
-                {b.note && <p style={{ fontSize: 11, color: "#5f6b76", margin: "4px 0 0" }}>{b.note}</p>}
+                {b.note && <p className="hg-note">{b.note}</p>}
               </section>
             ))}
-          <h3 style={label}>By nature</h3>
+          <h3>By nature</h3>
           {Object.entries(t.natures).map(([n, v]) => (
-            <div key={n} style={{ ...listRow, cursor: "default" }}>
+            <div key={n} className="hg-row plain">
               <span>{nice(n)}</span>
-              <span style={{ color: "#5f6b76" }}>{v.toLocaleString()}</span>
+              <b>{v.toLocaleString()}</b>
             </div>
           ))}
-          <p style={{ color: "#8a5a00", fontWeight: 600, margin: "12px 0 0" }}>Prototype figures. Not adjudicated.</p>
+          <p className="hg-proto">Prototype figures. Not adjudicated.</p>
         </aside>
 
-        <div style={{ ...card, flex: 1, minWidth: 320 }}>
-          <div role="group" aria-label="Category" style={{ marginBottom: 4 }}>
-            <button type="button" aria-pressed={!category} style={chip(!category)} onClick={() => setCategory(null)}>
+        <div className="hg-main">
+          <div className="chips" role="group" aria-label="Category">
+            <button type="button" className="chip" aria-pressed={!category} onClick={() => setCategory(null)}>
               All
             </button>
             {categories.map((c) => (
-              <button key={c} type="button" aria-pressed={category === c} style={chip(category === c)} onClick={() => setCategory(c)}>
-                {dot(colourOf(c))}
+              <button key={c} type="button" className="chip" aria-pressed={category === c} onClick={() => setCategory(c)}>
+                {mark(c)}
                 {nice(c)}
               </button>
             ))}
           </div>
-          <p aria-live="polite" style={{ minHeight: 20, margin: "4px 0 6px", color: hovered ? "#17202a" : "#5f6b76", borderLeft: `4px solid ${hovered ? colourOf(hovered.category) : "transparent"}`, paddingLeft: 6 }}>
+          <p aria-live="polite" className={`hg-caption${hovered ? " on" : ""}`}>
             {hovered ? describe(hovered, byId) : "Hover a hull to see what it joins."}
           </p>
-          <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`UNICEF Supply Division ${group === "esg" ? "ESG" : "supply operations"} claims hypergraph`} style={{ width: "100%", background: "#f8f9fa", borderRadius: 8 }} />
-          <details style={{ marginTop: 8 }}>
-            <summary style={{ cursor: "pointer", fontWeight: 600 }}>How to read this: what a hyperedge is</summary>
-            <p style={{ margin: "6px 0" }}>
-              Each shaded hull is a <b>hyperedge</b>: one group of claims that ties several things together at once, where a plain line could only join two.
+          <div className="hg-scroll">
+            <svg ref={svgRef} className="hg-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`UNICEF Supply Division ${group === "esg" ? "ESG" : "supply operations"} claims hypergraph`} />
+          </div>
+          <details className="hg-help">
+            <summary>How to read this diagram</summary>
+            <p>
+              Each shaded hull is one group of claims that ties several things together at once, where a plain line could only join two.
               Every hull includes UNICEF Supply Division, because every claim here comes from its own reports.
             </p>
             {group === "esg" ? (
-              <p style={{ margin: "6px 0" }}>
+              <p>
                 An <b>ESG hull</b> is one ESG topic. It joins the topic (circle), any framework named in at least 3 of its claims (hexagon) and the two
-                PDFs holding the largest share of its claims (diamonds). Colour is the pillar: green environmental, blue social, orange governance. Hulls that share a
+                PDFs holding the largest share of its claims (diamonds). The pillar is shown by the outline: solid teal environmental, dashed magenta social, dotted slate governance. Hulls that share a
                 framework or a PDF overlap, which shows where topics draw on the same standard or report.
               </p>
             ) : (
-              <p style={{ margin: "6px 0" }}>
+              <p>
                 A <b>supply operations hull</b> is one claim category and one topic, for example shipments that mention vaccines. It joins the topic
                 (circle) and the PDF holding the largest share of those claims (diamond). Colour is the category. The same topic can sit in several hulls, one per
                 category it appears in.
               </p>
             )}
-            <p style={{ margin: "6px 0" }}>A hull's size comes from the layout, not from how many claims it holds. The count is in its caption and in the claims panel.</p>
-            <p style={{ margin: "6px 0", color: "#5f6b76" }}>
+            <p>A hull's size comes from the layout, not from how many claims it holds. The count is in its caption and in the claims panel.</p>
+            <p className="quiet">
               Square: UNICEF Supply Division. Circles: topics. Hexagons: frameworks. Diamonds: source PDFs. ESG claims are those whose text matches the
               existing vocabulary of an ESG topic, so some climate claims that match no pattern stay under Supply operations; every other claim in
               the KB is under Supply operations. The two groups are never drawn together.
             </p>
           </details>
         </div>
-
       </div>
     </div>
   );
