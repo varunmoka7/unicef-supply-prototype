@@ -241,30 +241,28 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
 
   // category colour marks a dot only; text and borders stay dark or grey for contrast
   const chip = (on: boolean): React.CSSProperties => ({
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: on ? "#17202a" : "#dde2e7",
-    background: on ? "#eef1f4" : "#fff",
-    color: "#17202a",
-    fontWeight: on ? 600 : 400,
-    borderRadius: 16,
-    padding: "4px 12px",
+    border: 0,
+    background: on ? "#1a4be0" : "#f4f4f4",
+    color: on ? "#fff" : "#111",
+    fontWeight: on ? 500 : 400,
+    padding: "10px 16px",
+    minHeight: 44,
     margin: "0 6px 6px 0",
     cursor: "pointer",
   });
   const dot = (colour: string) => (
     <i aria-hidden style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: colour, marginRight: 8 }} />
   );
-  const card: React.CSSProperties = { background: "#fff", border: "1px solid #e6e9ee", borderRadius: 10, padding: 14 };
-  const label: React.CSSProperties = { fontSize: 12, textTransform: "uppercase", letterSpacing: "0.04em", color: "#5f6b76", fontWeight: 600, margin: "14px 0 6px" };
+  const card: React.CSSProperties = { background: "#f4f4f4", padding: 20 };
+  const label: React.CSSProperties = { fontSize: 16, color: "#5c5c5c", fontWeight: 600, margin: "18px 0 6px" };
   const kpi = (name: string, value: number, note?: string) => (
     <div key={name} style={card}>
-      <div style={{ fontSize: 12, color: "#5f6b76" }}>{name}</div>
-      <div style={{ fontSize: 24, fontWeight: 600, marginTop: 2 }}>{value.toLocaleString()}</div>
-      {note && <div style={{ fontSize: 12, color: "#5f6b76" }}>{note}</div>}
+      <div style={{ fontSize: 15, color: "#5c5c5c" }}>{name}</div>
+      <div style={{ fontSize: 44, lineHeight: 1.05, fontWeight: 700, letterSpacing: "-0.03em", marginTop: 4 }}>{value.toLocaleString()}</div>
+      {note && <div style={{ fontSize: 14, color: "#5c5c5c" }}>{note}</div>}
     </div>
   );
-  const listRow: React.CSSProperties = { display: "flex", justifyContent: "space-between", width: "100%", borderStyle: "solid", borderWidth: "0 0 1px", borderColor: "#f0f2f5", background: "none", padding: "6px 0", color: "#17202a", font: "inherit", textAlign: "left" };
+  const listRow: React.CSSProperties = { display: "flex", justifyContent: "space-between", width: "100%", border: 0, background: "none", padding: "9px 0", color: "#111", font: "inherit", textAlign: "left" };
   const t = data.stats[group];
   const pickGroup = (g: Group) => {
     setGroup(g);
@@ -273,21 +271,21 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
   };
 
   return (
-    <div style={{ fontSize: 13 }}>
+    <div style={{ fontSize: 15 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-        <p style={{ margin: 0, color: "#5f6b76", maxWidth: 640 }}>
+        <p style={{ margin: 0, color: "#5c5c5c", maxWidth: 640 }}>
           {group === "esg"
             ? "ESG claims from UNICEF Supply Division's own reports, grouped by topic. Click any shape or row to read the claims and the page they come from."
             : "Every other claim in the same reports, grouped by claim category and topic. Click any shape or row to read the claims and the page they come from."}
         </p>
-        <div role="group" aria-label="Claim group" style={{ display: "inline-flex", background: "#eef1f4", borderRadius: 8, padding: 3 }}>
+        <div role="group" aria-label="Claim group" style={{ display: "inline-flex", background: "#f4f4f4", gap: 2 }}>
           {GROUPS.map((g) => (
             <button
               key={g.id}
               type="button"
               aria-pressed={group === g.id}
               onClick={() => pickGroup(g.id)}
-              style={{ border: 0, borderRadius: 6, padding: "6px 16px", cursor: "pointer", background: group === g.id ? "#fff" : "transparent", boxShadow: group === g.id ? "0 1px 2px rgba(0,0,0,0.12)" : "none", fontWeight: group === g.id ? 600 : 400, color: "#17202a" }}
+              style={{ border: 0, padding: "10px 18px", minHeight: 44, cursor: "pointer", background: group === g.id ? "#1a4be0" : "transparent", fontWeight: 500, color: group === g.id ? "#fff" : "#111" }}
             >
               {g.label}
             </button>
@@ -295,7 +293,7 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12, margin: "16px 0" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12, margin: "20px 0" }}>
         {kpi("Claims", t.claims, `of ${data.stats.kb_claims.toLocaleString()} in the KB`)}
         {kpi("Hyperedges", data.edges.filter((e) => e.group === group).length)}
         {kpi("Documents", t.documents)}
@@ -322,17 +320,17 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
                       {r.key && dot(colourOf(r.key))}
                       {r.label}
                     </span>
-                    <span style={{ color: "#5f6b76" }}>{r.claims.toLocaleString()}</span>
+                    <span style={{ color: "#5c5c5c" }}>{r.claims.toLocaleString()}</span>
                   </button>
                 ))}
-                {b.note && <p style={{ fontSize: 11, color: "#5f6b76", margin: "4px 0 0" }}>{b.note}</p>}
+                {b.note && <p style={{ fontSize: 14, color: "#5c5c5c", margin: "4px 0 0" }}>{b.note}</p>}
               </section>
             ))}
           <h3 style={label}>By nature</h3>
           {Object.entries(t.natures).map(([n, v]) => (
             <div key={n} style={{ ...listRow, cursor: "default" }}>
               <span>{nice(n)}</span>
-              <span style={{ color: "#5f6b76" }}>{v.toLocaleString()}</span>
+              <span style={{ color: "#5c5c5c" }}>{v.toLocaleString()}</span>
             </div>
           ))}
           <p style={{ color: "#8a5a00", fontWeight: 600, margin: "12px 0 0" }}>Prototype figures. Not adjudicated.</p>
@@ -350,10 +348,10 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
               </button>
             ))}
           </div>
-          <p aria-live="polite" style={{ minHeight: 20, margin: "4px 0 6px", color: hovered ? "#17202a" : "#5f6b76", borderLeft: `4px solid ${hovered ? colourOf(hovered.category) : "transparent"}`, paddingLeft: 6 }}>
+          <p aria-live="polite" style={{ minHeight: 20, margin: "4px 0 6px", color: hovered ? "#111" : "#5f6b76", borderLeft: `4px solid ${hovered ? colourOf(hovered.category) : "transparent"}`, paddingLeft: 6 }}>
             {hovered ? describe(hovered, byId) : "Hover a hull to see what it joins."}
           </p>
-          <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`UNICEF Supply Division ${group === "esg" ? "ESG" : "supply operations"} claims hypergraph`} style={{ width: "100%", background: "#f8f9fa", borderRadius: 8 }} />
+          <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`UNICEF Supply Division ${group === "esg" ? "ESG" : "supply operations"} claims hypergraph`} style={{ width: "100%", background: "#f4f4f4" }} />
           <details style={{ marginTop: 8 }}>
             <summary style={{ cursor: "pointer", fontWeight: 600 }}>How to read this: what a hyperedge is</summary>
             <p style={{ margin: "6px 0" }}>
@@ -374,7 +372,7 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
               </p>
             )}
             <p style={{ margin: "6px 0" }}>A hull's size comes from the layout, not from how many claims it holds. The count is in its caption and in the claims panel.</p>
-            <p style={{ margin: "6px 0", color: "#5f6b76" }}>
+            <p style={{ margin: "6px 0", color: "#5c5c5c" }}>
               Square: UNICEF Supply Division. Circles: topics. Hexagons: frameworks. Diamonds: source PDFs. ESG claims are those whose text matches the
               existing vocabulary of an ESG topic, so some climate claims that match no pattern stay under Supply operations; every other claim in
               the KB is under Supply operations. The two groups are never drawn together.
