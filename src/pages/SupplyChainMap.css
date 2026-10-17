@@ -2,8 +2,8 @@
 .map-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-bottom: 12px; }
 .map-controls .chips { margin: 0; flex-wrap: nowrap; }
 .map-controls .chip { min-height: 36px; padding: 2px 10px; }
-.map-scroll { width: fit-content; max-width: 100%; overflow-x: auto; border: 1.5px solid var(--ink); background: var(--paper); }
-.map-svg { display: block; width: 100%; max-width: var(--w); height: auto; border: 0; background: var(--paper); font-family: var(--sans); font-variant-numeric: tabular-nums; color: var(--ink); }
+.map-scroll { max-width: 100%; overflow-x: auto; }
+.map-svg { display: block; width: 100%; max-width: var(--w); height: auto; border: 1.5px solid var(--ink); background: var(--paper); font-family: var(--sans); font-variant-numeric: tabular-nums; color: var(--ink); }
 .map-scroll .map-svg.fixed { width: var(--w); max-width: none; }
 
 .map-svg .lbl { fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 5px; stroke-linejoin: round; }
