@@ -10,7 +10,7 @@ export default function Index({ buyer }: { buyer: Buyer }): JSX.Element {
     {
       name: "Suppliers",
       rows: [
-        ["/suppliers", "Suppliers", `${buyer.suppliers.length} suppliers: UNICEF spend by year, what their reports claim on climate and ESG, and how they connect to products and countries.`],
+        ["/suppliers", "Open supplier intelligence", `${buyer.suppliers.length} suppliers: UNICEF spend by year, what their reports claim on climate and ESG, and how they connect to products and countries.`],
         ["/map", "Supply chain map", "UNICEF spend by supplier and year, and the product groups each supplier's claims attach to."],
         ["/climate", "Climate hypergraph", "Which suppliers made claims on which emissions concepts, and what kind of claim each one is."],
         ["/segments", "ESG claims", "Every extracted ESG claim from supplier reports, grouped by concept, supplier or claim nature."],
@@ -20,7 +20,7 @@ export default function Index({ buyer }: { buyer: Buyer }): JSX.Element {
       name: "UNICEF Supply Division",
       rows: [
         ["/portfolio", "Division portfolio", "Emissions, procurement and supplier reach, from the Division's own reports."],
-        ["/hypergraph", "Claims hypergraph", "The Division's own reports, no supplier reports. ESG claims and supply operations are shown apart, each grouped by topic, with the claims behind every group."],
+        ["/hypergraph", "Open claims hypergraph", "The Division's own reports, no supplier reports. ESG claims and supply operations are shown apart, each grouped by topic, with the claims behind every group."],
       ],
     },
   ];
