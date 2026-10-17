@@ -40,7 +40,7 @@ export default function App() {
             path="*"
             element={
               <>
-                <PageHead title={head.title} lede={head.lede} rules={buyer.disclaimers} />
+                <div className="page" style={{ paddingBottom: 0 }}><PageHead title={head.title} lede={head.lede} rules={buyer.disclaimers} /></div>
                 <Routes>
                   <Route path="/map" element={<SupplyChainMap buyer={buyer} onOpen={setItem} />} />
                   <Route path="/climate" element={<Climate buyer={buyer} onOpen={setItem} />} />
