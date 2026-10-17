@@ -1,56 +1,59 @@
 import { Link } from "react-router-dom";
+import PageHead from "../components/PageHead";
 import type { Buyer } from "../lib/buyer";
+import "./Index.css";
 
-// Landing page: the two parts of the UNICEF Supply Division prototype, styled like /hypergraph.
-
-const card: React.CSSProperties = { background: "#fff", border: "1px solid #e6e9ee", borderRadius: 10, padding: 22, display: "flex", flexDirection: "column", gap: 10, minWidth: 0 };
-const cta: React.CSSProperties = { alignSelf: "flex-start", marginTop: "auto", background: "#17202a", color: "#fff", borderRadius: 8, padding: "8px 16px", fontWeight: 600, textDecoration: "none" };
-const eyebrow: React.CSSProperties = { fontSize: 12, textTransform: "uppercase", letterSpacing: "0.04em", color: "#5f6b76", fontWeight: 600, margin: 0 };
+// Landing page: a directory of the seven routes, grouped as in the top nav.
 
 export default function Index({ buyer }: { buyer: Buyer }): JSX.Element {
+  const groups: { name: string; rows: [string, string, string][] }[] = [
+    {
+      name: "Suppliers",
+      rows: [
+        ["/suppliers", "Open supplier intelligence", `${buyer.suppliers.length} suppliers: UNICEF spend by year, what their reports claim on climate and ESG, and how they connect to products and countries.`],
+        ["/map", "Supply chain map", "UNICEF spend by supplier and year, and the product groups each supplier's claims attach to."],
+        ["/climate", "Climate hypergraph", "Which suppliers made claims on which emissions concepts, and what kind of claim each one is."],
+        ["/segments", "ESG claims", "Every extracted ESG claim from supplier reports, grouped by concept, supplier or claim nature."],
+      ],
+    },
+    {
+      name: "UNICEF Supply Division",
+      rows: [
+        ["/portfolio", "Division portfolio", "Emissions, procurement and supplier reach, from the Division's own reports."],
+        ["/hypergraph", "Open claims hypergraph", "The Division's own reports, no supplier reports. ESG claims and supply operations are shown apart, each grouped by topic, with the claims behind every group."],
+      ],
+    },
+  ];
   return (
-    <>
-      <main style={{ padding: "36px clamp(16px, 4vw, 28px)", maxWidth: 1080 }}>
-        <p style={eyebrow}>UNICEF Supply Division</p>
-        <h1 style={{ fontSize: 28, lineHeight: 1.25, margin: "8px 0 10px", maxWidth: 760 }}>What suppliers and UNICEF Supply Division say in their own reports</h1>
-        <p style={{ color: "#5f6b76", margin: "0 0 28px", maxWidth: 680 }}>
-          Every claim links to the PDF and page it came from. Figures are prototype data and have not been adjudicated.
-        </p>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))", gap: 16 }}>
-          <section style={card} aria-labelledby="idx-suppliers">
-            <p style={eyebrow}>Suppliers</p>
-            <h2 id="idx-suppliers" style={{ fontSize: 20, margin: 0 }}>Supplier intelligence</h2>
-            <p style={{ margin: 0 }}>
-              {buyer.suppliers.length} suppliers: UNICEF spend by year, what their reports claim on climate and ESG, and how they connect to products
-              and countries.
-            </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: "4px 0 8px", display: "flex", flexWrap: "wrap", gap: "6px 16px", fontSize: 13 }}>
-              <li><Link style={{ color: "var(--accent)" }} to="/map">Supply chain map</Link></li>
-              <li><Link style={{ color: "var(--accent)" }} to="/climate">Climate hypergraph</Link></li>
-              <li><Link style={{ color: "var(--accent)" }} to="/segments">ESG claims</Link></li>
-            </ul>
-            <Link to="/suppliers" style={cta}>Open supplier intelligence</Link>
-          </section>
-
-          <section style={card} aria-labelledby="idx-hypergraph">
-            <p style={eyebrow}>UNICEF Supply Division</p>
-            <h2 id="idx-hypergraph" style={{ fontSize: 20, margin: 0 }}>Claims hypergraph</h2>
-            <p style={{ margin: 0 }}>
-              UNICEF Supply Division's own reports, no supplier reports. ESG claims and supply operations are shown apart, each grouped by topic,
-              with the claims behind every group.
-            </p>
-            <Link to="/portfolio" style={{ color: "var(--accent)", padding: "10px 0" }}>Division portfolio: emissions, procurement and supplier reach</Link>
-            <Link to="/hypergraph" style={cta}>Open claims hypergraph</Link>
-          </section>
-        </div>
-
-        <ul style={{ margin: "28px 0 0", paddingLeft: 18, fontSize: 12, color: "#5f6b76" }}>
+    <main className="page">
+      <PageHead
+        title="What suppliers and UNICEF Supply Division say in their own reports"
+        lede="Every claim links to the PDF and page it came from. Figures are prototype data and have not been adjudicated."
+      />
+      <table className="idx-table">
+        <thead>
+          <tr><th scope="col">Group</th><th scope="col">Page</th><th scope="col">What is on it</th></tr>
+        </thead>
+        {groups.map((g) => (
+          <tbody key={g.name}>
+            {g.rows.map(([to, name, text], i) => (
+              <tr key={to} className={i === 0 ? "idx-first" : undefined}>
+                {i === 0 && <th scope="rowgroup" rowSpan={g.rows.length}>{g.name}</th>}
+                <td><Link to={to}>{name}</Link></td>
+                <td>{text}</td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
+      </table>
+      <section className="idx-rules" aria-labelledby="idx-rules">
+        <h2 id="idx-rules">How to read every page</h2>
+        <ol>
           {buyer.disclaimers.map((d, i) => (
             <li key={i}>{d}</li>
           ))}
-        </ul>
-      </main>
-    </>
+        </ol>
+      </section>
+    </main>
   );
 }

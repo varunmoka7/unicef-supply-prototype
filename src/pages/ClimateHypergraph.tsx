@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { linkHorizontal, scaleLinear } from "d3";
+import "./Climate.css";
 
 export type Nature = "target" | "commitment" | "actual" | "projection";
 export const NATURES: Nature[] = ["target", "commitment", "actual", "projection"];
@@ -43,15 +44,15 @@ export type Selection = {
 
 type Props = { data: ClimateData; buyer: BuyerLike; onSelect: (s: Selection) => void };
 
-const W = 980;
-const PITCH = 26;
-const TOP = 28;
-const LEFT_X = 230;
-const RIGHT_X = 740;
+const W = 1080;
+const PITCH = 30;
+const TOP = 30;
+const LEFT_X = 340;
+const RIGHT_X = 700;
 const GROUP_GAP = 14;
 const link = linkHorizontal();
 
-export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
+export default function ClimateHypergraph({ data, onSelect }: Props) {
   const [natures, setNatures] = useState<Set<Nature>>(new Set(NATURES));
   const [groups, setGroups] = useState<Set<Group>>(new Set(GROUPS.map((g) => g.id)));
   const [supplier, setSupplier] = useState<string>("");
@@ -59,10 +60,6 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
   const [picked, setPicked] = useState<string | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
 
-  const ink = buyer.colours?.ink ?? "#17202a";
-  const mute = buyer.colours?.mute ?? "#5f6b76";
-  const line = buyer.colours?.line ?? "#dde2e7";
-  const warn = buyer.colours?.warn ?? "#a8321f";
 
   const L = useMemo(() => {
     const suppliers = data.suppliers.filter((s) => !supplier || s.id === supplier);
@@ -91,7 +88,7 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
         (c.claims === 0 ? allNatures : NATURES.some((n) => natures.has(n) && c.natures[n] > 0)),
     );
     const max = Math.max(1, ...data.cells.map((c) => c.contexts));
-    const width = scaleLinear().domain([0, max]).range([2, 16]);
+    const width = scaleLinear().domain([0, max]).range([1.5, 8]);
     return { suppliers, concepts, sY, cY, cells, width, height: Math.max(y, TOP + suppliers.length * PITCH) + 12 };
   }, [data, natures, groups, supplier]);
 
@@ -125,31 +122,24 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
 
   const livePicked = picked && L.cells.some((c) => key(c) === picked) ? picked : null;
   const active = hover ?? livePicked;
-  const btn = (on: boolean, colour: string): React.CSSProperties => ({
-    border: `1px solid ${on ? colour : line}`,
-    background: on ? colour : "#fff",
-    color: on ? "#fff" : ink,
-    borderRadius: 14,
-    padding: "3px 10px",
-    fontSize: 12,
-    cursor: "pointer",
-  });
-
   return (
-    <section aria-label="Climate hypergraph" style={{ color: ink }}>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", marginBottom: 8 }}>
-        {NATURES.map((n) => (
-          <button key={n} type="button" aria-pressed={natures.has(n)} style={btn(natures.has(n), NATURE_COLOUR[n])} onClick={() => toggle(natures, n, setNatures)}>
-            {n}
-          </button>
-        ))}
-        <span style={{ width: 12 }} />
-        {GROUPS.map((g) => (
-          <button key={g.id} type="button" aria-pressed={groups.has(g.id)} style={btn(groups.has(g.id), ink)} onClick={() => toggle(groups, g.id, setGroups)}>
-            {g.label}
-          </button>
-        ))}
-        <label style={{ fontSize: 12, marginLeft: "auto" }}>
+    <section aria-label="Climate hypergraph" className="cl">
+      <div className="cl-legend">
+        <div className="chips" role="group" aria-label="Claim nature">
+          {NATURES.map((n) => (
+            <button key={n} type="button" className="chip cl-nature" data-n={n} aria-pressed={natures.has(n)} onClick={() => toggle(natures, n, setNatures)}>
+              {n}
+            </button>
+          ))}
+        </div>
+        <div className="chips" role="group" aria-label="Concept groups">
+          {GROUPS.map((g) => (
+            <button key={g.id} type="button" className="chip" aria-pressed={groups.has(g.id)} onClick={() => toggle(groups, g.id, setGroups)}>
+              {g.label}
+            </button>
+          ))}
+        </div>
+        <label className="cl-supplier">
           Supplier{" "}
           <select value={supplier} onChange={(e) => setSupplier(e.target.value)}>
             <option value="">All {data.suppliers.length}</option>
@@ -161,12 +151,16 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
           </select>
         </label>
       </div>
+      <p className="cl-key">
+        Ribbon width is the number of contexts. <span className="cl-dash" aria-hidden="true" /> Dashed ribbons have contexts but no claims. Ribbon colour is the most common nature among the selected ones.
+      </p>
 
-      <svg viewBox={`0 0 ${W} ${L.height}`} width="100%" role="group" aria-label="Suppliers on the left, climate concepts on the right, one ribbon per cell with contexts">
-        <text x={LEFT_X - 12} y={14} textAnchor="end" fontSize={11} fill={mute}>
+      <div className="cl-scroll">
+      <svg className="cl-svg" viewBox={`0 0 ${W} ${L.height}`} role="group" aria-label="Suppliers on the left, climate concepts on the right, one ribbon per cell with contexts">
+        <text className="cl-colhead" x={LEFT_X - 12} y={16} textAnchor="end">
           Suppliers
         </text>
-        <text x={RIGHT_X + 12} y={14} fontSize={11} fill={mute}>
+        <text className="cl-colhead" x={RIGHT_X + 12} y={16}>
           Concepts
         </text>
 
@@ -190,19 +184,19 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
               onMouseLeave={() => setHover(null)}
               onFocus={() => setFocused(k)}
               onBlur={() => setFocused(null)}
-              style={{ cursor: "pointer", outline: "none" }}
+              className="cl-cell"
             >
               {k === focused && (
-                <path d={d} fill="none" stroke={ink} strokeWidth={L.width(c.contexts) + 6} strokeDasharray="2 2" />
+                <path className="cl-focus" d={d} strokeWidth={L.width(c.contexts) + 6} />
               )}
-              <path d={d} fill="none" stroke="transparent" strokeWidth={Math.max(12, L.width(c.contexts))} />
+              <path className="cl-hit" d={d} strokeWidth={Math.max(12, L.width(c.contexts))} />
               <path
+                className="cl-rib"
+                data-n={noClaims ? "none" : dominant(c)}
                 d={d}
-                fill="none"
-                stroke={noClaims ? mute : NATURE_COLOUR[dominant(c)]}
                 strokeWidth={L.width(c.contexts)}
                 strokeDasharray={noClaims ? "4 3" : undefined}
-                opacity={dim ? 0.1 : k === active || k === focused ? 0.95 : 0.5}
+                opacity={dim ? 0.08 : k === active || k === focused ? 0.95 : 0.3}
               />
               <title>{`${supplierName(c.supplier)}, ${conceptLabel(c.concept)}: ${c.contexts} contexts, ${c.claims} claims${noClaims ? " (contexts only, no claims)" : ""}`}</title>
             </g>
@@ -214,13 +208,14 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
           const n = data.cells.filter((c) => c.supplier === s.id).length;
           return (
             <g key={s.id}>
-              <circle cx={LEFT_X} cy={y} r={4} fill={n ? ink : "#fff"} stroke={ink} />
-              <text x={LEFT_X - 12} y={y + 4} textAnchor="end" fontSize={12} fill={n ? ink : mute}>
-                {s.boundary_hold && (
-                  <tspan fill={warn} fontWeight={600}>
-                    [boundary hold]{" "}
-                  </tspan>
-                )}
+              <circle className={n ? "cl-dot" : "cl-dot cl-empty"} cx={LEFT_X} cy={y} r={4} />
+              {s.boundary_hold && (
+                <g className="cl-tag">
+                  <rect x={4} y={y - 10} width={128} height={20} />
+                  <text x={10} y={y + 4}>boundary hold</text>
+                </g>
+              )}
+              <text className={n ? "cl-lab" : "cl-lab cl-mute"} x={LEFT_X - 12} y={y + 4} textAnchor="end">
                 {s.name}
                 {n === 0 ? " (no cells)" : ""}
               </text>
@@ -232,23 +227,15 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
           const y = L.cY.get(c.id)!;
           return (
             <g key={c.id}>
-              <circle cx={RIGHT_X} cy={y} r={4} fill={ink} />
-              <text x={RIGHT_X + 12} y={y + 4} fontSize={12} fill={ink}>
+              <circle className="cl-dot" cx={RIGHT_X} cy={y} r={4} />
+              <text className="cl-lab" x={RIGHT_X + 12} y={y + 4}>
                 {c.label}
               </text>
             </g>
           );
         })}
       </svg>
-
-      <p style={{ fontSize: 12, color: mute, margin: "8px 0 0" }}>
-        Ribbon width is the number of contexts. Dashed ribbons have contexts but no claims. Colour is the most common nature among the selected ones.
-      </p>
-      {buyer.disclaimers?.map((d) => (
-        <p key={d} style={{ fontSize: 12, color: mute, margin: "2px 0" }}>
-          {d}
-        </p>
-      ))}
+      </div>
     </section>
   );
 }

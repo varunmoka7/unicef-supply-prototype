@@ -2,40 +2,39 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useBuyerJson, type Buyer, type Figure } from "../lib/buyer";
 import { buildTree, claimCount, type GroupIn, type ItemIn, type MapData, type SupplierIn } from "../lib/mapCategories";
-import { layoutRadial, layoutTree, layoutTreeDown, type PLink, type PNode, type Pos } from "../lib/mapLayout";
+import { layoutRadial, layoutTree, layoutTreeDown, textWidth, type PLink, type PNode, type Pos } from "../lib/mapLayout";
+import "./SupplyChainMap.css";
 import type { PanelItem } from "../components/SourcePanel";
 
 const YEARS = ["2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 const CLAIM_NOTE = "model-extracted, not source-checked";
 
-// buyer.json carries the tier meanings; the colour per tier lives here.
-const TIER_COLOUR: Record<string, string> = {
-  reported: "#0b5cad",
-  contract_award: "#6b4fa0",
-  bcg_reported: "#1b7f4b",
-  inferred: "#b7791f",
-  category_average: "#7a8691",
-  gap: "#a8321f",
-  claim_extracted: "#c26a00",
-};
-const colour = (tier: string) => TIER_COLOUR[tier] ?? "#7a8691";
-
 type View = "tree" | "radial";
 
-function Label({ p, fill = "#17202a" }: { p: Pos; fill?: string }) {
+const tierName = (t: string) => t.replace(/_/g, " ");
+
+// text with a paper halo; a spend label ("USD 482.9 M · reported") draws its tier as a boxed code
+function Label({ p, cls, spend }: { p: Pos; cls: string; spend?: boolean }) {
+  const [amount, tier] = spend ? p.text.split(" · ") : [p.text, undefined];
+  const common = { dy: p.dy, fontSize: p.size, fontWeight: p.bold ? 700 : 400 };
+  const tw = tier ? textWidth(tier, p.size, true) * 1.2 + 10 : 0;
+  const ax = tier ? (p.anchor === "end" ? -tw - 6 : 0) : 0;
+  const bx = p.anchor === "end" ? -tw : textWidth(amount, p.size) + 6;
   return (
-    <text
-      transform={`translate(${p.x},${p.y}) rotate(${p.deg})`}
-      textAnchor={p.anchor}
-      dy={p.dy}
-      fontSize={p.size}
-      fontWeight={p.bold ? 700 : 400}
-      fill={p.fill ?? fill}
-      className={p.fill ? undefined : "halo"}
-    >
-      {p.text !== p.full && <title>{p.full}</title>}
-      {p.text}
-    </text>
+    <g transform={`translate(${p.x},${p.y}) rotate(${p.deg})`}>
+      <text x={ax} textAnchor={p.anchor} className={`lbl ${cls}`} {...common}>
+        {p.text !== p.full && <title>{p.full}</title>}
+        {amount}
+      </text>
+      {tier && (
+        <g className={`m-tier ${tier}`}>
+          <rect x={bx} y={p.dy - 11} width={tw} height={15} />
+          <text x={bx + tw / 2} y={p.dy} dy={0} textAnchor="middle" fontSize={p.size} fontWeight={700}>
+            {tierName(tier)}
+          </text>
+        </g>
+      )}
+    </g>
   );
 }
 
@@ -104,11 +103,11 @@ function Map({ data, buyer, onOpen }: { data: MapData; buyer: Buyer; onOpen: (i:
     onKeyDown: (k: React.KeyboardEvent) => (k.key === "Enter" || k.key === " ") && (k.preventDefault(), activate(id)),
   });
 
-  const linkStyle = (l: PLink) => {
-    if (l.kind !== "spend") return { stroke: colour("claim_extracted"), width: l.kind === "category" ? 1.25 : 1, dash: undefined };
-    const tier = find.get(l.to)?.s.spend?.figure.tier ?? "gap";
-    return { stroke: colour(tier), width: 1.5, dash: tier === "gap" ? "5 4" : undefined };
+  const linkClass = (l: PLink) => {
+    if (l.kind !== "spend") return `m-link claim ${l.kind}`;
+    return `m-link spend ${find.get(l.to)?.s.spend?.figure.tier ?? "gap"}`;
   };
+  const linkWidth = (l: PLink) => (l.kind === "item" ? 1 : l.kind === "category" ? 1.25 : 1.5);
   const linkName = (l: PLink) => {
     const hit = find.get(l.to);
     if (!hit) return l.to;
@@ -163,20 +162,19 @@ function Map({ data, buyer, onOpen }: { data: MapData; buyer: Buyer; onOpen: (i:
       </div>
 
       <div className="map-scroll">
-        <svg viewBox={`${x} ${y} ${w} ${h}`} role="group" aria-label="Supply chain map" className="map-svg" style={view === "tree" && down ? { width: w } : { maxWidth: w }}>
+        <svg viewBox={`${x} ${y} ${w} ${h}`} role="group" aria-label="Supply chain map" className={`map-svg${view === "tree" && down ? " fixed" : ""}`} style={{ "--w": `${w}px` } as React.CSSProperties}>
           <defs>
             <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width="6" height="6" fill="#fff" />
-              <line x1="0" y1="0" x2="0" y2="6" stroke="#a8321f" strokeWidth="2" />
+              <rect width="6" height="6" className="hatch-bg" />
+              <line x1="0" y1="0" x2="0" y2="6" className="hatch-ln" />
             </pattern>
           </defs>
 
           {layout.links.map((l) => {
-            const st = linkStyle(l);
             return (
               <g key={`${l.from}>${l.to}`} className="edge" aria-label={linkName(l)} {...press(l.to)}>
                 <path d={l.d} fill="none" stroke="transparent" strokeWidth={10} />
-                <path d={l.d} fill="none" stroke={st.stroke} strokeWidth={st.width} strokeDasharray={st.dash} />
+                <path d={l.d} fill="none" className={linkClass(l)} stroke="currentColor" strokeWidth={linkWidth(l)} />
               </g>
             );
           })}
@@ -185,29 +183,21 @@ function Map({ data, buyer, onOpen }: { data: MapData; buyer: Buyer; onOpen: (i:
             const hit = find.get(n.id);
             const isHold = n.kind === "supplier" && hold.has(n.id);
             const gap = n.kind === "supplier" && hit?.s.gap;
-            const countries = n.kind === "category" && hit?.g?.label.startsWith("Countries");
-            return (
+                        return (
               <g key={n.id} className={n.kind === "buyer" ? undefined : "node"} aria-label={nodeName(n)} {...(n.kind === "buyer" ? {} : press(n.id))}>
                 {n.kind === "category" ? (
-                  <rect x={n.x - n.r} y={n.y - n.r} width={n.r * 2} height={n.r * 2} rx={2} fill={countries ? "#e9f5ee" : "#fff4e5"} stroke="#17202a" strokeWidth={2} />
+                  <rect className="m-cat" x={n.x - n.r} y={n.y - n.r} width={n.r * 2} height={n.r * 2} />
                 ) : (
-                  <circle
-                    cx={n.x}
-                    cy={n.y}
-                    r={n.r}
-                    fill={n.kind === "buyer" ? "#0b5cad" : n.kind === "item" ? "#fff" : gap ? "url(#hatch)" : "#e8f1fb"}
-                    stroke={isHold ? "#a8321f" : "#17202a"}
-                    strokeWidth={isHold ? 3 : 2}
-                  />
+                  <circle className={`m-dot ${n.kind}${isHold ? " hold" : ""}${gap ? " gap" : ""}`} cx={n.x} cy={n.y} r={n.r} />
                 )}
-                <Label p={n.label} />
+                <Label p={n.label} cls={n.label.fill ? "buyer" : "node-lbl"} />
               </g>
             );
           })}
 
           {layout.links.map((l) => (
             <g key={`lbl-${l.from}>${l.to}`} aria-hidden="true" onClick={() => activate(l.to)} className="edge">
-              <Label p={l.label} fill={l.kind === "spend" ? linkStyle(l).stroke : "#5b6671"} />
+              <Label p={l.label} cls="edge-lbl" spend={l.kind === "spend"} />
             </g>
           ))}
         </svg>
@@ -215,15 +205,16 @@ function Map({ data, buyer, onOpen }: { data: MapData; buyer: Buyer; onOpen: (i:
 
       <aside className="map-legend" aria-label="Legend">
         <p>
-          Line colour is the tier. A dashed line means no published figure in Annex 2 for {year}, not zero. Line width carries no
-          value. Claim counts are {CLAIM_NOTE}. Click a category to list its items; click anything to see its source. Country names
-          appear as the source wrote them, so one country can appear twice under Countries.
+          Line style carries the tier, as in the boxed codes below: solid is stated by a source, dashed is derived or averaged, dotted is
+          model-extracted. A dashed spend line means no published figure in Annex 2 for {year}, not zero. A red ring marks a supplier whose
+          reporting boundary is not resolved. Line width carries no value. Claim counts are {CLAIM_NOTE}. Click a category to list its
+          items; click anything to see its source. Country names appear as the source wrote them, so one country can appear twice under
+          Countries.
         </p>
         <ul>
           {Object.entries(buyer.tiers).map(([k, meaning]) => (
             <li key={k}>
-              <span className="swatch" style={{ background: colour(k) }} />
-              <strong>{k}</strong>: {meaning}
+              <span className={`tier ${k}`}>{tierName(k)}</span> {meaning}
             </li>
           ))}
         </ul>

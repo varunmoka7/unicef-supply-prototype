@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
+import PageHead from "./components/PageHead";
 import SourcePanel, { type PanelItem } from "./components/SourcePanel";
 import Suppliers from "./pages/Suppliers";
 import SupplyChainMap from "./pages/SupplyChainMap";
@@ -11,11 +12,18 @@ import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import { useBuyerJson, type Buyer } from "./lib/buyer";
 
+const HEADS: Record<string, { title: string; lede: string }> = {
+  "/map": { title: "Supply chain map", lede: "UNICEF spend by supplier and year, and the product groups each supplier's claims attach to." },
+  "/climate": { title: "Supplier climate claims", lede: "Which suppliers made claims on which emissions concepts, and what kind of claim each one is." },
+  "/segments": { title: "ESG claims by concept", lede: "Every extracted ESG claim from supplier reports, grouped by concept, supplier or claim nature." },
+};
+
 export default function App() {
   const { pathname } = useLocation();
   const [item, setItem] = useState<PanelItem | null>(null);
   const { data: buyer, error } = useBuyerJson<Buyer>("buyer");
   const close = useCallback(() => setItem(null), []);
+  const head = HEADS[pathname] ?? HEADS["/map"];
   if (error) return <p className="empty" role="alert">{error}</p>;
   if (!buyer) return <p className="empty">Loading buyer data.</p>;
   return (
@@ -32,15 +40,7 @@ export default function App() {
             path="*"
             element={
               <>
-                <div className="ps-intro">
-                  {buyer.logo ? <img src={buyer.logo} alt="" height={28} /> : <span className="ps-wordmark">{buyer.short_name}</span>}
-                  <h1>{buyer.name}</h1>
-                  <ul className="ps-disclaimers">
-                    {buyer.disclaimers.map((d, i) => (
-                      <li key={i}>{d}</li>
-                    ))}
-                  </ul>
-                </div>
+                <div className="page" style={{ paddingBottom: 0 }}><PageHead title={head.title} lede={head.lede} rules={buyer.disclaimers} /></div>
                 <Routes>
                   <Route path="/map" element={<SupplyChainMap buyer={buyer} onOpen={setItem} />} />
                   <Route path="/climate" element={<Climate buyer={buyer} onOpen={setItem} />} />

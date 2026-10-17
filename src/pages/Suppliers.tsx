@@ -1,15 +1,15 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { forceCenter, forceCollide, forceLink, forceManyBody, forceSimulation, scaleLinear, type SimulationNodeDatum } from "d3";
 import { useBuyerJson, type Buyer, type Evidence, type Figure } from "../lib/buyer";
 import type { PanelItem } from "../components/SourcePanel";
+import PageHead from "../components/PageHead";
 import "./Suppliers.css";
 
 // Landing dashboard: coverage, claims grid, spend by tier, supply-chain network, all read from the five buyer JSON files.
 
 type Nature = "actual" | "commitment" | "target" | "projection";
 const NATURES: Nature[] = ["actual", "commitment", "target", "projection"];
-const NATURE_COLOUR: Record<Nature, string> = { actual: "#1b7f4b", commitment: "#8aa9c9", target: "#0b5cad", projection: "#c3cad1" };
 const NATURE_LABEL: Record<Nature, string> = { actual: "measured", commitment: "commitment", target: "target", projection: "projection" };
 const YEARS = ["2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 const CA = "ca";
@@ -42,16 +42,16 @@ function Coverage(props: { suppliers: Suppliers; spend: Spend; org: OrgHypergrap
   return (
     <section aria-labelledby="ld-cov">
       <h2 id="ld-cov">Coverage</h2>
-      <div className="ld-tiles">
+      <div className="field-row">
         {tiles.map(([n, label, sub]) => (
-          <div className="ld-tile" key={label}>
-            <span className="ld-big">{n}</span>
-            <span>{label}</span>
-            <span className="ld-sub">{sub}</span>
+          <div className="field" key={label}>
+            <span className="f-value">{n}</span>
+            <span className="f-name">{label}</span>
+            <span className="f-cite">{sub}</span>
           </div>
         ))}
       </div>
-      <p className="ld-cap">The ESG and operations sets are separate document sets and are not added together.</p>
+      <p className="ld-cap">Counts are records extracted from the files, not findings. The ESG and operations sets are separate document sets and are not added together.</p>
     </section>
   );
 }
@@ -74,11 +74,11 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
     <section aria-labelledby="ld-grid">
       <h2 id="ld-grid">Claims by supplier and concept</h2>
       <p className="ld-cap">
-        Each cell is the number of extracted claims, coloured by the most frequent nature in the cell. Claims are extracted statements and not all have been checked against the source page.
+        Each cell is the number of extracted claims. Tint and bottom rule show the most frequent nature in the cell. Claims are extracted statements and not all have been checked against the source page.
       </p>
       <p className="ld-legend">
         {NATURES.map((n) => (
-          <span key={n}><i className="ld-sw" style={{ background: NATURE_COLOUR[n] }} />{NATURE_LABEL[n]}</span>
+          <span key={n}><i className={`ld-sw ld-n-${n}`} />{NATURE_LABEL[n]}</span>
         ))}
         <span><i className="ld-sw ld-hatch" />no extracted claim</span>
       </p>
@@ -87,7 +87,7 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
           <thead>
             <tr>
               <th className="ld-corner" />
-              {climate.concepts.map((c) => <th key={c.id}><span>{c.label}</span></th>)}
+              {climate.concepts.map((c) => <th key={c.id} scope="col" title={c.label} aria-label={c.label}><span>{c.label}</span></th>)}
             </tr>
           </thead>
           <tbody>
@@ -96,15 +96,16 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
                 <th scope="row">{s.name}{s.boundary_hold ? " †" : ""}</th>
                 {climate.concepts.map((c) => {
                   const cell = cells.get(s.id + "|" + c.id);
-                  if (!cell) return <td key={c.id} className="ld-empty" aria-label="no extracted claim" />;
+                  if (!cell) return <td key={c.id} className="ld-empty gap-cell" aria-label="no extracted claim" />;
                   const top = NATURES.reduce((a, n) => (cell.natures[n] > cell.natures[a] ? n : a), "actual" as Nature);
-                  const alpha = cell.claims === 0 ? 0 : 0.2 + 0.5 * Math.min(1, Math.sqrt(cell.claims / 120));
+                  const tint = cell.claims === 0 ? 0 : Math.round(8 + 22 * Math.min(1, Math.sqrt(cell.claims / 120)));
                   return (
                     <td key={c.id}>
                       <button
                         type="button"
+                        className={cell.claims ? `ld-n-${top}` : undefined}
                         aria-label={`${s.name}, ${c.label}: ${cell.claims} extracted claims`}
-                        style={{ background: cell.claims ? NATURE_COLOUR[top] + Math.round(alpha * 255).toString(16).padStart(2, "0") : undefined }}
+                        style={cell.claims ? ({ "--tint": `${tint}%` } as CSSProperties) : undefined}
                         onClick={() => open(s.name, c.label, cell)}
                       >
                         {fN(cell.claims)}
@@ -164,7 +165,7 @@ function SpendBars(props: { spend: Spend; view: string; onView: (v: string) => v
                 onClick={() => onOpen({ title: `${r.name}: ${isCa ? "contract awards 2017-2020" : "UNICEF spend " + view}`, figure: fig })}
               >
                 <span className="ld-track"><i className={isCa ? "ld-hatch ld-fill" : "ld-fill"} style={{ width: `${Math.max(1, x(fig.value))}%` }} /></span>
-                <span className="ld-val"><b>{fUsd(fig.value)}</b> · {fig.tier}</span>
+                <span className="ld-val"><b>{fUsd(fig.value)}</b> <span className={`tier ${fig.tier}`}>{fig.tier}</span></span>
               </button>
             ) : (
               <span className="ld-miss">{isCa ? "no contract award recorded" : "not in the annex"}</span>
@@ -173,7 +174,7 @@ function SpendBars(props: { spend: Spend; view: string; onView: (v: string) => v
         ))}
       </ul>
       <p className="ld-legend">
-        <span><i className="ld-sw" style={{ background: "var(--accent)" }} />reported (UNICEF Annex 2, annual)</span>
+        <span><i className="ld-sw ld-solid" />reported (UNICEF Annex 2, annual)</span>
         <span><i className="ld-sw ld-hatch" />contract award (term total, not annual spend)</span>
       </p>
       <p className="ld-cap">Annual spend and contract-award totals are different measures and are not added together.</p>
@@ -287,12 +288,12 @@ export default function Suppliers({ buyer, onOpen }: { buyer: Buyer; onOpen: (i:
   const ready = suppliers.data && spend.data && climate.data && org.data && map.data;
   return (
     <>
-      <main className="ld">
-        <p className="ld-eyebrow">UNICEF Supply Division</p>
-        <h1>Who carries UNICEF vaccine spend, and what do they say about their climate performance?</h1>
-        <p className="ld-cap ld-lede">
-          Every figure links to the file, document and page it came from. Claims are extracted statements and not all have been checked. No count here is a finding, and no supplier is rated.
-        </p>
+      <main className="page ld">
+        <PageHead
+          title="Who carries UNICEF vaccine spend, and what do they say about their climate performance?"
+          lede="Every figure links to the file, document and page it came from. Claims are extracted statements and not all have been checked. No count here is a finding, and no supplier is rated."
+          rules={buyer.disclaimers}
+        />
         {error && <p className="empty" role="alert">{error}</p>}
         {!error && !ready && <p className="empty">Loading buyer data.</p>}
         {ready && (
@@ -303,9 +304,6 @@ export default function Suppliers({ buyer, onOpen }: { buyer: Buyer; onOpen: (i:
             <Network map={map.data!} year={view === CA ? "2024" : view} onOpen={onOpen} />
           </>
         )}
-        <ul className="ld-disc">
-          {buyer.disclaimers.map((d, i) => <li key={i}>{d}</li>)}
-        </ul>
       </main>
     </>
   );

@@ -1,0 +1,28 @@
+.cl { color: var(--ink); }
+.cl-legend { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; padding: 12px 0 0; }
+.cl-legend .chips { margin: 0; }
+.cl-supplier { margin-left: auto; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+.cl-nature::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 6px; background: var(--c); border: 1.5px solid var(--c); }
+.chip.cl-nature[aria-pressed="true"] { background: var(--c); border-color: var(--c); }
+.cl-nature[aria-pressed="true"]::before { background: #fff; border-color: #fff; }
+.cl-nature[data-n="actual"], .cl-rib[data-n="actual"] { --c: var(--n-actual); }
+.cl-nature[data-n="commitment"], .cl-rib[data-n="commitment"] { --c: var(--n-commitment); }
+.cl-nature[data-n="target"], .cl-rib[data-n="target"] { --c: var(--n-target); }
+.cl-nature[data-n="projection"], .cl-rib[data-n="projection"] { --c: var(--n-projection); }
+.cl-rib[data-n="none"] { --c: var(--mute); }
+.cl-key { margin: 8px 0 12px; font-size: 13px; color: var(--mute); }
+.cl-dash { display: inline-block; width: 22px; border-top: 3px dashed var(--mute); vertical-align: middle; margin: 0 2px; }
+.cl-scroll { overflow-x: auto; border: 1.5px solid var(--ink); background: var(--paper); }
+.cl-svg { display: block; width: 100%; min-width: 1000px; height: auto; }
+.cl-cell { cursor: pointer; outline: none; }
+.cl-rib { fill: none; stroke: var(--c); }
+.cl-hit { fill: none; stroke: transparent; }
+.cl-focus { fill: none; stroke: var(--ink); stroke-dasharray: 2 2; }
+.cl-lab { font-size: 13px; fill: var(--ink); }
+.cl-mute, .cl-colhead { fill: var(--mute); }
+.cl-colhead { font-size: 12px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+.cl-dot { fill: var(--ink); stroke: var(--ink); }
+.cl-dot.cl-empty { fill: var(--paper); }
+.cl-tag rect { fill: var(--paper); stroke: var(--warn); stroke-width: 1.5; }
+.cl-tag text { font-size: 12px; font-weight: 700; fill: var(--warn); text-transform: uppercase; letter-spacing: 0.03em; }
+@media (max-width: 760px) { .cl-supplier { margin-left: 0; } .cl-supplier select { min-height: 44px; } }
