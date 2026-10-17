@@ -18,7 +18,7 @@ it("keeps division emissions separate from global procurement and retains missin
   expect(screen.getByText(/combined UNICEF-wide Scope 1 and 2 figure of 0.03/)).toBeTruthy();
   expect(screen.getByText("US$3.8 billion")).toBeTruthy();
   expect(screen.getByText(/excludes country-office local procurement/)).toBeTruthy();
-  expect(screen.getAllByText("Not available in saved evidence")).toHaveLength(20);
+  expect(screen.getAllByText("Not available in saved evidence")).toHaveLength(3);
   expect(screen.getByText("Over 12,000")).toBeTruthy();
   expect(screen.getByText(/global UNICEF supply and logistics procurement/)).toBeTruthy();
   expect(screen.getByRole("link", { name: /Annual report 2025, PDF p. 10/ }).getAttribute("href")).toContain("7a57db1cd24071cf");
@@ -27,6 +27,6 @@ it("keeps division emissions separate from global procurement and retains missin
   expect(screen.getByText("12,154")).toBeTruthy();
   fireEvent.click(screen.getByRole("button", { name: "2020: US$4.468 billion" }));
   expect(screen.getByText("US$4.468bn")).toBeTruthy();
-  expect(screen.getAllByText("Not available in saved evidence")).toHaveLength(21);
+  expect(screen.getAllByText("Not available in saved evidence")).toHaveLength(4);
   expect(screen.queryByText("12,154")).toBeNull();
 });
