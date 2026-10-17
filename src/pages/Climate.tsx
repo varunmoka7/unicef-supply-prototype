@@ -7,7 +7,7 @@ export default function Climate({ buyer, onOpen }: { buyer: Buyer; onOpen: (i: P
   if (error) return <p className="empty" role="alert">{error}</p>;
   if (!data) return <p className="empty">Loading climate data.</p>;
   return (
-    <main style={{ padding: 16 }}>
+    <main style={{ padding: "0 var(--gutter) 56px" }}>
       <ClimateHypergraph
         data={data}
         buyer={buyer}

@@ -41,11 +41,11 @@ p, li { text-wrap: pretty; }
   .site-group { flex: none; }
 }
 
-.ps-intro { padding: clamp(28px, 5vw, 56px) var(--gutter) 24px; background: var(--bg); }
-.ps-wordmark { font-weight: 700; font-size: 19px; color: var(--accent); margin-right: 10px; vertical-align: middle; }
-.ps-intro img { vertical-align: middle; margin-right: 10px; }
-.ps-intro h1 { display: inline; font-size: clamp(1.5rem, 2.6vw, 2.4rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.1; margin: 0; vertical-align: middle; }
-.ps-disclaimers { margin: 14px 0 0; padding-left: 18px; font-size: 14px; color: var(--mute); max-width: 70em; }
+.ps-intro { padding: clamp(32px, 5vw, 64px) var(--gutter) 28px; background: var(--bg); }
+.ps-wordmark { display: block; font-weight: 700; font-size: 17px; color: var(--accent); margin: 0 0 12px; }
+.ps-intro img { display: block; margin: 0 0 12px; }
+.ps-intro h1 { font-size: clamp(2rem, 3.6vw, 3.7rem); font-weight: 700; letter-spacing: -.035em; line-height: 1; margin: 0; max-width: 20em; }
+.ps-disclaimers { margin: 20px 0 0; padding-left: 18px; font-size: 15px; color: var(--mute); max-width: 70em; }
 
 .count { color: var(--mute); font-size: 14px; margin: 4px 0 12px; }
 .empty { padding: 18px var(--gutter); color: var(--mute); margin: 40px 0 0; }
@@ -153,3 +153,5 @@ aside h2 { font-size: 14px; color: var(--mute); margin: 8px 16px 6px; font-weigh
   .home-band { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .home-page { animation: none; } * { transition: none !important; } }
+
+select { min-height: 44px; padding: 6px 12px; border: 0; background: var(--surface); }

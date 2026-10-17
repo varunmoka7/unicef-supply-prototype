@@ -61,7 +61,6 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
 
   const ink = buyer.colours?.ink ?? "#17202a";
   const mute = buyer.colours?.mute ?? "#5f6b76";
-  const line = buyer.colours?.line ?? "#dde2e7";
   const warn = buyer.colours?.warn ?? "#a8321f";
 
   const L = useMemo(() => {
@@ -126,12 +125,12 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
   const livePicked = picked && L.cells.some((c) => key(c) === picked) ? picked : null;
   const active = hover ?? livePicked;
   const btn = (on: boolean, colour: string): React.CSSProperties => ({
-    border: `1px solid ${on ? colour : line}`,
-    background: on ? colour : "#fff",
+    border: 0,
+    background: on ? colour : "#f4f4f4",
     color: on ? "#fff" : ink,
-    borderRadius: 14,
-    padding: "3px 10px",
-    fontSize: 12,
+    padding: "10px 16px",
+    minHeight: 44,
+    fontSize: 15,
     cursor: "pointer",
   });
 
@@ -149,7 +148,7 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
             {g.label}
           </button>
         ))}
-        <label style={{ fontSize: 12, marginLeft: "auto" }}>
+        <label style={{ fontSize: 15, marginLeft: "auto" }}>
           Supplier{" "}
           <select value={supplier} onChange={(e) => setSupplier(e.target.value)}>
             <option value="">All {data.suppliers.length}</option>
@@ -241,11 +240,11 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
         })}
       </svg>
 
-      <p style={{ fontSize: 12, color: mute, margin: "8px 0 0" }}>
+      <p style={{ fontSize: 14, color: mute, margin: "12px 0 0", maxWidth: "60em" }}>
         Ribbon width is the number of contexts. Dashed ribbons have contexts but no claims. Colour is the most common nature among the selected ones.
       </p>
       {buyer.disclaimers?.map((d) => (
-        <p key={d} style={{ fontSize: 12, color: mute, margin: "2px 0" }}>
+        <p key={d} style={{ fontSize: 14, color: mute, margin: "2px 0" }}>
           {d}
         </p>
       ))}
