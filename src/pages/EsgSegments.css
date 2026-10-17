@@ -13,7 +13,7 @@
 .seg-key i { width: 12px; height: 12px; border-radius: 50%; border: 1px solid #fff; box-shadow: 0 0 0 1px var(--ink); }
 .seg-key i.seg-key-gap { background: var(--paper); border: 1.5px dashed var(--ink); box-shadow: none; }
 .seg-key .seg-key-size { color: var(--mute); }
-.seg-canvas { border: 1.5px solid var(--ink); background: var(--paper); overflow: auto; }
+.seg-canvas { border: 1.5px solid var(--ink); background: #f5efe2; overflow: auto; }
 .seg-canvas svg { width: 100%; height: auto; max-height: 72vh; display: block; cursor: grab; }
 .seg-page:fullscreen .seg-canvas svg { max-height: calc(100vh - 220px); }
 .seg-page circle[role="button"] { cursor: pointer; }

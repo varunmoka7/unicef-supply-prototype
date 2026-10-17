@@ -243,8 +243,8 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
               cx={d.x}
               cy={d.y}
               r={d.r}
-              fill={d.n === 0 ? "#fff" : d.colour}
-              stroke={d.n === 0 ? "#101820" : "#fff"}
+              fill={d.n === 0 ? "#f5efe2" : d.colour}
+              stroke={d.n === 0 ? "#101820" : "#f5efe2"}
               strokeWidth={d.n === 0 ? 1.5 : 1}
               strokeDasharray={d.n === 0 ? "2 2" : undefined}
               onClick={() => open(d)}
