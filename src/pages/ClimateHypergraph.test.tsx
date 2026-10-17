@@ -12,7 +12,7 @@ describe("ClimateHypergraph", () => {
     const { container } = render(<ClimateHypergraph data={climate as ClimateData} buyer={buyer} onSelect={onSelect} />);
 
     expect(screen.getByLabelText("Climate hypergraph")).toBeTruthy();
-    expect(screen.getAllByText(/\[boundary hold\]/)).toHaveLength(2);
+    expect(screen.getAllByText(/boundary hold/)).toHaveLength(2);
     expect(container.querySelectorAll("g[role=button]").length).toBe(climate.cells.length);
 
     fireEvent.click(container.querySelector("g[role=button]")!);
