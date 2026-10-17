@@ -254,12 +254,12 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
     <i aria-hidden style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: colour, marginRight: 8 }} />
   );
   const card: React.CSSProperties = { background: "#f4f4f4", padding: 20 };
-  const label: React.CSSProperties = { fontSize: 16, color: "#5c5c5c", fontWeight: 600, margin: "18px 0 6px" };
+  const label: React.CSSProperties = { fontSize: 16, color: "#444", fontWeight: 600, margin: "18px 0 6px" };
   const kpi = (name: string, value: number, note?: string) => (
-    <div key={name} style={card}>
-      <div style={{ fontSize: 15, color: "#5c5c5c" }}>{name}</div>
-      <div style={{ fontSize: 44, lineHeight: 1.05, fontWeight: 700, letterSpacing: "-0.03em", marginTop: 4 }}>{value.toLocaleString()}</div>
-      {note && <div style={{ fontSize: 14, color: "#5c5c5c" }}>{note}</div>}
+    <div key={name} style={{ ...card, display: "flex", flexDirection: "column" }}>
+      <div style={{ fontSize: 16, color: "#444", order: 1 }}>{name}</div>
+      <div style={{ order: 0, fontSize: 44, lineHeight: 1.05, fontWeight: 700, letterSpacing: "-0.03em", marginTop: 4 }}>{value.toLocaleString()}</div>
+      {note && <div style={{ fontSize: 14, color: "#444", order: 2 }}>{note}</div>}
     </div>
   );
   const listRow: React.CSSProperties = { display: "flex", justifyContent: "space-between", width: "100%", border: 0, background: "none", padding: "9px 0", color: "#111", font: "inherit", textAlign: "left" };
@@ -271,9 +271,9 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
   };
 
   return (
-    <div style={{ fontSize: 15 }}>
+    <div style={{ fontSize: 16 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-        <p style={{ margin: 0, color: "#5c5c5c", maxWidth: 640 }}>
+        <p style={{ margin: 0, color: "#444", maxWidth: 640 }}>
           {group === "esg"
             ? "ESG claims from UNICEF Supply Division's own reports, grouped by topic. Click any shape or row to read the claims and the page they come from."
             : "Every other claim in the same reports, grouped by claim category and topic. Click any shape or row to read the claims and the page they come from."}
@@ -320,17 +320,17 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
                       {r.key && dot(colourOf(r.key))}
                       {r.label}
                     </span>
-                    <span style={{ color: "#5c5c5c" }}>{r.claims.toLocaleString()}</span>
+                    <span style={{ color: "#444" }}>{r.claims.toLocaleString()}</span>
                   </button>
                 ))}
-                {b.note && <p style={{ fontSize: 14, color: "#5c5c5c", margin: "4px 0 0" }}>{b.note}</p>}
+                {b.note && <p style={{ fontSize: 14, color: "#444", margin: "4px 0 0" }}>{b.note}</p>}
               </section>
             ))}
           <h3 style={label}>By nature</h3>
           {Object.entries(t.natures).map(([n, v]) => (
             <div key={n} style={{ ...listRow, cursor: "default" }}>
               <span>{nice(n)}</span>
-              <span style={{ color: "#5c5c5c" }}>{v.toLocaleString()}</span>
+              <span style={{ color: "#444" }}>{v.toLocaleString()}</span>
             </div>
           ))}
           <p style={{ color: "#8a5a00", fontWeight: 600, margin: "12px 0 0" }}>Prototype figures. Not adjudicated.</p>
@@ -372,7 +372,7 @@ export default function OrgHulls({ data, onSelect }: { data: OrgHypergraph; onSe
               </p>
             )}
             <p style={{ margin: "6px 0" }}>A hull's size comes from the layout, not from how many claims it holds. The count is in its caption and in the claims panel.</p>
-            <p style={{ margin: "6px 0", color: "#5c5c5c" }}>
+            <p style={{ margin: "6px 0", color: "#444" }}>
               Square: UNICEF Supply Division. Circles: topics. Hexagons: frameworks. Diamonds: source PDFs. ESG claims are those whose text matches the
               existing vocabulary of an ESG topic, so some climate claims that match no pattern stay under Supply operations; every other claim in
               the KB is under Supply operations. The two groups are never drawn together.

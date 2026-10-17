@@ -1,5 +1,5 @@
 :root {
-  --ink:#111111; --mute:#5c5c5c; --line:#e4e4e4; --bg:#ffffff; --surface:#f4f4f4; --surface-2:#e9e9e9;
+  --ink:#111111; --mute:#444444; --line:#e4e4e4; --bg:#ffffff; --surface:#f4f4f4; --surface-2:#e9e9e9;
   --accent:#1a4be0; --accent-ink:#ffffff; --own:#1b7f4b; --warn:#a8321f;
   --font: "General Sans", system-ui, sans-serif;
   --cut: 12px; --gutter: clamp(16px, 4vw, 40px);
@@ -44,8 +44,8 @@ p, li { text-wrap: pretty; }
 .ps-intro { padding: clamp(32px, 5vw, 64px) var(--gutter) 28px; background: var(--bg); }
 .ps-wordmark { display: block; font-weight: 700; font-size: 17px; color: var(--accent); margin: 0 0 12px; }
 .ps-intro img { display: block; margin: 0 0 12px; }
-.ps-intro h1 { font-size: clamp(2rem, 3.6vw, 3.7rem); font-weight: 700; letter-spacing: -.035em; line-height: 1; margin: 0; max-width: 20em; }
-.ps-disclaimers { margin: 20px 0 0; padding-left: 18px; font-size: 15px; color: var(--mute); max-width: 70em; }
+.ps-intro h1 { font-size: clamp(2rem, 5.2vw, 5.4rem); font-weight: 700; letter-spacing: -.04em; line-height: .98; margin: 0; max-width: 20em; }
+.ps-disclaimers { margin: 20px 0 0; padding-left: 18px; font-size: 16px; color: var(--mute); max-width: 68ch; }
 
 .count { color: var(--mute); font-size: 14px; margin: 4px 0 12px; }
 .empty { padding: 18px var(--gutter); color: var(--mute); margin: 40px 0 0; }
@@ -115,7 +115,7 @@ aside h2 { font-size: 14px; color: var(--mute); margin: 8px 16px 6px; font-weigh
 .map-svg .node:focus-visible circle, .map-svg .node:focus-visible rect { stroke: var(--accent); stroke-width: 3px; }
 .map-svg .edge, .map-svg .node { cursor: pointer; }
 .map-svg .node:hover circle, .map-svg .node:hover rect { stroke: var(--accent); }
-.map-legend { font-size: 14px; max-width: 70em; margin-top: 14px; }
+.map-legend { font-size: 16px; max-width: 70em; margin-top: 14px; }
 .map-legend h2 { font-size: 16px; margin: 0 0 6px; }
 .map-legend ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
 .map-legend li { margin: 0 0 6px; }
@@ -125,7 +125,7 @@ aside h2 { font-size: 14px; color: var(--mute); margin: 8px 16px 6px; font-weigh
 .home { overflow-x: clip; }
 .home-hero { display: grid; grid-template-columns: minmax(0, 1fr) clamp(220px, 34vw, 520px); gap: clamp(20px, 3vw, 40px) clamp(24px, 4vw, 64px); padding: clamp(40px, 6vw, 88px) 0 0 var(--gutter); overflow: hidden; }
 .home-copy { display: contents; }
-.home-copy h1 { grid-column: 1 / -1; padding-right: var(--gutter); font-size: clamp(2.1rem, 4.3vw, 4.6rem); line-height: .98; letter-spacing: -.035em; font-weight: 700; margin: 0; }
+.home-copy h1 { grid-column: 1 / -1; padding-right: var(--gutter); font-size: clamp(2.1rem, 5vw, 5.2rem); line-height: .96; letter-spacing: -.035em; font-weight: 700; margin: 0; }
 .home-copy p { grid-column: 1; align-self: end; font-size: clamp(1.125rem, 1.5vw, 1.45rem); max-width: 30em; margin: 0; }
 .home-page { --cut: clamp(56px, 8vw, 128px); grid-column: 2; grid-row: 2; position: relative; height: clamp(260px, 30vw, 440px); background: var(--accent); animation: page-in .9s var(--ease) both; }
 .home-page::after { content: ""; position: absolute; left: -14%; right: 0; top: 48%; height: clamp(28px, 4vw, 56px); background: #8da2f2; }
@@ -144,7 +144,7 @@ aside h2 { font-size: 14px; color: var(--mute); margin: 8px 16px 6px; font-weigh
 @media (max-width: 860px) {
   .home-hero { min-height: 0; padding-bottom: 0; }
   .home-hero { grid-template-columns: minmax(0, 1fr); padding-right: 0; }
-  .home-copy h1 { font-size: 11vw; }
+  .home-copy h1 { font-size: clamp(1.75rem, 5.4vw, 3.2rem); }
   .home-copy p { padding-right: var(--gutter); }
   .home-page { grid-column: 1; grid-row: 3; margin-left: 30vw; height: 60vw; }
   .home-dest { grid-template-columns: 1fr; }
@@ -154,4 +154,5 @@ aside h2 { font-size: 14px; color: var(--mute); margin: 8px 16px 6px; font-weigh
 }
 @media (prefers-reduced-motion: reduce) { .home-page { animation: none; } * { transition: none !important; } }
 
+main p, main li, .ps-intro li { max-width: 70ch; }
 select { min-height: 44px; padding: 6px 12px; border: 0; background: var(--surface); }

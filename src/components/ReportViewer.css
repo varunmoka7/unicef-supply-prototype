@@ -3,7 +3,7 @@
   max-width: calc(100vw - 32px);
   max-height: calc(100dvh - 32px);
   padding: 16px;
-  border: 1px solid var(--line, #cbd5df);
+  border: 0;
   color: var(--ink, #17202a);
   background: #fff;
 }

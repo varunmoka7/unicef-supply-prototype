@@ -55,7 +55,7 @@ export default function Portfolio() {
     <div className="portfolio">
       <main className="pf-main">
         <div className="pf-intro">
-          <div><p className="pf-kicker">UNICEF Supply Division / portfolio</p><h1>Supplies for children.<br />The footprint behind them.</h1>
+          <div><h1>Supplies for children.<br />The footprint behind them.</h1><p className="pf-sub">UNICEF Supply Division / portfolio</p>
             <p>Supply Division supports the procurement and delivery of essential supplies, from vaccines and nutrition to water, sanitation and emergency equipment. This portfolio brings together its saved supply-chain baseline and the wider UNICEF procurement results.</p>
             <p className="pf-status">Local prototype · reporting boundaries shown with each measure</p>
           </div>
@@ -63,7 +63,7 @@ export default function Portfolio() {
         </div>
 
         <section className="pf-section" aria-labelledby="pf-emissions">
-          <div className="pf-section-head"><div><p className="pf-kicker">Environment / Supply Division boundary</p><h2 id="pf-emissions">Emissions by reporting year</h2></div><p>A historical modeled baseline is available. Annual reductions are not established by these saved sources.</p></div>
+          <div className="pf-section-head"><div><h2 id="pf-emissions">Emissions by reporting year</h2><p className="pf-sub">Environment / Supply Division boundary</p></div><p>A historical modeled baseline is available. Annual reductions are not established by these saved sources.</p></div>
           <div className="pf-emissions">
             <div className="pf-table-wrap"><table><caption>SD emissions, tonnes CO₂e</caption><thead><tr><th>Year</th><th>Scope 1</th><th>Scope 2</th><th>Scope 3</th></tr></thead><tbody>{annual.map((row) => <tr key={row.year}><th scope="row">{row.year}</th><td>{missing}</td><td>{missing}</td><td>{row.year === 2019 ? <><b>~3,900,000</b><span>Modeled baseline</span></> : missing}</td></tr>)}</tbody></table><p className="pf-note">The narrative baseline excludes Scope 1 and 2, international business travel, and Scope 3 outside SD control. The compendium includes a business-travel estimate, detailed below. UNICEF-wide operational figures cannot fill the SD cells.</p></div>
             <div className="pf-composition"><h3>What drives the 2019 baseline?</h3><p className="pf-note">Commodity groups · ktCO₂e · report-stated shares</p>{categories.map(([name, value, percent]) => <div className="pf-category" key={name}><div><span>{name}</span><b>{value.toLocaleString("en-US")} <small>({percent}%)</small></b></div><div className="pf-track"><span style={{ width: `${percent}%` }} /></div></div>)}<Source id="baseline-p012">Scope 3 baseline report, PDF p. 12</Source><p className="pf-note">Source table total: 3,869 ktCO₂e. Published category values do not sum exactly to the stated total.</p></div>
@@ -71,7 +71,7 @@ export default function Portfolio() {
         </section>
 
         <section className="pf-section" aria-labelledby="pf-baseline-detail">
-          <div className="pf-section-head"><div><p className="pf-kicker">BCG baseline / 2019 Supply Division estimate</p><h2 id="pf-baseline-detail">Scope 3 categories in the model</h2></div><p>These are components of the same historical baseline, not additional emissions or annual updates.</p></div>
+          <div className="pf-section-head"><div><h2 id="pf-baseline-detail">Scope 3 categories in the model</h2><p className="pf-sub">BCG baseline / 2019 Supply Division estimate</p></div><p>These are components of the same historical baseline, not additional emissions or annual updates.</p></div>
           <p className="pf-boundary"><b>US$3.8 billion</b> in 2019 SD baseline spend, as stated in the baseline report. The model includes international procurement, procurement services, and SD-administered cash and voucher assistance. It excludes country-office local procurement and local-partner purchases.</p>
           <div className="pf-baseline-sources"><Source id="d9c7221cd65b95cd">Scope 3 baseline report, PDF p. 11</Source><Source id="98d75c18bb0d0c5e">Assessment boundary, PDF p. 10</Source></div>
           <dl className="pf-ghg-categories">{ghgCategories.map(([code, label, value]) => <div key={label}><dt>{code ? `Category ${code}` : "Grouped source label"}<span>{label}</span></dt><dd>{value.toLocaleString("en-US")} <small>ktCO₂e</small></dd></div>)}</dl>
@@ -84,7 +84,7 @@ export default function Portfolio() {
         </section>
 
         <section className="pf-section" aria-labelledby="pf-procurement">
-          <div className="pf-section-head"><div><p className="pf-kicker">Scale / global UNICEF context</p><h2 id="pf-procurement">Procurement and supplier reach</h2></div><label className="pf-year">Reporting year<select value={year} onChange={(event) => setYear(Number(event.target.value))}>{annual.map((row) => <option key={row.year}>{row.year}</option>)}</select></label></div>
+          <div className="pf-section-head"><div><h2 id="pf-procurement">Procurement and supplier reach</h2><p className="pf-sub">Scale / global UNICEF context</p></div><label className="pf-year">Reporting year<select value={year} onChange={(event) => setYear(Number(event.target.value))}>{annual.map((row) => <option key={row.year}>{row.year}</option>)}</select></label></div>
           <p className="pf-boundary">These annual report figures cover global UNICEF supply and logistics procurement. A Supply Division-only annual spend series or supplier total is not available in the saved evidence used here. The separate SD baseline above uses rounded 2019 model spend.</p>
           <div className="pf-procurement-grid"><div><div className="pf-numbers"><div><span>Procurement value · {year}</span><strong>US${selected.spend.toFixed(3)}bn</strong><Source id={selected.id}>Annual report {year}, PDF p. {selected.page}</Source></div><div><span>UNICEF supplier base · {year}</span><strong className={suppliers === missing ? "pf-gap" : undefined}>{suppliers}</strong>{suppliers !== missing && <Source id={supplierId}>Annual report {year}, PDF p. {year === 2025 ? 5 : year === 2024 ? 12 : 14}</Source>}</div></div>
             <p className="pf-note">Procurement values are nominal US dollars, not cash disbursements. Annual report values below come from saved extracted contexts; the original PDFs were not re-opened for this prototype.</p>
@@ -92,7 +92,7 @@ export default function Portfolio() {
           </div><div className="pf-reach"><h3>Social and procurement indicators</h3><p className="pf-note">Global UNICEF · 2024 · saved annual report context</p><dl><div><dt>Countries supplied</dt><dd>160</dd></div><div><dt>Procurement from suppliers registered in programme countries</dt><dd>57.2%<small>US$3.21 billion of goods and services</small></dd></div><div><dt>Supplies procured with UN agencies and other partners</dt><dd>79%</dd></div></dl><Source id="9144cb8adc8f3a1d">Annual report 2024, PDF p. 8</Source><p className="pf-note">Supplier location does not establish local manufacture or an environmental outcome.</p></div></div>
         </section>
 
-        <section className="pf-section" aria-labelledby="pf-esg"><div className="pf-section-head"><div><p className="pf-kicker">Reported supply results / environment and social access</p><h2 id="pf-esg">Additional ESG measures</h2></div><p>UNICEF supply-function disclosures. These measure procurement, coverage or reach; they do not establish SD operational emissions reductions.</p></div>
+        <section className="pf-section" aria-labelledby="pf-esg"><div className="pf-section-head"><div><h2 id="pf-esg">Additional ESG measures</h2><p className="pf-sub">Reported supply results / environment and social access</p></div><p>UNICEF supply-function disclosures. These measure procurement, coverage or reach; they do not establish SD operational emissions reductions.</p></div>
           <div className="pf-indicators">{indicators.map(([label, value, period, status, id, page]) => <article key={label}><div><h3>{label}</h3><span>{period} · {status}</span></div><strong>{value}</strong><Source id={id}>Annual report {id === "226de3dd8748ed82" ? 2024 : 2025}, PDF p. {page}</Source></article>)}</div>
           <details className="pf-explainer"><summary>Expected outcomes and potential reductions</summary><p><b>450 facilities expected by mid-2025.</b> The 2024 report describes expected solarization coverage, not confirmed completion.</p><Source id="226de3dd8748ed82">Annual report 2024, PDF p. 10</Source><p><b>Up to 70% potential carbon reduction.</b> The 2025 report describes soybeans and chickpeas as possible alternative RUTF ingredients. This is formulation potential, not a realized SD footprint reduction or an annual inventory result.</p><Source id="ff46f22b2a6051ef">Annual report 2025, PDF p. 39</Source></details>
         </section>

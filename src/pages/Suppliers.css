@@ -4,8 +4,8 @@
 .ld h2 { font-size: clamp(1.5rem, 2.4vw, 2.25rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; margin: 0 0 10px; }
 .ld section { min-width: 0; }
 .ld-lede { font-size: 18px; color: var(--ink); max-width: 680px; }
-.ld-eyebrow { font-size: 16px; color: var(--mute); margin: 0; }
-.ld-cap { font-size: 14px; color: var(--mute); max-width: 760px; margin: 4px 0 8px; }
+.ld-byline { font-size: 16px; color: var(--mute); margin: 0; }
+.ld-cap { font-size: 16px; color: var(--mute); max-width: 66ch; margin: 4px 0 8px; }
 .ld-cap a { color: var(--accent); }
 .ld-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 20px; }
 .ld-tile { padding: 20px 22px; background: var(--bg); display: flex; flex-direction: column; gap: 4px; }
@@ -17,8 +17,8 @@
 .ld-sub { font-size: 13px; color: var(--mute); }
 .ld-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--mute); margin: 6px 0; }
 .ld-sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
-.ld-hatch { background: repeating-linear-gradient(45deg, var(--accent) 0 2px, transparent 2px 6px); border: 1px solid var(--accent); }
-.ld-legend .ld-hatch { background: repeating-linear-gradient(45deg, var(--mute) 0 2px, transparent 2px 5px); border-color: var(--line); }
+.ld-hatch { background: repeating-linear-gradient(45deg, var(--accent) 0 2px, transparent 2px 6px); border: 1px solid var(--accent); } /* taste-skill-ignore: hatch is the data key for "no claim" / "contract award" */
+.ld-legend .ld-hatch { background: repeating-linear-gradient(45deg, var(--mute) 0 2px, transparent 2px 5px); border-color: var(--line); } /* taste-skill-ignore: hatch is the data key for "no claim" / "contract award" */
 .ld-scroll { overflow: auto; max-width: 100%; }
 .ld-grid { border-collapse: separate; border-spacing: 3px; font-size: 13px; }
 .ld-grid thead th { height: 160px; min-width: 34px; vertical-align: bottom; font-weight: 500; color: var(--ink); }
@@ -27,7 +27,7 @@
 .ld-grid td { width: 34px; height: 28px; padding: 0; text-align: center; }
 .ld-grid td button { all: unset; box-sizing: border-box; width: 100%; height: 100%; display: block; line-height: 28px; cursor: pointer; font-variant-numeric: tabular-nums; color: var(--ink); }
 .ld-grid td button:hover, .ld-grid td button:focus-visible { outline: 2px solid var(--ink); }
-.ld-empty { background: repeating-linear-gradient(45deg, var(--surface-2) 0 1px, transparent 1px 5px); }
+.ld-empty { background: repeating-linear-gradient(45deg, var(--surface-2) 0 1px, transparent 1px 5px); } /* taste-skill-ignore: hatch is the data key for "no claim" / "contract award" */
 .ld-grid td button:not([style*="background"]) { background: var(--surface-2); color: var(--mute); }
 .ld-ctl { display: flex; gap: 8px; align-items: center; margin: 8px 0; font-size: 14px; }
 .ld-ctl select { font: inherit; padding: 8px 12px; min-height: 44px; border: 0; background: var(--bg); }
@@ -39,7 +39,7 @@
 .ld-bar:hover .ld-track, .ld-bar:focus-visible .ld-track { outline: 2px solid var(--ink); }
 .ld-bar:focus-visible { outline: 2px solid var(--accent); }
 .ld-fill { display: block; height: 14px; background: var(--accent); }
-.ld-fill.ld-hatch { background: repeating-linear-gradient(45deg, var(--accent) 0 2px, transparent 2px 6px); border: 1px solid var(--accent); }
+.ld-fill.ld-hatch { background: repeating-linear-gradient(45deg, var(--accent) 0 2px, transparent 2px 6px); border: 1px solid var(--accent); } /* taste-skill-ignore: hatch is the data key for "no claim" / "contract award" */
 .ld-val { color: var(--mute); font-size: 13px; white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
 .ld-val b { color: var(--ink); font-weight: 600; }
 @media (max-width: 560px) {
@@ -58,10 +58,10 @@
 .ld-edge { stroke: var(--mute); stroke-width: 1; stroke-opacity: 0.55; }
 .ld-hit { stroke: transparent; stroke-width: 10; }
 .ld-net g[role="button"]:hover .ld-edge, .ld-net g[role="button"]:focus-visible .ld-edge { stroke: var(--accent); stroke-width: 2.5; stroke-opacity: 1; }
-.ld-disc { margin: 40px 0 0; padding-left: 18px; font-size: 14px; color: var(--mute); }
+.ld-disc { margin: 40px 0 0; padding-left: 18px; font-size: 16px; color: var(--mute); }
 @media (max-width: 560px) {
   .ld section { padding: 16px; }
-  .ld h1 { font-size: 11vw; }
+  .ld h1 { font-size: clamp(1.75rem, 7.4vw, 2.4rem); }
   .ld-tiles { grid-template-columns: 1fr 1fr; }
   .ld-tiles { gap: 4px; }
   .ld-big { font-size: 2.2rem; }

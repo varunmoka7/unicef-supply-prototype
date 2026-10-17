@@ -288,8 +288,8 @@ export default function Suppliers({ buyer, onOpen }: { buyer: Buyer; onOpen: (i:
   return (
     <>
       <main className="ld">
-        <p className="ld-eyebrow">UNICEF Supply Division</p>
         <h1>Who carries UNICEF vaccine spend, and what do they say about their climate performance?</h1>
+        <p className="ld-byline">UNICEF Supply Division</p>
         <p className="ld-cap ld-lede">
           Every figure links to the file, document and page it came from. Claims are extracted statements and not all have been checked. No count here is a finding, and no supplier is rated.
         </p>

@@ -127,7 +127,7 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
   const btn = (on: boolean, colour: string): React.CSSProperties => ({
     border: 0,
     background: on ? colour : "#f4f4f4",
-    color: on ? "#fff" : ink,
+    color: on ? (colour === NATURE_COLOUR.projection ? "#111" : "#fff") : ink,
     padding: "10px 16px",
     minHeight: 44,
     fontSize: 15,
@@ -240,11 +240,11 @@ export default function ClimateHypergraph({ data, buyer, onSelect }: Props) {
         })}
       </svg>
 
-      <p style={{ fontSize: 14, color: mute, margin: "12px 0 0", maxWidth: "60em" }}>
+      <p style={{ fontSize: 16, color: mute, margin: "12px 0 0", maxWidth: "66ch" }}>
         Ribbon width is the number of contexts. Dashed ribbons have contexts but no claims. Colour is the most common nature among the selected ones.
       </p>
       {buyer.disclaimers?.map((d) => (
-        <p key={d} style={{ fontSize: 14, color: mute, margin: "2px 0" }}>
+        <p key={d} style={{ fontSize: 16, color: mute, margin: "2px 0" }}>
           {d}
         </p>
       ))}

@@ -1,12 +1,12 @@
-.portfolio { background:var(--bg); min-height:100vh; }
+.portfolio { background:var(--bg); min-height:100dvh; }
 .pf-main { max-width:1440px; margin:auto; padding:40px var(--gutter) 72px; }
 .pf-intro { display:grid; gap:28px; padding-bottom:36px; }
-.pf-kicker { margin:0 0 12px; color:var(--mute); font-size:15px; }
+.pf-sub { margin:12px 0 0; color:var(--mute); font-size:15px; }
 .pf-intro h1 { font-size:clamp(2rem,3.7vw,3.8rem); line-height:1; letter-spacing:-.035em; font-weight:700; margin:0 0 24px; }
-.pf-intro p { max-width:630px; }
+.pf-intro p { max-width:630px; font-size:18px; }
 .pf-status { font-size:13px; color:var(--mute); }
-.pf-baseline { --cut:36px; align-self:start; background:var(--accent); color:var(--accent-ink); padding:32px; clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%); }
-.pf-baseline > span { font-size:15px; color:var(--accent-ink); }
+.pf-baseline { display:flex; flex-direction:column; --cut:36px; align-self:start; background:var(--accent); color:var(--accent-ink); padding:32px; clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%); }
+.pf-baseline > span { order:1; font-size:15px; color:var(--accent-ink); }
 .pf-baseline strong { display:block; font-size:clamp(3rem,6vw,5.5rem); line-height:.95; letter-spacing:-.035em; font-weight:700; margin:18px 0; color:var(--accent-ink); }
 .pf-baseline strong small { display:block; font-size:20px; line-height:1.2; letter-spacing:0; font-weight:400; }
 .pf-baseline .pf-source { color:var(--accent-ink); }
@@ -14,7 +14,7 @@
 .pf-section { padding:clamp(48px,7vw,96px) 0 clamp(40px,5vw,72px); }
 .pf-section-head { display:flex; flex-wrap:wrap; align-items:start; justify-content:space-between; gap:16px; margin-bottom:20px; }
 .pf-section-head h2,.pf-footer h2 { margin:0; font-size:clamp(1.75rem,3.2vw,3.2rem); line-height:1; font-weight:700; letter-spacing:-.03em; }
-.pf-section-head > p { max-width:420px; color:var(--mute); font-size:15px; margin:0; }
+.pf-section-head > p { max-width:420px; color:var(--mute); font-size:16px; margin:0; }
 .pf-emissions,.pf-procurement-grid { display:grid; gap:26px; }
 .pf-table-wrap { min-width:0; }
 .pf-table-wrap table { width:100%; border-collapse:collapse; background:var(--bg); font-size:14px; }
@@ -24,18 +24,18 @@
 .pf-table-wrap td { color:var(--mute); }
 .pf-table-wrap td b { color:var(--ink); }
 .pf-table-wrap td span { display:block; font-size:13px; }
-.pf-note { font-size:13px; color:var(--mute); }
+.pf-note { font-size:16px; color:var(--mute); }
 .pf-ghg-categories { display:grid; gap:14px; margin:0 0 18px; }
 .pf-baseline-sources { display:flex; flex-wrap:wrap; gap:8px 24px; margin-bottom:22px; }
-.pf-ghg-categories > div { padding:22px; background:var(--surface); }
+.pf-ghg-categories > div { display:flex; flex-direction:column; padding:22px; background:var(--surface); }
 .pf-ghg-categories dt { color:var(--mute); font-size:13px; }
 .pf-ghg-categories dt span { display:block; color:var(--ink); font-size:14px; margin-top:6px; }
-.pf-ghg-categories dd { margin:18px 0 0; font-size:clamp(2rem,3.4vw,3.2rem); line-height:1; letter-spacing:-.03em; font-weight:700; }
+.pf-ghg-categories dd { order:-1; margin:0 0 18px; font-size:clamp(2rem,3.4vw,3.2rem); line-height:1; letter-spacing:-.03em; font-weight:700; }
 .pf-ghg-categories dd small { letter-spacing:0; font-size:13px; color:var(--mute); font-weight:400; }
 .pf-explainer { margin-top:22px; padding:14px 22px; background:var(--surface); }
 .pf-explainer summary { cursor:pointer; min-height:44px; display:list-item; align-content:center; font-weight:600; }
-.pf-explainer p { max-width:900px; font-size:13px; color:var(--mute); }
-.pf-source-caveat { padding:12px 0; font-size:13px; color:var(--mute); max-width:980px; }
+.pf-explainer p { max-width:900px; font-size:16px; color:var(--mute); }
+.pf-source-caveat { padding:12px 0; font-size:16px; color:var(--mute); max-width:980px; }
 .pf-commodity-table { margin-top:26px; }
 .pf-operational-context { display:flex; flex-direction:column; gap:6px; padding:14px 0; font-size:13px; }
 .pf-indicators { display:grid; gap:4px; }
@@ -53,8 +53,10 @@
 .pf-track span { display:block; height:100%; background:var(--accent); }
 .pf-year { font-size:13px; color:var(--mute); display:flex; align-items:center; gap:10px; }
 .pf-year select { padding:9px 12px; min-height:44px; color:var(--ink); border:0; background:var(--surface); font:inherit; font-size:15px; }
-.pf-boundary { margin:0 0 26px; color:var(--mute); max-width:840px; font-size:13px; }
+.pf-boundary { margin:0 0 26px; color:var(--mute); max-width:840px; font-size:16px; }
 .pf-numbers { display:grid; gap:20px; }
+.pf-numbers > div { display:flex; flex-direction:column; }
+.pf-numbers strong { order:-1; }
 .pf-numbers > div > span { font-size:13px; color:var(--mute); display:block; }
 .pf-numbers strong { font-size:clamp(2rem,3.6vw,3.4rem); line-height:1; letter-spacing:-.03em; display:block; margin:6px 0; font-weight:700; }
 .pf-numbers strong.pf-gap { font-size:18px; letter-spacing:0; }
@@ -67,7 +69,8 @@
 .pf-spend button[aria-pressed=true] .pf-bar { background:var(--accent); }
 .pf-reach { padding-top:20px; }
 .pf-reach dl { margin:18px 0; }
-.pf-reach dl > div { padding:14px 0; }
+.pf-reach dl > div { display:flex; flex-direction:column; padding:14px 0; }
+.pf-reach dd { order:-1; }
 .pf-reach dt { font-size:13px; color:var(--mute); }
 .pf-reach dd { margin:5px 0 0; font-size:clamp(1.8rem,2.8vw,2.8rem); line-height:1; letter-spacing:-.03em; font-weight:700; }
 .pf-reach dd small { letter-spacing:0; line-height:1.4; display:block; font-size:13px; color:var(--mute); font-weight:400; }
@@ -76,3 +79,5 @@
 .pf-footer a { color:var(--accent); display:block; padding:10px 0; }
 @media(min-width:760px) { .pf-main { padding:48px clamp(24px,4vw,56px); } .pf-intro { grid-template-columns:1.7fr 1fr; gap:64px; } .pf-emissions { grid-template-columns:1.35fr 1fr; gap:44px; } .pf-procurement-grid { grid-template-columns:1.7fr 1fr; gap:44px; } .pf-numbers { grid-template-columns:1fr 1fr; } .pf-reach { padding:0 0 0 28px; } .pf-footer { grid-template-columns:1.7fr 1fr; gap:44px; } }
 @media(max-width:759px) { .pf-source { padding:10px 0; min-height:44px; } .pf-table-wrap th,.pf-table-wrap td { padding:9px 5px; font-size:13px; overflow-wrap:anywhere; } .pf-table-wrap table { table-layout:fixed; } .pf-table-wrap th:first-child { width:44px; } .pf-commodity-table th:first-child { width:46%; } }
+
+@media(max-width:759px) { .pf-intro h1 { font-size:clamp(1.75rem,7.4vw,2.4rem); } }
