@@ -1,0 +1,21 @@
+# Detector before
+
+`impeccable detect --json src` on the original (main cce77b6), after a passing `npm run build`.
+
+```json
+[
+  {
+    "antipattern": "overused-font",
+    "name": "Overused font",
+    "description": "Inter, Roboto, Fraunces, Geist, Plus Jakarta Sans, and Space Grotesk are used on so many sites they no longer feel distinctive. Each new wave of AI-generated UIs converges on the same handful of faces. Choose a face that gives your interface personality.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/varunmoka/GTC/unicef-impeccable-trial/src/styles.css",
+    "line": 89,
+    "snippet": "font-family: Arial",
+    "importedBy": [
+      "main.tsx"
+    ]
+  }
+]
+```

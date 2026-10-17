@@ -120,7 +120,7 @@ export default function SourcePanel(props: {
             </Row>
           )}
           <Row label="Tier">
-            <span className="sp-badge">{f.tier}</span> {tiers[f.tier]}
+            <span className="sp-badge" data-tier={f.tier}>{f.tier}</span> {tiers[f.tier]}
           </Row>
           <Row label="Source">{f.source}</Row>
           <Row label="Added by">{f.added_by}</Row>
