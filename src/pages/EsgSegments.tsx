@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
 import { useBuyerJson } from "../lib/buyer";
 import type { PanelItem } from "../components/SourcePanel";
-import { NATURES, NATURE_COLOUR, type ClimateData, type Nature } from "./ClimateHypergraph";
+import { NATURES, type ClimateData, type Nature } from "./ClimateHypergraph";
 import "./EsgSegments.css";
 
 type Mode = "concept" | "supplier" | "nature";
@@ -11,7 +11,9 @@ const MODES: { id: Mode; label: string }[] = [
   { id: "supplier", label: "Supplier" },
   { id: "nature", label: "Claim nature" },
 ];
-const GROUP_COLOUR: Record<string, string> = { framework: "#6ea8fe", metric: "#7ddc9a", scope: "#f2b866" };
+const NATURE_NAME = (n: string) => (n === "actual" ? "measured" : n);
+const NATURE_COLOUR = (n: Nature) => `var(--n-${n === "actual" ? "actual" : n})`;
+const MIXED = "#6b7780";
 const W = 1100;
 const H = 700;
 
@@ -60,10 +62,6 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
 
   const sName = useMemo(() => new Map(data.suppliers.map((s) => [s.id, s.name])), [data]);
   const cLabel = useMemo(() => new Map(data.concepts.map((c) => [c.id, c])), [data]);
-  const sColour = useMemo(() => {
-    const cols = d3.quantize((t) => d3.interpolateSinebow(t), data.suppliers.length + 1);
-    return new Map(data.suppliers.map((s, i) => [s.id, cols[i]]));
-  }, [data]);
 
   const cells = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -77,21 +75,26 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
 
   const layout = useMemo(() => {
     const dots: Dot[] = [];
+    // A cell's dot takes a nature hue only when all its claims share one nature; mixed cells stay grey.
+    const cellColour = (c: Cell) => {
+      const present = NATURES.filter((nat) => c.natures[nat] > 0);
+      return present.length === 1 ? NATURE_COLOUR(present[0]) : MIXED;
+    };
     const hubLabel = new Map<string, { label: string; colour: string }>();
     for (const c of cells) {
       const concept = cLabel.get(c.concept);
       if (mode === "concept") {
-        hubLabel.set(c.concept, { label: concept?.label ?? c.concept, colour: "#e8ecf2" });
-        dots.push({ id: `${c.supplier}|${c.concept}`, hub: c.concept, cell: c, n: c.claims, colour: sColour.get(c.supplier)!, r: 0 });
+        hubLabel.set(c.concept, { label: concept?.label ?? c.concept, colour: "#101820" });
+        dots.push({ id: `${c.supplier}|${c.concept}`, hub: c.concept, cell: c, n: c.claims, colour: cellColour(c), r: 0 });
       } else if (mode === "supplier") {
-        hubLabel.set(c.supplier, { label: sName.get(c.supplier) ?? c.supplier, colour: "#e8ecf2" });
-        dots.push({ id: `${c.supplier}|${c.concept}`, hub: c.supplier, cell: c, n: c.claims, colour: GROUP_COLOUR[concept?.group ?? ""] ?? "#aab", r: 0 });
+        hubLabel.set(c.supplier, { label: sName.get(c.supplier) ?? c.supplier, colour: "#101820" });
+        dots.push({ id: `${c.supplier}|${c.concept}`, hub: c.supplier, cell: c, n: c.claims, colour: cellColour(c), r: 0 });
       } else {
         for (const nat of NATURES) {
           const n = c.natures[nat];
           if (n <= 0) continue;
-          hubLabel.set(nat, { label: nat === "actual" ? "measured" : nat, colour: NATURE_COLOUR[nat as Nature] });
-          dots.push({ id: `${c.supplier}|${c.concept}|${nat}`, hub: nat, cell: c, n, colour: sColour.get(c.supplier)!, r: 0, nature: nat });
+          hubLabel.set(nat, { label: NATURE_NAME(nat), colour: "#101820" });
+          dots.push({ id: `${c.supplier}|${c.concept}|${nat}`, hub: nat, cell: c, n, colour: NATURE_COLOUR(nat as Nature), r: 0, nature: nat });
         }
       }
     }
@@ -100,7 +103,7 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
     for (const d of dots) d.r = rScale(d.n);
     const hubs: Hub[] = [...hubLabel].map(([id, v], i, all) => {
       const a = (2 * Math.PI * i) / all.length;
-      return { id: `hub:${id}`, label: v.label, colour: v.colour, isHub: true, x: W / 2 + Math.cos(a) * W * 0.32, y: H / 2 + Math.sin(a) * H * 0.34 };
+      return { id: `hub:${id}`, label: v.label, colour: v.colour, isHub: true, x: W / 2 + Math.cos(a) * W * 0.5, y: H / 2 + Math.sin(a) * H * 0.42 };
     });
     const byHub = new Map(hubs.map((h) => [h.id.slice(4), h]));
     dots.forEach((d, i) => {
@@ -111,20 +114,20 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
     const links = dots.map((d) => ({ source: `hub:${d.hub}`, target: d.id }));
     const nodes: (Dot | Hub)[] = [...hubs, ...dots];
     const sim = d3.forceSimulation(nodes as d3.SimulationNodeDatum[])
-      .force("charge", d3.forceManyBody().strength((d) => ((d as Hub).isHub ? -300 : -6)))
+      .force("charge", d3.forceManyBody().strength((d) => ((d as Hub).isHub ? -500 : -6)))
       .force("link", d3.forceLink(links).id((d) => (d as Dot | Hub).id).distance(46).strength(0.8))
       .force("collide", d3.forceCollide<Dot | Hub>((d) => ((d as Hub).isHub ? 40 : (d as Dot).r + 1.5)))
-      .force("x", d3.forceX(W / 2).strength(0.03))
-      .force("y", d3.forceY(H / 2).strength(0.03))
+      .force("x", d3.forceX(W / 2).strength(0.02))
+      .force("y", d3.forceY(H / 2).strength(0.035))
       .stop()
       .tick(250);
     // Fit the viewBox to where the layout settled; the forces push hubs past W x H.
-    const pad = (n: Dot | Hub) => ((n as Hub).isHub ? (n as Hub).label.length * 3.25 + 10 : (n as Dot).r + 4);
+    const pad = (n: Dot | Hub) => ((n as Hub).isHub ? (n as Hub).label.length * 4.4 + 12 : (n as Dot).r + 4);
     const x0 = d3.min(nodes, (n) => n.x! - pad(n))!, x1 = d3.max(nodes, (n) => n.x! + pad(n))!;
     const y0 = d3.min(nodes, (n) => n.y!)! - 80, y1 = d3.max(nodes, (n) => n.y!)! + 80;
     const viewBox = `${x0} ${y0} ${x1 - x0} ${y1 - y0}`;
     return { dots, hubs, sim, viewBox };
-  }, [cells, mode, cLabel, sColour, sName]);
+  }, [cells, mode, cLabel, sName]);
 
   // Zoom, pan and drag as in apps/hypergraph TierCountryMap: d3.zoom on the svg,
   // dragging a dot or hub reheats the simulation (a hub carries its ring) and
@@ -170,7 +173,7 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
   const open = (d: Dot) => {
     const c = d.cell;
     const items = d.nature ? c.items.filter((i) => i.nature === d.nature) : c.items;
-    const natureLabel = d.nature === "actual" ? "measured" : d.nature;
+    const natureLabel = d.nature && NATURE_NAME(d.nature);
     onOpen({
       title: `${sName.get(c.supplier)}: ${cLabel.get(c.concept)?.label}${natureLabel ? ` (${natureLabel})` : ""}`,
       evidence: items,
@@ -183,19 +186,21 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
   };
 
   return (
-    <main className="seg-page" ref={root}>
-      <div className="seg-stats">
-        <span><b>{new Set(cells.map((c) => c.supplier)).size}</b> suppliers</span>
-        <span><b>{new Set(cells.map((c) => c.concept)).size}</b> concepts</span>
-        <span><b>{citedTotal}</b> cited claim appearances</span>
-        <span className="seg-note">Claims can appear under several concepts. Their source context has the concept tag; the claim may not mention it.</span>
+    <main className="page seg-page" ref={root}>
+      <div className="field-row seg-stats">
+        <div className="field"><span className="f-value">{new Set(cells.map((c) => c.supplier)).size}</span>{" "}<span className="f-name">suppliers</span></div>
+        <div className="field"><span className="f-value">{new Set(cells.map((c) => c.concept)).size}</span>{" "}<span className="f-name">concepts</span></div>
+        <div className="field"><span className="f-value">{citedTotal}</span>{" "}<span className="f-name">cited claim appearances</span></div>
       </div>
+      <p className="seg-note">Claims can appear under several concepts. Their source context has the concept tag; the claim may not mention it.</p>
       <div className="seg-bar">
         <span className="seg-group" role="group" aria-label="Group by">
-          Group by:
-          {MODES.map((m) => (
-            <button key={m.id} type="button" aria-pressed={mode === m.id} onClick={() => setMode(m.id)}>{m.label}</button>
-          ))}
+          <span className="seg-bar-label">Group by</span>
+          <span className="tabs">
+            {MODES.map((m) => (
+              <button key={m.id} type="button" aria-pressed={mode === m.id} onClick={() => setMode(m.id)}>{m.label}</button>
+            ))}
+          </span>
         </span>
         <input type="search" placeholder="Search supplier" aria-label="Search supplier" value={q} onChange={(e) => setQ(e.target.value)} />
         <select aria-label="Concept group" value={group} onChange={(e) => setGroup(e.target.value)}>
@@ -208,14 +213,23 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
           <option value="all">All suppliers</option>
           {data.suppliers.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
         </select>
-        <button type="button" onClick={() => root.current?.requestFullscreen?.()}>Full screen</button>
+        <button type="button" className="chip" onClick={() => root.current?.requestFullscreen?.()}>Full screen</button>
       </div>
+      <ul className="seg-key" aria-label="Key">
+        {NATURES.map((n) => (
+          <li key={n}><i style={{ background: NATURE_COLOUR(n) }} />{NATURE_NAME(n)}</li>
+        ))}
+        <li><i style={{ background: MIXED }} />mixed natures</li>
+        <li><i className="seg-key-gap" />no claims (a gap, not zero)</li>
+        <li className="seg-key-size">Dot size follows claim count. Diamond is the group.</li>
+      </ul>
+      <div className="seg-canvas">
       <svg ref={svgRef} viewBox={layout.viewBox} role="img" aria-label="ESG claims by segment" onMouseLeave={() => setTip(null)}>
         <g ref={zoomRef}>
         <g>
           {layout.dots.map((d) => {
             const h = hubOf.get(d.hub)!;
-            return <line key={d.id} x1={h.x} y1={h.y} x2={d.x} y2={d.y} stroke={d.colour} strokeOpacity={0.25} />;
+            return <line key={d.id} x1={h.x} y1={h.y} x2={d.x} y2={d.y} stroke="#c5cdd2" strokeWidth={1} />;
           })}
         </g>
         <g>
@@ -229,13 +243,16 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
               cx={d.x}
               cy={d.y}
               r={d.r}
-              fill={d.colour}
-              fillOpacity={d.n === 0 ? 0.25 : 0.9}
+              fill={d.n === 0 ? "#fff" : d.colour}
+              stroke={d.n === 0 ? "#101820" : "#fff"}
+              strokeWidth={d.n === 0 ? 1.5 : 1}
+              strokeDasharray={d.n === 0 ? "2 2" : undefined}
               onClick={() => open(d)}
               onKeyDown={(e) => e.key === "Enter" && open(d)}
               onMouseMove={(e) => {
                 const b = root.current!.getBoundingClientRect();
-                setTip({ x: e.clientX - b.left + 12, y: e.clientY - b.top + 12, text: `${sName.get(d.cell.supplier)} · ${cLabel.get(d.cell.concept)?.label} · ${d.n} claims` });
+                const nat = d.nature ? ` · ${NATURE_NAME(d.nature)}` : "";
+                setTip({ x: e.clientX - b.left + 12, y: e.clientY - b.top + 12, text: `${sName.get(d.cell.supplier)} · ${cLabel.get(d.cell.concept)?.label}${nat} · ${d.n} claims` });
               }}
             />
           ))}
@@ -243,13 +260,14 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
         <g>
           {layout.hubs.map((h) => (
             <g key={h.id} data-id={h.id} className="seg-hub" transform={`translate(${h.x},${h.y})`}>
-              <path d={d3.symbol(d3.symbolDiamond, 140)()!} fill="#fff" />
-              <text y={labelDy.get(h.id)} textAnchor="middle" fill={h.colour} className="seg-hub-label">{h.label}</text>
+              <path d={d3.symbol(d3.symbolDiamond, 140)()!} fill="#101820" />
+              <text y={labelDy.get(h.id)} textAnchor="middle" className="seg-hub-label">{h.label}</text>
             </g>
           ))}
         </g>
         </g>
       </svg>
+      </div>
       {tip && <div className="seg-tip" style={{ left: tip.x, top: tip.y }}>{tip.text}</div>}
       {cells.length === 0 && <p className="empty">No cells match these filters.</p>}
     </main>
