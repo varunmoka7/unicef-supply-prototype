@@ -1,242 +1,207 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
-import "@fontsource-variable/bricolage-grotesque";
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/500.css";
 import type { Buyer } from "../lib/buyer";
-import { CHAPTERS, DIRECTORY, type Chapter } from "./homeData";
+import { CHAPTERS, DIRECTORY } from "./homeData";
 import "./Index.css";
 
-// Concept: every number sits on a page. A highlighter draws the claim on the real PDF page,
-// and the citation never leaves the claim. One driver (scroll progress) moves the pinned scene.
+gsap.registerPlugin(ScrollTrigger);
 
-const pct = (n: number) => `${n * 100}%`;
+const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 
-function Highlights({ c, crop }: { c: Chapter; crop?: { x: number; y: number; w: number; h: number } }) {
-  return (
-    <>
-      {c.highlights.map((h, i) => (
-        <span
-          key={i}
-          className="hl"
-          style={{
-            left: pct(crop ? (h.x - crop.x) / crop.w : h.x),
-            top: pct(crop ? (h.y - crop.y) / crop.h : h.y),
-            width: pct(crop ? h.width / crop.w : h.width),
-            height: pct(crop ? h.height / crop.h : h.height),
-          }}
-        />
-      ))}
-    </>
-  );
-}
+const TIER_ORDER: [string, string][] = [
+  ["reported", "Reported"],
+  ["claim_extracted", "Claim"],
+  ["gap", "Gap"],
+];
 
-// A cut-out of the real page: the claim's own lines with a little margin, nothing redrawn.
-function Crop({ c }: { c: Chapter }) {
-  const padX = 0.04, padY = 0.04;
-  const crop = {
-    x: Math.max(0, c.bbox.x - padX),
-    y: Math.max(0, c.bbox.y - padY),
-    w: Math.min(1, c.bbox.w + padX * 2),
-    h: c.bbox.h + padY * 2,
-  };
-  return (
-    <div className="crop" style={{ aspectRatio: (crop.w * c.width) / (crop.h * c.height) }}>
-      <img
-        src={c.image}
-        alt={`${c.pdf}, page ${c.page}, with the claim highlighted`}
-        style={{ width: pct(1 / crop.w), left: pct(-crop.x / crop.w), top: pct(-crop.y / crop.h) }}
-      />
-      <Highlights c={c} crop={crop} />
-    </div>
-  );
-}
-
-function Citation({ c }: { c: Chapter }) {
-  return (
-    <p className="cite">
-      <span>{c.pdf}</span>
-      <span>page {c.page}</span>
-    </p>
-  );
-}
-
+// Landing page. One driver: scroll progress through the pinned stage maps to zoom, highlight draw, caption and citation.
 export default function Index({ buyer }: { buyer: Buyer }): JSX.Element {
   const root = useRef<HTMLElement>(null);
 
-  useLayoutEffect(() => {
-    if (!window.matchMedia) return; // jsdom has no matchMedia
-    gsap.registerPlugin(ScrollTrigger, SplitText);
-    const el = root.current!;
-    const q = <T extends Element>(s: string) => Array.from(el.querySelectorAll<T>(s));
-    const mm = gsap.matchMedia();
+  useEffect(() => {
+    const el = root.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return; // static layout is already complete
 
-    // reduced motion: everything visible and still, no smooth scroll, no pin
-    mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set(q(".hl"), { scaleX: 1 });
-    });
+    el.classList.add("is-live");
+    const lenis = new Lenis({ lerp: 0.12 });
+    lenis.on("scroll", ScrollTrigger.update);
+    const tick = (t: number) => lenis.raf(t * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const lenis = new Lenis({ lerp: 0.12 });
-      lenis.on("scroll", ScrollTrigger.update);
-      const tick = (t: number) => lenis.raf(t * 1000);
-      gsap.ticker.add(tick);
-      gsap.ticker.lagSmoothing(0);
+    const ctx = gsap.context(() => {
+      // hero: marker draws under "own reports", pages settle in
+      gsap.from(".hx-bar", { scaleX: 0, duration: 1.1, ease: "power3.inOut", delay: 0.35 });
+      gsap.from(".hx-line > span", { yPercent: 105, duration: 0.9, ease: "power3.out", stagger: 0.08 });
+      gsap.from(".hx-page", { y: 80, opacity: 0, duration: 1.1, ease: "power3.out", stagger: 0.12, delay: 0.25 });
 
-      // hero: the headline rises line by line, then the highlighter draws on the cut-out
-      const split = SplitText.create(el.querySelector(".hero h1")!, { type: "lines", mask: "lines", autoSplit: true });
-      const heroHl = q<HTMLElement>(".hero .hl");
-      gsap.set(heroHl, { scaleX: 0 });
-      gsap
-        .timeline({ defaults: { ease: "expo.out" } })
-        .from(split.lines, { yPercent: 105, duration: 1.1, stagger: 0.09 })
-        .from(".hero-lede, .hero-links", { opacity: 0, y: 14, duration: 0.8, stagger: 0.1 }, "-=0.7")
-        .from(".hero .crop", { clipPath: "inset(0 100% 0 0)", duration: 1.1 }, "-=1.1")
-        .from(".hero .hero-cite", { opacity: 0, duration: 0.6 }, "-=0.5")
-        .to(heroHl, { scaleX: 1, duration: 0.9, stagger: 0.18, ease: "power2.inOut" }, "-=0.2");
-      // idle: the cut-out breathes while nothing else moves
-      gsap.to(".hero .crop img", { scale: 1.035, duration: 7, ease: "sine.inOut", yoyo: true, repeat: -1, transformOrigin: "30% 40%" });
+      // tiers: each bar draws as it arrives
+      gsap.utils.toArray<HTMLElement>(".tier-bar").forEach((b) => {
+        gsap.from(b, { scaleX: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: b, start: "top 88%" } });
+      });
 
-      const scene = el.querySelector<HTMLElement>(".scene")!;
-      const frames = q<HTMLElement>(".pg");
-      const copies = q<HTMLElement>(".ch");
-      const count = el.querySelector<HTMLElement>(".scene-count b")!;
-      const bar = el.querySelector<HTMLElement>(".scene-bar i")!;
+      // pinned pull-back
+      const view = el.querySelector<HTMLElement>(".pb-view")!;
+      const stage = el.querySelector<HTMLElement>(".pb-stage")!;
+      const pages = gsap.utils.toArray<HTMLElement>(".pb-page");
+      const drifts = gsap.utils.toArray<HTMLElement>(".pb-drift");
+      const notes = gsap.utils.toArray<HTMLElement>(".pb-note");
+      const cites = gsap.utils.toArray<HTMLElement>(".pb-cite");
+      const bars = pages.map((p) => gsap.utils.toArray<HTMLElement>(".pb-hl", p));
+      const count = el.querySelector<HTMLElement>(".pb-count")!;
+      const n = CHAPTERS.length;
+      let vw = 0, vh = 0, fit: { w: number; h: number; s0: number }[] = [];
 
-      const desktop = window.matchMedia("(min-width: 900px) and (min-height: 600px)").matches;
-      if (desktop) {
-        scene.classList.add("is-pinned");
-        frames.forEach((f, i) => {
-          gsap.set(f, i ? { clipPath: "inset(0 0 100% 0)", opacity: 0 } : {});
-          gsap.set(f.querySelectorAll(".hl"), { scaleX: 0 });
+      const measure = () => {
+        const r = view.getBoundingClientRect();
+        vw = r.width; vh = r.height;
+        fit = CHAPTERS.map((c) => {
+          const k = Math.min((vw * 0.9) / c.width, (vh * 0.9) / c.height);
+          const w = c.width * k, h = c.height * k;
+          const s0 = Math.min(5, (vw * 0.7) / (c.bbox.w * w), (vh * 0.4) / (c.bbox.h * h));
+          return { w, h, s0 };
         });
-        copies.forEach((c, i) => gsap.set(c, { autoAlpha: i ? 0 : 1, y: i ? 40 : 0 }));
-
-        const tl = gsap.timeline({
-          defaults: { ease: "power2.inOut" },
-          scrollTrigger: {
-            trigger: scene,
-            start: "top top",
-            end: () => `+=${innerHeight * 3.2}`,
-            pin: true,
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-          },
-        });
-        tl.to(bar, { scaleX: 1, ease: "none", duration: CHAPTERS.length * 2 }, 0);
-        CHAPTERS.forEach((_, i) => {
-          const at = i * 2;
-          if (i) {
-            tl.to(frames[i - 1], { yPercent: -6, opacity: 0, duration: 0.7 }, at - 0.1)
-              .to(copies[i - 1], { autoAlpha: 0, y: -40, duration: 0.5 }, at - 0.1)
-              .set(frames[i], { opacity: 1 }, at)
-              .to(frames[i], { clipPath: "inset(0 0 0% 0)", duration: 0.8 }, at)
-              .to(copies[i], { autoAlpha: 1, y: 0, duration: 0.6 }, at + 0.25)
-              .call(() => { count.textContent = String(i + 1); }, undefined, at + 0.4);
-          }
-          tl.to(frames[i].querySelectorAll(".hl"), { scaleX: 1, duration: 0.7, stagger: 0.12, ease: "power1.inOut" }, at + 0.7);
-        });
-        tl.call(() => { count.textContent = "1"; }, undefined, 0.01);
-      } else {
-        // phone and short screens: chapters stack, each highlighter draws when its page arrives
-        q<HTMLElement>(".pg").forEach((f) => {
-          const hls = f.querySelectorAll(".hl");
-          gsap.set(hls, { scaleX: 0 });
-          ScrollTrigger.create({
-            trigger: f,
-            start: "top 70%",
-            once: true,
-            onEnter: () => gsap.to(hls, { scaleX: 1, duration: 0.9, stagger: 0.15, ease: "power2.inOut" }),
-          });
-        });
-      }
-
-      // directory rows rise in as they arrive
-      q<HTMLElement>(".dir-group").forEach((g) =>
-        gsap.from(g.querySelectorAll(".dir-row"), {
-          opacity: 0, y: 24, duration: 0.7, stagger: 0.07, ease: "expo.out",
-          scrollTrigger: { trigger: g, start: "top 85%", once: true },
-        }),
-      );
-
-      return () => {
-        split.revert();
-        gsap.ticker.remove(tick);
-        lenis.destroy();
-        scene.classList.remove("is-pinned");
+        pages.forEach((p, i) => gsap.set(p, { width: fit[i].w, height: fit[i].h, transformOrigin: "0 0" }));
       };
-    });
 
-    return () => mm.revert();
+      const render = (P: number) => {
+        const f = P * n;
+        CHAPTERS.forEach((c, i) => {
+          const u = f - i;
+          const uc = clamp(u);
+          let o = 1;
+          if (u < 0) o = i === 0 ? 1 : clamp((u + 0.1) / 0.1);
+          else if (u > 1) o = i === n - 1 ? 1 : clamp(1 - (u - 1) / 0.1);
+          const t = ease(clamp((uc - 0.12) / 0.58));
+          const sc = lerp(fit[i].s0, 1, t);
+          const cx = lerp(c.bbox.x + c.bbox.w / 2, 0.5, t);
+          const cy = lerp(c.bbox.y + c.bbox.h / 2, 0.5, t);
+          gsap.set(pages[i], { x: vw / 2 - cx * fit[i].w * sc, y: vh / 2 - cy * fit[i].h * sc, scale: sc });
+          gsap.set(drifts[i], { opacity: o });
+          gsap.set(bars[i], { scaleX: clamp((u + 0.1) / 0.22) });
+          gsap.set(notes[i], { opacity: o, y: (1 - o) * 14 });
+          gsap.set(cites[i], { opacity: clamp((uc - 0.55) / 0.15) });
+          drifts[i].style.pointerEvents = o > 0.5 ? "auto" : "none";
+        });
+        count.textContent = `${Math.min(n, Math.floor(f) + 1)} of ${n}`;
+      };
+
+      measure();
+      render(0);
+      ScrollTrigger.create({
+        trigger: stage,
+        start: "top top",
+        end: `+=${n * 120}%`,
+        pin: true,
+        invalidateOnRefresh: true,
+        onRefresh: (s) => { measure(); render(s.progress); },
+        onUpdate: (s) => render(s.progress),
+      });
+
+      // idle: the pages breathe while nobody scrolls
+      const idle = (t: number) => {
+        const s = t * 0.001;
+        drifts.forEach((d, i) => gsap.set(d, { y: Math.sin(s * 0.9 + i) * 3 }));
+        gsap.set(".hx-page", { rotate: (i: number) => [-5, 2, 7][i] + Math.sin(s * 0.7 + i * 2) * 0.8 });
+      };
+      gsap.ticker.add(() => idle(performance.now()));
+    }, el);
+
+    return () => {
+      ctx.revert();
+      gsap.ticker.remove(tick);
+      lenis.destroy();
+      el.classList.remove("is-live");
+    };
   }, []);
-
-  const hero = CHAPTERS[0];
 
   return (
     <main className="home" ref={root}>
-      <section className="hero" aria-labelledby="hero-h">
-        <div className="hero-copy">
-          <h1 id="hero-h">Every number sits on a page.</h1>
-          <p className="hero-lede">
-            UNICEF Supply Division and its vaccine suppliers write about climate in their own reports.
-            This site keeps each claim next to the PDF page it came from. Figures are prototype data and
-            have not been adjudicated.
-          </p>
-          <p className="hero-links">
-            <Link className="btn" to="/suppliers"><span>Start with the suppliers</span></Link>
-            <a className="btn btn-ghost" href="#claims"><span>See three claims on their pages</span></a>
-          </p>
+      <section className="hx" aria-labelledby="hx-h">
+        <div className="hx-copy">
+          <p className="mono hx-kicker">UNICEF Supply Division · prototype data</p>
+          <h1 id="hx-h">
+            <span className="hx-line"><span>What suppliers and</span></span>
+            <span className="hx-line"><span>UNICEF Supply Division say</span></span>
+            <span className="hx-line"><span>in their <span className="hx-mark"><i className="hx-bar" aria-hidden="true" />own reports</span></span></span>
+          </h1>
+          <p className="hx-lede">Every claim links to the PDF and page it came from. Figures are prototype data and have not been adjudicated.</p>
+          <a className="hx-cue mono" href="#follow">Follow one claim back to its page</a>
         </div>
-        <figure className="hero-fig">
-          <Crop c={hero} />
-          <figcaption className="hero-cite">
-            <span className="cite-sup">{hero.supplier}</span>
-            <Citation c={hero} />
-          </figcaption>
-        </figure>
-      </section>
-
-      <section className="scene" id="claims" aria-labelledby="claims-h">
-        <div className="stage">
-          <header className="scene-head">
-            <h2 id="claims-h">Three claims, each on its own page</h2>
-            <p className="scene-count" aria-hidden="true"><b>1</b> / {CHAPTERS.length}<span className="scene-bar"><i /></span></p>
-          </header>
+        <div className="hx-stack" aria-hidden="true">
           {CHAPTERS.map((c) => (
-            <div className="chap" key={c.pdf}>
-              <figure className="pg">
-                <div className="pg-frame" style={{ aspectRatio: c.width / c.height, ["--ar" as string]: c.width / c.height }}>
-                  <img src={c.image} alt={`${c.pdf}, page ${c.page}`} width={c.width} height={c.height} loading="lazy" />
-                  <Highlights c={c} />
-                </div>
-              </figure>
-              <article className="ch">
-                <p className="ch-sup">{c.supplier}</p>
-                <blockquote><p>{c.text}</p></blockquote>
-                <Citation c={c} />
-                <p className="ch-tag">Model-extracted claim, not source-checked by a person. {c.verification}</p>
-              </article>
-            </div>
+            <figure className="hx-page" key={c.pdf}>
+              <img src={c.image} alt="" width={c.width} height={c.height} />
+              {c.highlights.map((h, i) => (
+                <i key={i} className="hl" style={{ left: `${h.x * 100}%`, top: `${h.y * 100}%`, width: `${h.width * 100}%`, height: `${h.height * 100}%` }} />
+              ))}
+            </figure>
           ))}
         </div>
       </section>
 
+      <section id="follow" className="pb" aria-labelledby="pb-h">
+        <div className="pb-stage">
+          <div className="pb-text">
+            <h2 id="pb-h" className="mono pb-head">Three claims, each pulled back to its page <span className="pb-count" aria-hidden="true" /></h2>
+            <div className="pb-notes">
+              {CHAPTERS.map((c) => (
+                <article className="pb-note" key={c.pdf}>
+                  <p className="pb-supplier">{c.supplier}</p>
+                  <blockquote>{c.text}</blockquote>
+                  <p className="pb-cite mono">{c.pdf.replace(/_/g, " ").replace(".pdf", "")}, page {c.page}</p>
+                  <p className="pb-tier"><span className="chip">Claim</span> {buyer.tiers.claim_extracted}. {c.verification}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div className="pb-view">
+            {CHAPTERS.map((c) => (
+              <div className="pb-drift" key={c.pdf}>
+                <div className="pb-page">
+                  <img src={c.image} alt={`${c.supplier} report, page ${c.page}, with the claim highlighted`} width={c.width} height={c.height} />
+                  {c.highlights.map((h, i) => (
+                    <i key={i} className="hl pb-hl" style={{ left: `${h.x * 100}%`, top: `${h.y * 100}%`, width: `${h.width * 100}%`, height: `${h.height * 100}%` }} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="tiers" aria-labelledby="tiers-h">
+        <h2 id="tiers-h">A gap is a gap, never zero.</h2>
+        <ul>
+          {TIER_ORDER.map(([key, label]) => (
+            <li key={key} className={`tier tier-${key}`}>
+              <span className="tier-bar" aria-hidden="true" />
+              <p className="mono tier-label">{label}</p>
+              <p>{buyer.tiers[key]}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section className="dir" aria-labelledby="dir-h">
-        <h2 id="dir-h">Where to look next</h2>
+        <h2 id="dir-h" className="mono">Where to look</h2>
         {DIRECTORY.map((g) => (
           <div className="dir-group" key={g.name}>
-            <h3>{g.name}</h3>
+            <h3 className="mono">{g.name}</h3>
             <ul>
               {g.rows.map(([to, name, text]) => (
-                <li className="dir-row" key={to}>
-                  <Link className="dir-name" to={to}>{name}</Link>
-                  <span className="dir-text">{text}</span>
-                  <span className="dir-go" aria-hidden="true">→</span>
+                <li key={to}>
+                  <Link to={to} className="dir-row">
+                    <span className="dir-name"><i className="dir-mark" aria-hidden="true" /><span>{name}</span></span>
+                    <span className="dir-text">{text}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -244,8 +209,8 @@ export default function Index({ buyer }: { buyer: Buyer }): JSX.Element {
         ))}
       </section>
 
-      <section className="home-rules" aria-labelledby="rules-h">
-        <h2 id="rules-h">How to read every page</h2>
+      <section className="rules" aria-labelledby="rules-h">
+        <h2 id="rules-h" className="mono">How to read every page</h2>
         <ol>
           {buyer.disclaimers.map((d, i) => (
             <li key={i}>{d}</li>
