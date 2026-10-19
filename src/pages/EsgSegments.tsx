@@ -59,6 +59,7 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
   const svgRef = useRef<SVGSVGElement>(null);
   const zoomRef = useRef<SVGGElement>(null);
   const [, setFrame] = useState(0);
+  const lastPos = useRef(new Map<string, { x: number; y: number }>());
 
   const sName = useMemo(() => new Map(data.suppliers.map((s) => [s.id, s.name])), [data]);
   const cLabel = useMemo(() => new Map(data.concepts.map((c) => [c.id, c])), [data]);
@@ -103,7 +104,7 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
     for (const d of dots) d.r = rScale(d.n);
     const hubs: Hub[] = [...hubLabel].map(([id, v], i, all) => {
       const a = (2 * Math.PI * i) / all.length;
-      return { id: `hub:${id}`, label: v.label, colour: v.colour, isHub: true, x: W / 2 + Math.cos(a) * W * 0.5, y: H / 2 + Math.sin(a) * H * 0.42 };
+      return { id: `hub:${id}`, label: v.label, colour: v.colour, isHub: true, x: W / 2 + Math.cos(a) * W * 0.4, y: H / 2 + Math.sin(a) * H * 0.42 };
     });
     const byHub = new Map(hubs.map((h) => [h.id.slice(4), h]));
     dots.forEach((d, i) => {
@@ -111,22 +112,34 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
       d.x = h.x! + Math.cos(i) * 30;
       d.y = h.y! + Math.sin(i) * 30;
     });
+    // Nodes that survive a filter or mode change start where they were, so they glide.
+    for (const n of [...hubs, ...dots]) {
+      const p = lastPos.current.get(n.id);
+      if (p) { n.x = p.x; n.y = p.y; }
+    }
     const links = dots.map((d) => ({ source: `hub:${d.hub}`, target: d.id }));
     const nodes: (Dot | Hub)[] = [...hubs, ...dots];
+    // Keep every node inside W x H; a hub also keeps its label (half-width, plus a row above and below) in frame.
+    const bound = () => {
+      for (const n of nodes) {
+        const hub = n as Hub;
+        const px = hub.isHub ? hub.label.length * 4.4 + 12 : (n as Dot).r + 4;
+        const py = hub.isHub ? 50 : (n as Dot).r + 4;
+        n.x = Math.min(Math.max(n.x!, px), W - px);
+        n.y = Math.min(Math.max(n.y!, py), H - py);
+      }
+    };
     const sim = d3.forceSimulation(nodes as d3.SimulationNodeDatum[])
       .force("charge", d3.forceManyBody().strength((d) => ((d as Hub).isHub ? -500 : -6)))
       .force("link", d3.forceLink(links).id((d) => (d as Dot | Hub).id).distance(46).strength(0.8))
       .force("collide", d3.forceCollide<Dot | Hub>((d) => ((d as Hub).isHub ? 40 : (d as Dot).r + 1.5)))
       .force("x", d3.forceX(W / 2).strength(0.02))
       .force("y", d3.forceY(H / 2).strength(0.035))
-      .stop()
-      .tick(250);
-    // Fit the viewBox to where the layout settled; the forces push hubs past W x H.
-    const pad = (n: Dot | Hub) => ((n as Hub).isHub ? (n as Hub).label.length * 4.4 + 12 : (n as Dot).r + 4);
-    const x0 = d3.min(nodes, (n) => n.x! - pad(n))!, x1 = d3.max(nodes, (n) => n.x! + pad(n))!;
-    const y0 = d3.min(nodes, (n) => n.y!)! - 80, y1 = d3.max(nodes, (n) => n.y!)! + 80;
-    const viewBox = `${x0} ${y0} ${x1 - x0} ${y1 - y0}`;
-    return { dots, hubs, sim, viewBox };
+      .force("bound", bound)
+      .alphaDecay(0.012)
+      .velocityDecay(0.5)
+      .stop();
+    return { dots, hubs, sim };
   }, [cells, mode, cLabel, sName]);
 
   // Zoom, pan and drag as in apps/hypergraph TierCountryMap: d3.zoom on the svg,
@@ -138,7 +151,11 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
     const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([0.3, 3]).on("zoom", (e) => g.attr("transform", e.transform));
     svg.call(zoom).call(zoom.transform, d3.zoomIdentity);
     const { sim } = layout;
-    sim.on("tick", () => setFrame((f) => f + 1));
+    sim.on("tick", () => {
+      for (const n of [...layout.hubs, ...layout.dots]) lastPos.current.set(n.id, { x: n.x!, y: n.y! });
+      setFrame((f) => f + 1);
+    });
+    sim.alpha(1).restart();
     const byId = new Map<string, Dot | Hub>([...layout.hubs, ...layout.dots].map((n) => [n.id, n]));
     const drag = d3
       .drag<SVGElement, Dot | Hub>()
@@ -224,7 +241,7 @@ function Segments({ data, onOpen }: { data: ClimateData; onOpen: (i: PanelItem) 
         <li className="seg-key-size">Dot size follows claim count. Diamond is the group.</li>
       </ul>
       <div className="seg-canvas">
-      <svg ref={svgRef} viewBox={layout.viewBox} role="img" aria-label="ESG claims by segment" onMouseLeave={() => setTip(null)}>
+      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="ESG claims by segment" onMouseLeave={() => setTip(null)}>
         <g ref={zoomRef}>
         <g>
           {layout.dots.map((d) => {
