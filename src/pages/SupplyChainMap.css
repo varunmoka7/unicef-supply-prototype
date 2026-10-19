@@ -3,8 +3,8 @@
 .map-controls .chips { margin: 0; flex-wrap: nowrap; }
 .map-controls .chip { min-height: 36px; padding: 2px 10px; }
 .map-scroll { max-width: 100%; overflow-x: auto; }
-.map-svg { display: block; width: 100%; max-width: var(--w); height: auto; border: 1.5px solid var(--ink); background: var(--paper); font-family: var(--sans); font-variant-numeric: tabular-nums; color: var(--ink); }
-.map-scroll .map-svg.fixed { width: var(--w); max-width: none; }
+.map-svg { display: block; width: 100%; height: auto; border: 1.5px solid var(--ink); background: var(--paper); font-family: var(--sans); font-variant-numeric: tabular-nums; color: var(--ink); }
+.map-scroll .map-svg.fixed { min-width: var(--w); }
 
 .map-svg .lbl { fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 5px; stroke-linejoin: round; }
 .map-svg .lbl.edge-lbl { fill: var(--mute); }
@@ -45,5 +45,5 @@
   .map-controls .chips { flex-wrap: wrap; }
   .map-controls .chip { min-height: 44px; }
   .map-controls select { min-height: 44px; }
-  .map-scroll .map-svg { width: var(--w); max-width: none; }
+  .map-scroll .map-svg { min-width: var(--w); }
 }
