@@ -16,7 +16,10 @@ const CA = "ca";
 const NO_PRICE = /\b(price|prices|pricing|fee|fees|tariff|per dose)\b/i;
 
 interface Spend { records: { name: string; parent: string; category: string; spend_usd: Record<string, Figure> | null; contract_awards_2017_2020?: Figure | null }[] }
-interface Cell { supplier: string; concept: string; contexts: number; claims: number; natures: Record<Nature, number>; items: (Evidence & { nature: string })[] }
+interface Sbti { status: string; label: string; confidence: number | null; picked_by?: string }
+interface Cell { supplier: string; concept: string; contexts: number; claims: number; natures: Record<Nature, number>; items: (Evidence & { nature: string })[]; sbti?: Sbti }
+const SBTI_LABELS = ["Net-zero target validated", "Near-term target validated", "Committed, not yet validated", "Aligned, validation not stated", "No SBTi status stated"];
+const EVIDENCE_CAP = 2;
 interface Climate { suppliers: { id: string; name: string; boundary_hold: boolean }[]; concepts: { id: string; label: string; group: string }[]; cells: Cell[] }
 interface Stats { claims: number; documents: number; contexts: number }
 interface OrgHypergraph { stats: { esg: Stats; operations: Stats } }
@@ -66,8 +69,9 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
     onOpen({
       title: `${supplier}: ${label}`,
       evidence,
+      cap: EVIDENCE_CAP,
       scope: isScope ? { supplier: cell.supplier, concept: cell.concept } : undefined,
-      note: `${fN(cell.claims)} extracted claims in ${fN(cell.contexts)} contexts (${NATURES.map((n) => `${NATURE_LABEL[n]} ${cell.natures[n]}`).join(", ")}). ${fN(evidence.length)} claim texts are listed in the file. Extracted, not source-checked.`,
+      note: `${cell.sbti ? `SBTi status as stated in the report: ${cell.sbti.label} (${cell.sbti.picked_by ?? "model-picked"}). ` : ""}${fN(cell.claims)} extracted claims in ${fN(cell.contexts)} contexts (${NATURES.map((n) => `${NATURE_LABEL[n]} ${cell.natures[n]}`).join(", ")}). ${fN(evidence.length)} claim texts are listed in the file. Extracted, not source-checked.`,
     });
   };
   return (
@@ -104,11 +108,11 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
                       <button
                         type="button"
                         className={cell.claims ? `ld-n-${top}` : undefined}
-                        aria-label={`${s.name}, ${c.label}: ${cell.claims} extracted claims`}
+                        aria-label={`${s.name}, ${c.label}: ${cell.sbti ? `${cell.sbti.label}, ` : ""}${cell.claims} extracted claims`}
                         style={cell.claims ? ({ "--tint": `${tint}%` } as CSSProperties) : undefined}
                         onClick={() => open(s.name, c.label, cell)}
                       >
-                        {fN(cell.claims)}
+                        {cell.sbti ? <span className="ld-sbti">{cell.sbti.label}</span> : fN(cell.claims)}
                       </button>
                     </td>
                   );
@@ -119,6 +123,8 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
         </table>
       </div>
       <p className="ld-cap">
+        SBTi column: the target status the report states, picked by Jev from the extracted claim texts and not source-checked. Values: {SBTI_LABELS.join(" · ")}. The other cells count extracted claims.
+        Opening a cell shows at most {EVIDENCE_CAP} evidence items: the source-checked emissions table where one exists, then the most relevant claim texts.
         Hatched cell: no extracted claim. This does not mean no action was taken. † supplier flagged boundary_hold in the file. The cell counts add up to {fN(total)} claims
         across {fN(climate.cells.length)} supplier-concept cells; the ESG set in the coverage strip reports a different count. They have not been reconciled.{" "}
         <Link to="/climate">Open the climate hypergraph</Link>

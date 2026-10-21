@@ -1,8 +1,9 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { beforeAll, expect, it, vi } from "vitest";
 import SourcePanel from "./SourcePanel";
 import prepared from "../../buyers/unicef/data/report-evidence.json";
 import pages from "../../buyers/unicef/data/report-pages.json";
+import climate from "../../buyers/unicef/data/climate.json";
 import { reviewOf } from "./ReportViewer";
 
 // jsdom does not implement the native dialog API or its browser focus containment.
@@ -95,4 +96,21 @@ it("never reads an unknown or missing verification as source-reviewed", () => {
   expect(reviewOf("Automated match, not individually source-checked: text diff.")).toBe("automatic");
   expect(reviewOf("Accepted after source check: claim vs quote read.")).toBe("reviewed");
   expect(reviewOf("Accepted: verbatim.")).toBe("reviewed");
+});
+
+it("caps the evidence to the most relevant items and counts a source-checked table against the cap", () => {
+  // Real cell from climate.json: Bavarian Nordic, Scope 1, 25 Jev-ranked claim texts and one source-checked table.
+  const cell = climate.cells.find((c) => c.supplier === "bavarian_nordic_a_s" && c.concept === "scope_1")!;
+  const ranked = [...cell.items].sort((a, b) => (b.relevance ?? -1) - (a.relevance ?? -1));
+  const texts = () => screen.getAllByRole("button", { name: /View (highlighted|cited) report page/ }).map((b) => b.querySelector(".claim-text")?.textContent);
+  render(<SourcePanel item={{ title: "x", evidence: cell.items, cap: 2 }} tiers={{}} onClose={() => {}} />);
+  expect(texts()).toEqual(ranked.slice(0, 2).map((i) => i.text));
+  expect(screen.getByText(/2 most relevant of 25 claim texts/)).toBeTruthy();
+  cleanup();
+  render(<SourcePanel item={{ title: "x", evidence: cell.items, cap: 2, scope: { supplier: cell.supplier, concept: cell.concept } }} tiers={{}} onClose={() => {}} />);
+  expect(screen.getAllByRole("button", { name: /View highlighted report table/ })).toHaveLength(1);
+  expect(texts()).toEqual([ranked[0].text]);
+  cleanup();
+  render(<SourcePanel item={{ title: "x", evidence: cell.items }} tiers={{}} onClose={() => {}} />);
+  expect(texts()).toHaveLength(cell.items.length);
 });

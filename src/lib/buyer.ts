@@ -20,6 +20,7 @@ export interface Evidence {
   year?: string | number | null;
   nature?: string;
   needs_review?: boolean;
+  relevance?: number; // Jev probability that this is the best evidence in its cell (rank_evidence.py)
 }
 
 export interface Buyer {
