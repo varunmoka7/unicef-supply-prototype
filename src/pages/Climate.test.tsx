@@ -12,7 +12,7 @@ vi.stubGlobal("fetch", async (url: string) => ({
 
 it("opens the source panel with claims, pdf and page from a climate ribbon", async () => {
   render(<MemoryRouter initialEntries={["/climate"]}><App /></MemoryRouter>);
-  const ribbon = await screen.findByRole("button", { name: /AJ Vaccines, Energy consumption: 1 contexts, 7 claims/ });
+  const ribbon = await screen.findByRole("button", { name: /AJ Vaccines, Energy consumption: 1 contexts, \d+ claims/ });
   fireEvent.click(ribbon);
   const panel = screen.getByRole("dialog", { name: "Source" });
   expect(panel.textContent).toContain("AJ Vaccines: Energy consumption");
@@ -69,7 +69,7 @@ it("a claim on /climate and on /hypergraph opens its full report page, without s
   HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
   HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
   const { unmount } = render(<MemoryRouter initialEntries={["/climate"]}><App /></MemoryRouter>);
-  fireEvent.click(await screen.findByRole("button", { name: /AJ Vaccines, Energy consumption: 1 contexts, 7 claims/ }));
+  fireEvent.click(await screen.findByRole("button", { name: /AJ Vaccines, Energy consumption: 1 contexts, \d+ claims/ }));
   let panel = screen.getByRole("dialog", { name: "Source" });
   fireEvent.click(within(panel).getAllByRole("button", { name: /View (highlighted|cited) report page/ })[0]);
   let report = screen.getByRole("dialog", { name: /\.pdf · page \d+/ });

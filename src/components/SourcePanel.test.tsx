@@ -102,10 +102,10 @@ it("caps the evidence to the most relevant items and counts a source-checked tab
   // Real cell from climate.json: Bavarian Nordic, Scope 1, 25 Jev-ranked claim texts and one source-checked table.
   const cell = climate.cells.find((c) => c.supplier === "bavarian_nordic_a_s" && c.concept === "scope_1")!;
   const ranked = [...cell.items].sort((a, b) => (b.relevance ?? -1) - (a.relevance ?? -1));
-  const texts = () => screen.getAllByRole("button", { name: /View (highlighted|cited) report page/ }).map((b) => b.querySelector(".claim-text")?.textContent);
+  const texts = () => screen.getAllByRole("button", { name: /\.pdf · page \d+/ }).filter((b) => b.classList.contains("claim") && b.querySelector(".claim-text") && !/report table/.test(b.textContent ?? "")).map((b) => b.querySelector(".claim-text")?.textContent);
   render(<SourcePanel item={{ title: "x", evidence: cell.items, cap: 2 }} tiers={{}} onClose={() => {}} />);
   expect(texts()).toEqual(ranked.slice(0, 2).map((i) => i.text));
-  expect(screen.getByText(/2 most relevant of 25 claim texts/)).toBeTruthy();
+  expect(screen.getByText(new RegExp(`2 most relevant of ${cell.items.length} claim texts`))).toBeTruthy();
   cleanup();
   render(<SourcePanel item={{ title: "x", evidence: cell.items, cap: 2, scope: { supplier: cell.supplier, concept: cell.concept } }} tiers={{}} onClose={() => {}} />);
   expect(screen.getAllByRole("button", { name: /View highlighted report table/ })).toHaveLength(1);

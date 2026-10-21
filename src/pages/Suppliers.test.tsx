@@ -61,9 +61,9 @@ it.skipIf(!hasData)("the verified supplier claim opens its full report page abov
   HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
   HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
   await open();
-  fireEvent.click(screen.getByRole("button", { name: /^Bavarian Nordic, SBTi: .*13 extracted claims$/ }));
+  fireEvent.click(screen.getByRole("button", { name: /^Bavarian Nordic, SBTi: .*\d+ extracted claims$/ }));
   const panel = screen.getByRole("dialog", { name: "Source" });
-  const claim = within(panel).getByRole("button", { name: /The current targets for Scope 1 and 2 emissions involve a 42%/ });
+  const claim = within(panel).getByRole("button", { name: /We intend to pursue SBTi validation of our near-term targets/ });
   claim.focus();
   fireEvent.click(claim);
   const report = screen.getByRole("dialog", { name: /Bavarian_Nordic_Annual_Report_2025.pdf · page 63/ });
@@ -81,7 +81,7 @@ it.skipIf(!hasData)("a cell shows at most two evidence items, the emissions tabl
   let panel = screen.getByRole("dialog", { name: "Source" });
   expect(within(panel).getAllByRole("button", { name: /View highlighted report table/ })).toHaveLength(1);
   expect(within(panel).getAllByRole("button", { name: /View (highlighted|cited) report page/ })).toHaveLength(1);
-  expect(panel.textContent).toContain("The most relevant of 25 claim texts, ranked by Jev");
+  expect(panel.textContent).toMatch(/The most relevant of \d+ claim texts, ranked by Jev/);
   fireEvent.click(within(grid).getByRole("button", { name: /^Pfizer, Scope 3: / }));
   panel = screen.getByRole("dialog", { name: "Source" });
   expect(within(panel).queryAllByRole("button", { name: /View highlighted report table/ })).toHaveLength(0);

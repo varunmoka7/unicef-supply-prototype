@@ -73,13 +73,13 @@ describe("EsgSegments", () => {
     expect(container.querySelector(".seg-stats")!.textContent).toContain(`${cited} cited claim appearances`);
   });
 
-  it("opens only commitment evidence for the AJ Vaccines energy commitment dot", () => {
+  it("opens only commitment evidence for a cell's single commitment dot", () => {
     const onOpen = vi.fn();
     const { container } = render(<EsgSegments onOpen={onOpen} />);
     fireEvent.click(screen.getByRole("button", { name: "Claim nature" }));
-    fireEvent.click(container.querySelector('[data-id="aj_vaccine_a_s|metric_energy|commitment"]')!);
+    const cell = climate.cells.find((c) => c.natures.commitment === 1)!;
+    fireEvent.click(container.querySelector(`[data-id="${cell.supplier}|${cell.concept}|commitment"]`)!);
     const item = onOpen.mock.lastCall![0];
-    const cell = climate.cells.find((c) => c.supplier === "aj_vaccine_a_s" && c.concept === "metric_energy")!;
     expect(item.title).toContain("(commitment)");
     expect(item.evidence).toEqual(cell.items.filter((i) => i.nature === "commitment"));
     expect(item.evidence).toHaveLength(1);

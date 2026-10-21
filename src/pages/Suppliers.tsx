@@ -78,7 +78,7 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
     <section aria-labelledby="ld-grid">
       <h2 id="ld-grid">Claims by supplier and concept</h2>
       <p className="ld-cap">
-        Each cell is the number of extracted claims. Tint and bottom rule show the most frequent nature in the cell. Claims are extracted statements and not all have been checked against the source page.
+        Each cell is the number of extracted claims whose text names the concept, from the passages tagged with it. Tint and bottom rule show the most frequent nature in the cell. Claims are extracted statements and not all have been checked against the source page.
       </p>
       <p className="ld-legend">
         {NATURES.map((n) => (
@@ -123,7 +123,7 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
         </table>
       </div>
       <p className="ld-cap">
-        SBTi column: the target status the report states, picked by Jev from the extracted claim texts and not source-checked. Values: {SBTI_LABELS.join(" · ")}. The other cells count extracted claims.
+        SBTi column: the target status the report states, picked by Jev from the extracted claim texts and not source-checked. Values: {SBTI_LABELS.join(" · ")}. The other cells count extracted claims whose text names the concept, from passages tagged with it.
         Opening a cell shows at most {EVIDENCE_CAP} evidence items: the source-checked emissions table where one exists, then the most relevant claim texts.
         Hatched cell: no extracted claim. This does not mean no action was taken. † supplier flagged boundary_hold in the file. The cell counts add up to {fN(total)} claims
         across {fN(climate.cells.length)} supplier-concept cells; the ESG set in the coverage strip reports a different count. They have not been reconciled.{" "}

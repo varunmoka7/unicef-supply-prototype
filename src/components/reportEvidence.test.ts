@@ -100,7 +100,7 @@ describe("prepared report evidence", () => {
       }
     };
     [climate, map, org, spend, suppliers].forEach(walk);
-    expect(ids.size).toBe(2448);
+    expect(ids.size).toBe(2241);
     for (const id of ids) expect(catalog.has(id.split("|").slice(0, 2).join("|")), id).toBe(true);
   });
 });
