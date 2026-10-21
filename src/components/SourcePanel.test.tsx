@@ -3,6 +3,7 @@ import { beforeAll, expect, it, vi } from "vitest";
 import SourcePanel from "./SourcePanel";
 import prepared from "../../buyers/unicef/data/report-evidence.json";
 import pages from "../../buyers/unicef/data/report-pages.json";
+import climate from "../../buyers/unicef/data/climate.json";
 import { reviewOf } from "./ReportViewer";
 
 // jsdom does not implement the native dialog API or its browser focus containment.
@@ -70,7 +71,7 @@ it("tells an automatic match apart from a source-reviewed mapping", () => {
     expect(within(viewer).getByText(expected)).toBeTruthy();
     expect(within(viewer).queryByText(other)).toBeNull();
     expect(viewer.textContent).toContain(`Claim: ${entry.text}`);
-    cleanup();
+    unmount();
   }
 });
 
@@ -98,15 +99,18 @@ it("never reads an unknown or missing verification as source-reviewed", () => {
 });
 
 it("caps the evidence to the most relevant items and counts a source-checked table against the cap", () => {
-  const three = [0.2, 0.9, 0.5].map((relevance, i) => ({ ...evidence, text: `claim ${i}`, relevance, nature: "actual" }));
-  render(<SourcePanel item={{ title: "x", evidence: three, cap: 2 }} tiers={{}} onClose={() => {}} />);
-  expect(screen.getAllByRole("button", { name: /claim \d/ }).map((b) => b.querySelector(".claim-text")?.textContent)).toEqual(["claim 1", "claim 2"]);
-  expect(screen.getByText(/2 most relevant of 3 claim texts/)).toBeTruthy();
+  // Real cell from climate.json: Bavarian Nordic, Scope 1, 25 Jev-ranked claim texts and one source-checked table.
+  const cell = climate.cells.find((c) => c.supplier === "bavarian_nordic_a_s" && c.concept === "scope_1")!;
+  const ranked = [...cell.items].sort((a, b) => (b.relevance ?? -1) - (a.relevance ?? -1));
+  const texts = () => screen.getAllByRole("button", { name: /View (highlighted|cited) report page/ }).map((b) => b.querySelector(".claim-text")?.textContent);
+  render(<SourcePanel item={{ title: "x", evidence: cell.items, cap: 2 }} tiers={{}} onClose={() => {}} />);
+  expect(texts()).toEqual(ranked.slice(0, 2).map((i) => i.text));
+  expect(screen.getByText(/2 most relevant of 25 claim texts/)).toBeTruthy();
   cleanup();
-  render(<SourcePanel item={{ title: "x", evidence: three, cap: 2, scope: { supplier: "bavarian_nordic_a_s", concept: "scope_1" } }} tiers={{}} onClose={() => {}} />);
+  render(<SourcePanel item={{ title: "x", evidence: cell.items, cap: 2, scope: { supplier: cell.supplier, concept: cell.concept } }} tiers={{}} onClose={() => {}} />);
   expect(screen.getAllByRole("button", { name: /View highlighted report table/ })).toHaveLength(1);
-  expect(screen.getAllByRole("button", { name: /claim \d/ }).map((b) => b.querySelector(".claim-text")?.textContent)).toEqual(["claim 1"]);
+  expect(texts()).toEqual([ranked[0].text]);
   cleanup();
-  render(<SourcePanel item={{ title: "x", evidence: three }} tiers={{}} onClose={() => {}} />);
-  expect(screen.getAllByRole("button", { name: /claim \d/ })).toHaveLength(3);
+  render(<SourcePanel item={{ title: "x", evidence: cell.items }} tiers={{}} onClose={() => {}} />);
+  expect(texts()).toHaveLength(cell.items.length);
 });
