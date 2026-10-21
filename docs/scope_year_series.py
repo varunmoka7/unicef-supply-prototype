@@ -1,7 +1,7 @@
 """Scope 1/2/3 year series for the 15 /suppliers grid suppliers, read from Docling table contexts,
 validated against the PDF page text, the KB text contexts and the extracted claim texts.
 Nothing is converted; units are kept as printed. Output: JSON + markdown in the scratchpad."""
-import json, re, sys, collections
+import json, re, collections
 from pathlib import Path
 import fitz
 
@@ -17,6 +17,11 @@ tables_checked = {(t["supplier"], t["pdf"], t["page"]) for t in json.loads((PROT
 ctx = json.loads((KB / "contexts.json").read_text())
 claims = json.loads((KB / "claims.corrected.json").read_text())
 pdfs = {p.name: p for p in PDF_ROOT.rglob("*.pdf")}
+
+
+def company(rec):
+    return rec.get("metadata", {}).get("company") or rec["company_id"]
+
 
 YEAR = re.compile(r"(?:FY\s?)?(20\d{2})(?:\s?[-/]\s?(\d{2,4}))?")
 NUM = re.compile(r"^\(?-?\d[\d,]*(?:\.\d+)?")
@@ -100,9 +105,9 @@ def unit_of(*texts):
 
 figs = []
 for c in ctx:
-    if c["company_id"] not in GRID or c["content_type"] != "table":
+    if company(c) not in GRID or c["content_type"] != "table":
         continue
-    if c["company_id"] == "green_cross_corporation_gc_pharma" and c["page_number"] != 42:
+    if company(c) == "green_cross_corporation_gc_pharma" and c["page_number"] != 42:
         continue  # p41 = GC holding company, p43 = GC Cell (index p172); the supplier is GC Biopharma, p42
     lines = [l for l in c["content"].split("\n") if l.startswith("|") and not l.startswith("| ---")]
     caption = " ".join(l for l in c["content"].split("\n") if l and not l.startswith("|") and not l.startswith("[Reporting"))
@@ -110,7 +115,7 @@ for c in ctx:
     for l in lines:
         cells = [x.strip() for x in l.strip("|").split("|")]
         yc = year_cols(cells)
-        if c["company_id"] == "pt_bio_farma_persero" and "Pasteurdan Cisarua" in " ".join(cells):
+        if company(c) == "pt_bio_farma_persero" and "Pasteurdan Cisarua" in " ".join(cells):
             header, ycols = cells, {}
             continue
         if len(yc) >= 2 or (len(yc) == 1 and all(num(x)[0] is None or re.fullmatch(r"(FY\s?)?20\d{2}", x.strip()) for x in cells)):
@@ -118,9 +123,9 @@ for c in ctx:
             header_unit = unit_of(" ".join(cells))
             section = cells[0]
             continue
-        if c["company_id"] == "pt_bio_farma_persero" and header and "Pasteurdan Cisarua" in " ".join(header) and re.fullmatch(r"20\d{2}", cells[0]):
+        if company(c) == "pt_bio_farma_persero" and header and "Pasteurdan Cisarua" in " ".join(header) and re.fullmatch(r"20\d{2}", cells[0]):
             v, printed = num(cells[-1])
-            figs.append(dict(supplier=c["company_id"], metric="s2", boundary="", year=cells[0], value=v, printed=printed, unit="ton CO2eq", label=header[-1],
+            figs.append(dict(supplier=company(c), metric="s2", boundary="", year=cells[0], value=v, printed=printed, unit="ton CO2eq", label=header[-1],
                              pdf=c["source_pdf"], page=c["page_number"], context_id=c["id"], inferred=True, note="scope from the page heading CAKUPAN 2; transposed table, last column is the total"))
             continue
         if not ycols:
@@ -138,10 +143,10 @@ for c in ctx:
             continue
         kind = classify(label)
         inferred = False
-        if c["company_id"] == "pt_bio_farma_persero" and label.startswith("Total") and len(label) < 20:
-            page_txt = " ".join(t["content"] for t in ctx if t["company_id"] == c["company_id"] and t["page_number"] == c["page_number"] and t["content_type"] == "text")
+        if company(c) == "pt_bio_farma_persero" and label.startswith("Total") and len(label) < 20:
+            page_txt = " ".join(t["content"] for t in ctx if company(t) == company(c) and t["page_number"] == c["page_number"] and t["content_type"] == "text")
             sect = re.findall(r"CAKUPAN\s*([123])", page_txt)
-            order = [t["id"] for t in ctx if t["company_id"] == c["company_id"] and t["page_number"] == c["page_number"] and t["content_type"] == "table" and "Total" in t["content"]]
+            order = [t["id"] for t in ctx if company(t) == company(c) and t["page_number"] == c["page_number"] and t["content_type"] == "table" and "Total" in t["content"]]
             if sect and c["id"] in order and order.index(c["id"]) < len(sect) and "Intensitas" not in c["content"]:
                 kind, inferred = "s" + sect[order.index(c["id"])], True
 
@@ -163,16 +168,16 @@ for c in ctx:
         u = unit_of(label, " ".join(cells), header_unit or "", caption) or header_unit
         for y, cell in vals.items():
             v, printed = num(cell)
-            figs.append(dict(supplier=c["company_id"], metric=kind, boundary=boundary(label), year=y, value=v, printed=printed.strip() if v is not None else "",
+            figs.append(dict(supplier=company(c), metric=kind, boundary=boundary(label), year=y, value=v, printed=printed.strip() if v is not None else "",
                              unit=u, label=label, pdf=c["source_pdf"], page=c["page_number"], context_id=c["id"], inferred=inferred))
 
 # Xiamen Innovax: numbers only exist in an OCR text context (Docling returned glyph ids)
 for c in ctx:
-    if c["company_id"] == "xiamen_innovax_biotech_co_ltd" and "tesseract OCR" in c["content"]:
+    if company(c) == "xiamen_innovax_biotech_co_ltd" and "tesseract OCR" in c["content"]:
         for line in c["content"].split("\n"):
             m = re.search(r"\((Scope 1 and Scope 2|Scope 1|Scope 2) GHG emissions\).*?([\d,]+\.\d+)", line)
             if m:
-                figs.append(dict(supplier=c["company_id"], metric={"Scope 1": "s1", "Scope 2": "s2", "Scope 1 and Scope 2": "s1s2"}[m.group(1)], boundary="", year="2025",
+                figs.append(dict(supplier=company(c), metric={"Scope 1": "s1", "Scope 2": "s2", "Scope 1 and Scope 2": "s1s2"}[m.group(1)], boundary="", year="2025",
                                  value=float(m.group(2).replace(",", "")), printed=m.group(2), unit="tCO2e", label=line.split("|")[0].strip(),
                                  pdf=c["source_pdf"], page=c["page_number"], context_id=c["id"], inferred=False, note="OCR text context, not a Docling table"))
 
@@ -187,12 +192,12 @@ def ptext(pdf, page):
 
 text_by_sup = collections.defaultdict(str)
 for c in ctx:
-    if c["content_type"] == "text" and c["company_id"] in GRID:
-        text_by_sup[c["company_id"]] += re.sub(r"\s+", "", c["content"]) + "\n"
+    if c["content_type"] == "text" and company(c) in GRID:
+        text_by_sup[company(c)] += re.sub(r"\s+", "", c["content"]) + "\n"
 claims_by_sup = collections.defaultdict(str)
 for cl in claims:
-    if cl["company_id"] in GRID:
-        claims_by_sup[cl["company_id"]] += re.sub(r"\s+", "", cl["claim_text"]) + "\n"
+    if company(cl) in GRID:
+        claims_by_sup[company(cl)] += re.sub(r"\s+", "", cl["claim_text"]) + "\n"
 
 for f in figs:
     if f["value"] is None:
