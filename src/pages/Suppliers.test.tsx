@@ -61,7 +61,7 @@ it.skipIf(!hasData)("the verified supplier claim opens its full report page abov
   HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
   HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
   await open();
-  fireEvent.click(screen.getByRole("button", { name: "Bavarian Nordic, SBTi: 13 extracted claims" }));
+  fireEvent.click(screen.getByRole("button", { name: /^Bavarian Nordic, SBTi: .*13 extracted claims$/ }));
   const panel = screen.getByRole("dialog", { name: "Source" });
   const claim = within(panel).getByRole("button", { name: /The current targets for Scope 1 and 2 emissions involve a 42%/ });
   claim.focus();
@@ -72,4 +72,21 @@ it.skipIf(!hasData)("the verified supplier claim opens its full report page abov
   fireEvent.keyDown(report, { key: "Escape" });
   expect(screen.getByRole("dialog", { name: "Source" })).toBe(panel);
   expect(document.activeElement).toBe(claim);
+}, 15000);
+
+it.skipIf(!hasData)("a cell shows at most two evidence items, the emissions table first, and the SBTi cell shows a status label", async () => {
+  await open();
+  const grid = screen.getByRole("heading", { name: "Claims by supplier and concept" }).closest("section")!;
+  fireEvent.click(within(grid).getByRole("button", { name: /^Bavarian Nordic, Scope 1: / }));
+  let panel = screen.getByRole("dialog", { name: "Source" });
+  expect(within(panel).getAllByRole("button", { name: /View highlighted report table/ })).toHaveLength(1);
+  expect(within(panel).getAllByRole("button", { name: /View (highlighted|cited) report page/ })).toHaveLength(1);
+  expect(panel.textContent).toContain("The most relevant of 25 claim texts, ranked by Jev");
+  fireEvent.click(within(grid).getByRole("button", { name: /^Pfizer, Scope 3: / }));
+  panel = screen.getByRole("dialog", { name: "Source" });
+  expect(within(panel).queryAllByRole("button", { name: /View highlighted report table/ })).toHaveLength(0);
+  expect(within(panel).getAllByRole("button", { name: /View (highlighted|cited) report page/ })).toHaveLength(2);
+  const sbti = within(grid).getByRole("button", { name: /^GSK, SBTi: / });
+  expect(sbti.textContent).toBe("Net-zero target validated");
+  expect(grid.textContent).toContain("SBTi column: the target status the report states");
 }, 15000);

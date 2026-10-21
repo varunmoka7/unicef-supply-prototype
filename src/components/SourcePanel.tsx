@@ -10,6 +10,8 @@ export interface PanelItem {
   figure?: Figure;
   evidence?: Evidence[];
   note?: string;
+  // Most evidence items to show, tables included. Set by the claims grid; other pages show every item.
+  cap?: number;
   // Exact climate supplier and Scope concept ids: set only on Scope concept clicks.
   scope?: { supplier: string; concept: string };
   summary?: {
@@ -104,6 +106,10 @@ export default function SourcePanel(props: {
   if (!item) return null;
   const f = item.figure;
   const tables = item.scope ? tablesFor(emissionsTables as TableEvidence[], item.scope.supplier, item.scope.concept) : [];
+  const slots = item.cap === undefined ? Infinity : Math.max(0, item.cap - tables.length);
+  const evidence = item.evidence && item.cap !== undefined
+    ? [...item.evidence].sort((a, b) => (b.relevance ?? -1) - (a.relevance ?? -1)).slice(0, slots)
+    : item.evidence;
 
   return (
     <>
@@ -167,10 +173,13 @@ export default function SourcePanel(props: {
           )}
         </div>
       )}
-      {item.evidence && item.evidence.length > 0 && (
+      {evidence && evidence.length > 0 && (
         <div className="sp-claims">
           <div className="sp-label">Evidence</div>
-          {byYear(item.evidence).map((g) => (
+          {item.cap !== undefined && item.evidence!.length > evidence.length && (
+            <p className="count">The {evidence.length === 1 ? "most relevant" : `${evidence.length} most relevant`} of {item.evidence!.length} claim texts, ranked by Jev. Extracted, not source-checked.</p>
+          )}
+          {byYear(evidence).map((g) => (
             <section className="claim-group" key={g.year}>
               <h3>{g.year}</h3>
               <div>{g.items.map((e, i) => <ClaimBox e={e} key={i} onReport={setReport}

@@ -27,6 +27,7 @@
 .ld-grid tbody th { text-align: left; font-weight: 600; font-size: 13px; white-space: nowrap; padding: 0 12px; position: sticky; left: 0; background: var(--paper); z-index: 1; border-right: 1.5px solid var(--ink); border-bottom: 1px solid var(--line); }
 .ld-grid td { width: 40px; min-width: 40px; height: 34px; padding: 0; text-align: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .ld-grid td button { all: unset; box-sizing: border-box; width: 100%; height: 100%; min-height: 34px; display: block; line-height: 30px; cursor: pointer; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); background: color-mix(in srgb, var(--nc, #fff) var(--tint, 0%), #fff); }
+.ld-grid td button .ld-sbti { display: block; font-size: 10px; line-height: 1.15; font-weight: 600; padding: 3px 4px; white-space: normal; min-width: 92px; }
 .ld-grid td button:not([class*="ld-n-"]) { background: var(--paper); color: var(--mute); font-weight: 400; }
 .ld-grid td button:hover { outline: 2px solid var(--ink); outline-offset: -2px; }
 .ld-grid td button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
