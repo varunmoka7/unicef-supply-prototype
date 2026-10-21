@@ -113,8 +113,8 @@
       "group": "scope"
     },
     {
-      "id": "scope3_cat_business_travel",
-      "label": "Scope 3 Cat 6: Business Travel",
+      "id": "scope3_cat_purchased_goods",
+      "label": "Scope 3 Cat 1: Purchased Goods & Services",
       "group": "scope"
     },
     {
@@ -123,53 +123,8 @@
       "group": "scope"
     },
     {
-      "id": "scope3_cat_downstream_leased",
-      "label": "Scope 3 Cat 13: Downstream Leased Assets",
-      "group": "scope"
-    },
-    {
-      "id": "scope3_cat_downstream_transport",
-      "label": "Scope 3 Cat 9: Downstream Transportation",
-      "group": "scope"
-    },
-    {
-      "id": "scope3_cat_employee_commuting",
-      "label": "Scope 3 Cat 7: Employee Commuting",
-      "group": "scope"
-    },
-    {
-      "id": "scope3_cat_eol_treatment",
-      "label": "Scope 3 Cat 12: End-of-Life Treatment",
-      "group": "scope"
-    },
-    {
-      "id": "scope3_cat_franchises",
-      "label": "Scope 3 Cat 14: Franchises",
-      "group": "scope"
-    },
-    {
       "id": "scope3_cat_fuel_energy",
       "label": "Scope 3 Cat 3: Fuel & Energy Related",
-      "group": "scope"
-    },
-    {
-      "id": "scope3_cat_investments",
-      "label": "Scope 3 Cat 15: Investments",
-      "group": "scope"
-    },
-    {
-      "id": "scope3_cat_processing",
-      "label": "Scope 3 Cat 10: Processing of Sold Products",
-      "group": "scope"
-    },
-    {
-      "id": "scope3_cat_purchased_goods",
-      "label": "Scope 3 Cat 1: Purchased Goods & Services",
-      "group": "scope"
-    },
-    {
-      "id": "scope3_cat_upstream_leased",
-      "label": "Scope 3 Cat 8: Upstream Leased Assets",
       "group": "scope"
     },
     {
@@ -178,13 +133,58 @@
       "group": "scope"
     },
     {
+      "id": "scope3_cat_waste",
+      "label": "Scope 3 Cat 5: Waste Generated in Operations",
+      "group": "scope"
+    },
+    {
+      "id": "scope3_cat_business_travel",
+      "label": "Scope 3 Cat 6: Business Travel",
+      "group": "scope"
+    },
+    {
+      "id": "scope3_cat_employee_commuting",
+      "label": "Scope 3 Cat 7: Employee Commuting",
+      "group": "scope"
+    },
+    {
+      "id": "scope3_cat_upstream_leased",
+      "label": "Scope 3 Cat 8: Upstream Leased Assets",
+      "group": "scope"
+    },
+    {
+      "id": "scope3_cat_downstream_transport",
+      "label": "Scope 3 Cat 9: Downstream Transportation",
+      "group": "scope"
+    },
+    {
+      "id": "scope3_cat_processing",
+      "label": "Scope 3 Cat 10: Processing of Sold Products",
+      "group": "scope"
+    },
+    {
       "id": "scope3_cat_use_of_sold",
       "label": "Scope 3 Cat 11: Use of Sold Products",
       "group": "scope"
     },
     {
-      "id": "scope3_cat_waste",
-      "label": "Scope 3 Cat 5: Waste Generated in Operations",
+      "id": "scope3_cat_eol_treatment",
+      "label": "Scope 3 Cat 12: End-of-Life Treatment",
+      "group": "scope"
+    },
+    {
+      "id": "scope3_cat_downstream_leased",
+      "label": "Scope 3 Cat 13: Downstream Leased Assets",
+      "group": "scope"
+    },
+    {
+      "id": "scope3_cat_franchises",
+      "label": "Scope 3 Cat 14: Franchises",
+      "group": "scope"
+    },
+    {
+      "id": "scope3_cat_investments",
+      "label": "Scope 3 Cat 15: Investments",
       "group": "scope"
     }
   ],
