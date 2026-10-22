@@ -14,6 +14,7 @@ interface Climate { suppliers: { id: string; name: string; boundary_hold: boolea
 const series = seriesFile as unknown as Series;
 const NATURE_LABEL: Record<string, string> = { actual: "measured", commitment: "commitment", target: "target", projection: "projection" };
 const FILTERS: { key: "all" | Status; label: string }[] = [{ key: "all", label: "All" }, { key: "verified", label: "Verified" }, { key: "unverified", label: "Unverified" }, { key: "flagged", label: "Flagged" }];
+const NONE = "\u0000none";
 const fN = (n: number | null) => (n === null ? "" : n.toLocaleString("en-US"));
 const nb = (s: string) => s.replace(/ /g, " ");
 const media = (q: string) => window.matchMedia?.(q).matches ?? false;
@@ -92,6 +93,7 @@ function SupplierPage({ id, climate }: { id: string; climate: Climate }): JSX.El
   const claims = useMemo(() => claimRows(id, climate.cells, climate.concepts, series.conflicts), [id, climate]);
   const { rows: years, other } = useMemo(() => yearTable(id, series.figures), [id]);
   const [filt, setFilt] = useState<"all" | Status>("all");
+  const [per, setPer] = useState("all");
   const [sel, setSel] = useState<string | null>(null);
   const [sheet, setSheet] = useState(false);
   const [rove, setRove] = useState<string | null>(null);
@@ -105,7 +107,8 @@ function SupplierPage({ id, climate }: { id: string; climate: Climate }): JSX.El
   const srcCells = useRef(new Map<string, HTMLTableCellElement>());
 
   const count = (s: Status) => claims.filter((c) => c.status === s).length;
-  const shown = claims.filter((c) => filt === "all" || c.status === filt);
+  const periods = useMemo(() => [...new Set(claims.map((c) => c.period).filter((p): p is string => !!p))].sort(), [claims]);
+  const shown = claims.filter((c) => (filt === "all" || c.status === filt) && (per === "all" || (per === NONE ? !c.period : c.period === per)));
   const picked = claims.find((c) => c.id === sel) ?? null;
   const active = rove && shown.some((c) => c.id === rove) ? rove : shown[0]?.id;
   const docs = useMemo(() => {
@@ -195,6 +198,13 @@ function SupplierPage({ id, climate }: { id: string; climate: Climate }): JSX.El
                 </button>
               ))}
             </div>
+            <label className="sup-per">Period
+              <select value={per} onChange={(e) => setPer(e.target.value)}>
+                <option value="all">All periods</option>
+                {periods.map((p) => <option key={p} value={p}>{nb(p)}</option>)}
+                {claims.some((c) => !c.period) && <option value={NONE}>Not stated</option>}
+              </select>
+            </label>
           </div>
           <p className="sup-note">Each row is a claim extracted from a supplier report, up to {EVIDENCE_CAP} per concept. The supplier’s own words appear in the evidence card. Verified means the passage was found, not that the number is right. The Value column stays blank because the claim text is not parsed into numbers.</p>
           <p className="sup-shown" aria-live="polite">{shown.length} of {claims.length} shown</p>
@@ -203,7 +213,7 @@ function SupplierPage({ id, climate }: { id: string; climate: Climate }): JSX.El
             <colgroup><col /><col style={{ width: 110 }} /><col style={{ width: 110 }} /><col style={{ width: 120 }} /><col style={{ width: 190 }} /></colgroup>
             <thead><tr><th scope="col">Claim</th><th scope="col" style={{ textAlign: "right" }}>Value</th><th scope="col">Period</th><th scope="col">Status</th><th scope="col">Source</th></tr></thead>
             <tbody>
-              {shown.length === 0 && <tr><td colSpan={5} className="sup-na">No extracted claim for this supplier{filt === "all" ? "" : " with this status"}. This does not mean no action was taken.</td></tr>}
+              {shown.length === 0 && <tr><td colSpan={5} className="sup-na">No extracted claim for this supplier{filt === "all" && per === "all" ? "" : " with this filter"}. This does not mean no action was taken.</td></tr>}
               {shown.map((c) => (
                 <tr key={c.id} className={sel === c.id ? "sel" : undefined} onClick={(e) => { if (!(e.target as HTMLElement).closest(".sup-cb")) btns.current.get(c.id)?.click(); }}>
                   <td>

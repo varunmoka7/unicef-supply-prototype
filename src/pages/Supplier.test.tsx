@@ -76,6 +76,18 @@ it.skipIf(!hasData)("GSK page renders real claims; selecting one shows its page 
   expect(screen.getByRole("table", { name: /Emissions by year/ }).textContent).toContain("626");
 }, 20000);
 
+it.skipIf(!hasData)("period filter narrows the rows and the shown count", async () => {
+  const climate = read("buyers/unicef/data/climate.json");
+  const rows = claimRows("glaxosmithkline_biologicals_sa", climate.cells, climate.concepts, read("docs/scope-year-series-2026-10-21.json").conflicts);
+  await open("glaxosmithkline_biologicals_sa");
+  const period = rows.find((r) => r.period)!.period!;
+  const want = rows.filter((r) => r.period === period).length;
+  expect(want).toBeLessThan(rows.length);
+  fireEvent.change(screen.getByRole("combobox", { name: /Period/ }), { target: { value: period } });
+  expect(within(screen.getByRole("table", { name: /Climate claims from GSK/ })).getAllByRole("button")).toHaveLength(want);
+  expect(screen.getByText(/of \d+ shown/).textContent).toBe(`${want} of ${rows.length} shown`);
+}, 20000);
+
 it.skipIf(!hasData)("a supplier with no scope figure shows a blank year table and no zeros", async () => {
   await open("aj_vaccine_a_s");
   const t = screen.getByRole("table", { name: /Emissions by year/ });
