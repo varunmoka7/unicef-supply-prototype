@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import PageHead from "./components/PageHead";
 import SourcePanel, { type PanelItem } from "./components/SourcePanel";
 import Suppliers from "./pages/Suppliers";
+import Supplier from "./pages/Supplier";
 import SupplyChainMap from "./pages/SupplyChainMap";
 import Climate from "./pages/Climate";
 import Hypergraph from "./pages/Hypergraph";
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/" element={<Index buyer={buyer} />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/suppliers" element={<Suppliers buyer={buyer} onOpen={setItem} />} />
+          <Route path="/suppliers/:id" element={<Supplier />} />
           <Route path="/hypergraph" element={<Hypergraph buyer={buyer} onOpen={setItem} />} />
           <Route
             path="*"
