@@ -3,3 +3,4 @@ dist
 .vercel
 *.log
 __pycache__
+.gstack/

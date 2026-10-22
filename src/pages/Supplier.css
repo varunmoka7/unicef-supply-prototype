@@ -38,6 +38,8 @@
 .sup-pills { display: flex; gap: 2px; border: 1px solid var(--ln); border-radius: 20px; padding: 4px; overflow-x: auto; scroll-snap-type: x mandatory; }
 .sup-pills button { scroll-snap-align: start; height: 32px; border: 0; background: none; border-radius: 16px; padding: 0 12px; font-size: 12px; color: var(--s); cursor: pointer; transition: color 0.15s, background-color 0.15s; white-space: nowrap; }
 .sup-pills button[aria-pressed="true"] { background: var(--ac); color: #fff; }
+.sup-per { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--s); }
+.sup-per select { height: 40px; border: 1px solid var(--ln); border-radius: 20px; padding: 0 12px; font: inherit; color: var(--k); background: none; }
 .sup-note { font-size: 12px; color: var(--c); margin: 8px 0 4px; max-width: 640px; }
 .sup-shown { font-size: 12px; color: var(--c); margin: 0 0 12px; }
 .sup table { width: 100%; border-collapse: collapse; }
@@ -138,6 +140,7 @@
   .sup-rc { display: none; }
   .sup-tr { flex-direction: column; align-items: flex-start; }
   .sup-pills { max-width: 100%; }
+  .sup-per select { height: 44px; }
   .sup-pills button { height: 36px; min-width: 44px; }
   #sup-claims colgroup, #sup-claims thead { display: none; }
   #sup-claims tbody { display: block; }
