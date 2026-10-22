@@ -31,8 +31,9 @@
 
 .sup-work { position: relative; }
 .sup-lc { grid-column: 1 / 9; min-height: 720px; }
-.sup-rc { grid-column: 9 / 13; }
+.sup-rc { grid-column: 9 / 13; overflow: visible; }
 .sup-rc .sup-card { position: sticky; top: 24px; min-height: 360px; }
+@media (min-width: 901px) { .sup-rc .sup-card { max-height: calc(100vh - 48px); overflow: auto; } }
 .sup h2 { font-size: 18px; font-weight: 700; color: var(--k); margin: 0; }
 .sup-tr { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .sup-pills { display: flex; gap: 2px; border: 1px solid var(--ln); border-radius: 20px; padding: 4px; overflow-x: auto; scroll-snap-type: x mandatory; }
