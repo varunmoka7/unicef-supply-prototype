@@ -97,7 +97,7 @@ function Grid(props: { climate: Climate; onOpen: (i: PanelItem) => void }): JSX.
           <tbody>
             {climate.suppliers.map((s) => (
               <tr key={s.id}>
-                <th scope="row">{s.name}{s.boundary_hold ? " †" : ""}</th>
+                <th scope="row"><Link to={`/suppliers/${s.id}`}>{s.name}</Link>{s.boundary_hold ? " †" : ""}</th>
                 {climate.concepts.map((c) => {
                   const cell = cells.get(s.id + "|" + c.id);
                   if (!cell) return <td key={c.id} className="ld-empty gap-cell" aria-label="no extracted claim" />;
